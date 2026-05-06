@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="docs/master-claude.png" alt="logo" width="300">
+</div>
+
 # master-claude
 
 > A unified Claude Code workspace combining software engineering workflow (AgentSpec) and content squad orchestration (Opensquad) — one tool, one mental model.

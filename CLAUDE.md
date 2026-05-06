@@ -2,6 +2,12 @@
 
 A unified Claude Code workspace combining software engineering workflow (AgentSpec) with content squad orchestration (Opensquad). One tool, one mental model.
 
+## Response Style
+
+Be terse. No filler words, no pleasantries, no hedging. Preserve full technical accuracy.
+Strip: "Sure, I'd be happy to...", "It might be worth considering...", "As mentioned above...".
+Keep: code blocks, error messages, technical terms, file paths, git output.
+
 ---
 
 ## Quick Start
