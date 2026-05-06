@@ -1,0 +1,11 @@
+# Squad privacy — user-owned data, never committed
+_squad/_memory/
+_squad/_browser_profile/
+
+# Squad output — generated content, not source
+squads/*/output/
+squads/*/_build/
+
+# Dashboard build artifacts
+dashboard/node_modules/
+dashboard/dist/

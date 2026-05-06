@@ -1,434 +1,271 @@
-# Master Claude
+# master-claude
 
-> A curated knowledge base of tools, skills, and frameworks for the Claude Code ecosystem.
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Repositories](#repositories)
-  - [Caveman](#-caveman)
-  - [Squeez](#-squeez)
-  - [AgentSpec](#-agentspec)
-  - [Claude-Mem](#-claude-mem)
-  - [Bedrock](#-bedrock)
-  - [Oh My ClaudeCode](#-oh-my-claudecode)
-  - [OpenSquad](#-opensquad)
+> A unified Claude Code workspace combining software engineering workflow (AgentSpec) and content squad orchestration (Opensquad) — one tool, one mental model.
 
 ---
 
-## Overview
+## What's Inside
 
-Master Claude is a living reference document that consolidates the repositories, tools, and plugins I use for Claude Code development. Each entry covers what the tool does, how to install it, and key usage notes — everything needed to get up and running fast.
+master-claude is a personal Claude Code configuration that combines two frameworks into a single `.claude/` directory:
+
+| Framework | Purpose | Entry Point |
+|-----------|---------|-------------|
+| **AgentSpec** | Spec-Driven Development — 5-phase workflow for software engineering | `/workflow:brainstorm` |
+| **Opensquad** | Multi-agent orchestration — content squads with pipeline execution | `/squad` |
+
+Both systems share the same workspace, memory model, and Claude Code agent ecosystem.
 
 ---
 
-## Repositories
+## Quick Start
 
-### 🪨 Caveman
+### Clone and use
 
-| | |
-|---|---|
-| **Repository** | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) |
-| **Category** | Token Optimization · Claude Code Skill |
-| **License** | MIT |
+```bash
+git clone <this-repo>
+cd master-claude
+```
 
-#### What it does
+Open Claude Code in this directory. All commands are immediately available.
 
-A Claude Code skill that forces Claude to respond in caveman-speak — stripping filler words, pleasantries, and hedging while preserving full technical accuracy. The result is roughly **75% fewer output tokens**, which translates directly to lower cost and faster responses.
+### First steps
 
-**What gets removed:** articles (a, an, the), pleasantries ("Sure, I'd be happy to..."), hedging ("It might be worth considering...").
+**For software engineering:**
+```
+/workflow:brainstorm "describe your idea"
+```
 
-**What stays intact:** code blocks, technical terms, error messages, git commits, and PR descriptions are all written normally.
+**For content squads:**
+```
+/squad
+```
+This triggers onboarding — set your company profile, language, and preferences.
 
-#### Install
+**For the visual dashboard (optional):**
+```bash
+cd dashboard && npm run dev
+```
+Then run `/squad:dashboard-design` to customize the 2D virtual office.
+
+---
+
+## Commands
+
+### AgentSpec — Software Engineering Workflow
+
+```
+/workflow:brainstorm      Explore ideas through dialogue (Phase 0)
+/workflow:define          Capture and validate requirements (Phase 1)
+/workflow:design          Create architecture and technical spec (Phase 2)
+/workflow:build           Execute implementation (Phase 3)
+/workflow:ship            Archive completed feature (Phase 4)
+/workflow:iterate         Update documents when requirements change
+/workflow:create-pr       Create a PR with conventional commits
+```
+
+### Squad — Content Orchestration (Opensquad)
+
+```
+/squad                    Open main menu
+/squad create             Create a squad (conversational — no ceremony)
+/squad run <name>         Execute a squad pipeline
+/squad edit <name>        Modify an existing squad
+/squad list               List your squads
+/squad skills             Browse and install squad skills
+/squad install <name>     Install a skill from the catalog
+/squad delete <name>      Delete a squad
+/squad edit-company       Update your company profile
+/squad:dashboard-design   Design the 2D virtual office
+```
+
+### Code Quality
+
+```
+/review                   Code review (CodeRabbit + Claude dual review)
+/review:judge             Cross-model second opinion via OpenRouter
+```
+
+### Visual Explainers
+
+```
+/visual-explainer:generate-web-diagram    Generate HTML diagram
+/visual-explainer:generate-slides         Magazine-quality slide deck
+/visual-explainer:diff-review             Before/after architecture review
+/visual-explainer:plan-review             Visual implementation plan review
+/visual-explainer:project-recap           Project state recap
+/visual-explainer:fact-check             Verify document against codebase
+/visual-explainer:share                  Share via Vercel (live URL)
+```
+
+### Data Engineering
+
+```
+/data-engineering:pipeline       DAG/pipeline scaffolding
+/data-engineering:schema         Interactive schema design
+/data-engineering:sql-review     SQL-specific code review
+/data-engineering:data-quality   Data quality rules generation
+/data-engineering:data-contract  Data contract authoring (ODCS)
+/data-engineering:lakehouse      Table format and catalog guidance
+/data-engineering:migrate        Legacy ETL migration
+/data-engineering:ai-pipeline    RAG/embedding pipeline scaffolding
+```
+
+### Core
+
+```
+/core:memory              Save session insights to persistent storage
+/core:status              Generate project status report
+/core:readme-maker        Generate comprehensive README
+/core:sync-context        Sync project context to CLAUDE.md
+/core:meeting             Analyze meeting transcripts
+```
+
+---
+
+## Agents (58 Specialists)
+
+Claude Code sub-agents invoked automatically during builds and reviews, grouped by domain:
+
+| Domain | Agents |
+|--------|--------|
+| **Architecture** | data-platform-engineer, genai-architect, kb-architect, lakehouse-architect, medallion-architect, pipeline-architect, schema-designer, the-planner |
+| **Cloud** | ai-data-engineer-cloud, ai-data-engineer-gcp, ai-prompt-specialist-gcp, aws-data-architect, aws-deployer, aws-lambda-architect, ci-cd-specialist, gcp-data-architect, lambda-builder, supabase-specialist |
+| **Data Engineering** | ai-data-engineer, airflow-specialist, dbt-specialist, lakeflow-architect, lakeflow-expert, lakeflow-pipeline-builder, lakeflow-specialist, qdrant-specialist, spark-engineer, spark-performance-analyzer, spark-specialist, spark-streaming-architect, spark-troubleshooter, sql-optimizer, streaming-engineer |
+| **Dev** | codebase-explorer, meeting-analyst, prompt-crafter, shell-script-specialist |
+| **Platform (Fabric)** | fabric-ai-specialist, fabric-architect, fabric-cicd-specialist, fabric-logging-specialist, fabric-pipeline-developer, fabric-security-specialist |
+| **Python** | ai-prompt-specialist, code-cleaner, code-documenter, code-reviewer, llm-specialist, python-developer |
+| **Test & Contracts** | data-contracts-engineer, data-quality-analyst, test-generator |
+| **Workflow** | brainstorm-agent, build-agent, define-agent, design-agent, iterate-agent, ship-agent |
+
+---
+
+## Directory Structure
+
+```
+master-claude/
+├── .claude/
+│   ├── agents/              58 Claude Code sub-agents by domain
+│   ├── commands/
+│   │   ├── workflow/        SDD phases (brainstorm → ship)
+│   │   ├── squad/           Opensquad commands (/squad, /squad:dashboard-design)
+│   │   ├── core/            Memory, status, readme-maker, meeting analysis
+│   │   ├── review/          Code review commands
+│   │   ├── visual-explainer/ Visual diagram and explainer commands
+│   │   ├── data-engineering/ Data pipeline tools
+│   │   └── knowledge/       KB creation
+│   ├── kb/                  Knowledge base (domain patterns and concepts)
+│   └── sdd/                 SDD workflow artifacts
+│       ├── features/        BRAINSTORM/DEFINE/DESIGN documents
+│       ├── reports/         Build reports
+│       └── archive/         Shipped features with lessons learned
+│
+├── _squad/                  Opensquad runtime (do not edit manually)
+│   ├── core/                Prompts, pipeline runner, skills engine
+│   ├── _memory/             Company profile + preferences [gitignored]
+│   └── config/              Playwright config
+│
+├── squads/                  Your created squads
+├── skills/                  Installable squad skills catalog (12 skills)
+├── dashboard/               Live squad visualization (React + Phaser)
+│
+├── CLAUDE.md                Quick reference loaded by Claude on every session
+├── .mcp.json                Playwright MCP (Sherlock + dashboard design)
+└── .gitignore               Protects _squad/_memory/ and squad outputs
+```
+
+---
+
+## How the Two Systems Relate
+
+Both AgentSpec and Opensquad follow the same phased pattern:
+
+```
+AgentSpec:   Brainstorm → Define → Design → Build → Ship    (software)
+Opensquad:   Discovery  → Investigate → Design → Build → Run (content)
+```
+
+They share the workspace but operate independently:
+- Use `/workflow:*` when building software, data pipelines, or technical features
+- Use `/squad` when creating content, running marketing automation, or orchestrating multi-agent workflows
+- master-claude's 58 Claude Code agents can be referenced as squad team members
+
+---
+
+## Squad Skills Catalog
+
+The `skills/` directory contains 12 installable skills for squads:
+
+| Skill | Category |
+|-------|----------|
+| `apify` | Web scraping |
+| `blotato` | Social publishing |
+| `canva` | Design |
+| `image-ai-generator` | AI image generation |
+| `image-creator` | Image creation |
+| `image-fetcher` | Image fetching |
+| `instagram-publisher` | Instagram automation |
+| `opensquad-agent-creator` | Agent creation |
+| `opensquad-skill-creator` | Skill creation |
+| `resend` | Email |
+| `template-designer` | Template design |
+
+Install a skill: `/squad install <name>`
+
+---
+
+## External Tools (Recommended Ecosystem)
+
+These tools complement master-claude and can be installed separately:
+
+### 🪨 Caveman — Token Optimization
+
+Strips filler words while preserving technical accuracy. ~75% fewer output tokens.
 
 ```bash
 claude install-skill JuliusBrussee/caveman
 ```
 
-#### Usage
+### 🗜️ Squeez — Context Compression
 
-Activate it in a session with any of these triggers:
-
-- `/caveman`
-- `"talk like caveman"`
-- `"caveman mode"`
-- `"less tokens please"`
-
-Deactivate with `"stop caveman"` or `"normal mode"`.
-
----
-
-### 🗜️ Squeez
-
-| | |
-|---|---|
-| **Repository** | [claudioemmanuel/squeez](https://github.com/claudioemmanuel/squeez) |
-| **Category** | Token Compression · Context Optimization · Claude Code Hooks |
-| **License** | MIT |
-| **Language** | Rust (90%) / Shell (10%) |
-
-#### What it does
-
-Squeez is a Rust-based tool that hooks into Claude Code to automatically compress bash output, track token usage, and inject session memory — all with zero configuration. It operates via three Claude Code hooks:
-
-1. **Bash compression** (`PreToolUse`) — intercepts every bash command, removes noise from the output. Achieves up to 95% token reduction on commands like `ps aux`.
-2. **Session memory** (`SessionStart`) — summarizes the previous session (files touched, errors resolved, test results, git events) and injects it as a banner when a new session starts.
-3. **Token tracking** (`PostToolUse`) — tracks cumulative context usage across tool calls and emits a warning at 80% of the context budget.
-
-#### Benchmarks
-
-| Fixture | Before | After | Reduction |
-|---|---|---|---|
-| `ps aux` | 40,373 tk | 2,352 tk | **-95%** |
-| `git log` (200 commits) | 2,667 tk | 819 tk | **-70%** |
-| `docker logs` | 665 tk | 186 tk | **-73%** |
-| `ls -la` | 1,782 tk | 886 tk | **-51%** |
-| `git diff` | 502 tk | 317 tk | **-37%** |
-
-All fixtures complete under 10ms latency.
-
-#### Install
+Automatically compresses bash output (up to 95% reduction), tracks token usage, and injects session memory via Claude Code hooks.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/claudioemmanuel/squeez/main/install.sh | sh
 ```
 
-Restart Claude Code after installation.
+### 🧠 Claude-Mem — Persistent Memory
 
-#### Escape hatch
-
-Bypass compression for a specific command:
-
-```bash
---no-squeez git log --all --graph
-```
-
-#### Configuration (optional)
-
-Create `~/.claude/squeez/config.ini`:
-
-```ini
-# Compression
-max_lines = 200
-dedup_min = 3
-git_log_max_commits = 20
-docker_logs_max_lines = 100
-bypass = docker exec, psql, ssh
-
-# Session memory
-compact_threshold_tokens = 160000
-memory_retention_days = 30
-```
-
-#### Local development
-
-```bash
-git clone https://github.com/claudioemmanuel/squeez.git
-cd squeez
-cargo test
-cargo build --release
-mkdir -p "$HOME/.claude/squeez/bin"
-cp target/release/squeez "$HOME/.claude/squeez/bin/squeez"
-bash install.sh
-```
-
-To uninstall: `bash uninstall.sh`
-
----
-
-### 📋 AgentSpec
-
-| | |
-|---|---|
-| **Repository** | [luanmorenommaciel/agentspec](https://github.com/luanmorenommaciel/agentspec) |
-| **Category** | Spec-Driven Development · Workflow Framework · Claude Code Plugin |
-| **License** | MIT |
-| **Version** | 1.0.0 |
-
-#### What it does
-
-AgentSpec is a Spec-Driven Development (SDD) framework for Claude Code. It replaces ad-hoc prompting with a structured 5-phase workflow that produces traceable artifacts at every step — from brainstorming through shipping.
-
-It includes **17 specialized agents** across four categories: workflow (6), code quality (6), communication (3), and exploration (2). It also ships a knowledge base framework for building domain-specific grounding.
-
-#### The 5-Phase Workflow
-
-```
-/brainstorm  →  /define  →  /design  →  /build  →  /ship
-   (Explore)    (Capture)   (Architect)  (Execute)  (Archive)
-```
-
-| Phase | Command | Artifact produced |
-|---|---|---|
-| Brainstorm | `/brainstorm` | `BRAINSTORM_*.md` |
-| Define | `/define` | `DEFINE_*.md` |
-| Design | `/design` | `DESIGN_*.md` |
-| Build | `/build` | `BUILD_REPORT_*.md` |
-| Ship | `/ship` | `SHIPPED_*.md` |
-
-During `/build`, AgentSpec automatically matches the right agents to the task based on what the DESIGN doc mentions (e.g., references to Pydantic and pytest will route to the python-developer, test-generator, and code-reviewer agents).
-
-#### Install
-
-```bash
-git clone https://github.com/luanmorenommaciel/agentspec.git
-cd your-project
-claude --plugin-dir /path/to/agentspec
-```
-
-#### Project structure it creates
-
-```
-your-project/
-├── .claude/
-│   └── sdd/
-│       ├── features/     # Active feature documents
-│       ├── reports/      # Build reports
-│       └── archive/      # Shipped features & lessons learned
-```
-
-#### Quick example
-
-```bash
-claude> /brainstorm "Add user authentication to the app"
-claude> /define
-claude> /design
-claude> /build
-claude> /ship
-```
-
----
-
-### 🧠 Claude-Mem
-
-| | |
-|---|---|
-| **Repository** | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) |
-| **Category** | Persistent Memory · Context Compression · Claude Code Plugin |
-| **License** | AGPL-3.0 |
-| **Language** | TypeScript (83%) / JavaScript (11%) / Shell (3%) |
-| **Version** | 6.5.0+ (230 releases) |
-
-#### What it does
-
-Claude-Mem is a persistent memory compression system for Claude Code. It automatically captures everything Claude does during coding sessions — tool usage, decisions, errors resolved — compresses it with AI (via the Claude Agent SDK), and injects relevant context back into future sessions. This gives Claude continuity across sessions without any manual intervention.
-
-It works through 5 lifecycle hooks (SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd), a worker service on port 37777 with a web viewer UI, a SQLite database for storage, and a Chroma vector database for hybrid semantic + keyword search.
-
-Key capabilities: persistent memory across sessions, progressive disclosure (layered retrieval with token cost visibility), MCP-based search tools with a 3-layer workflow (search → timeline → get_observations) for ~10x token savings, privacy control via `<private>` tags, web viewer UI at `http://localhost:37777`, and multi-language mode support.
-
-#### Install
+Captures everything Claude does during sessions, compresses it, and injects relevant context into future sessions. Hybrid semantic + keyword search.
 
 ```bash
 npx claude-mem install
 ```
 
-Or via plugin marketplace:
+### 🪨 Bedrock — Second Brain
 
-```
-/plugin marketplace add thedotmack/claude-mem
-/plugin install claude-mem
-```
-
-Restart Claude Code after installation.
-
-#### Requirements
-
-Node.js 18+, Bun (auto-installed), uv (auto-installed), SQLite 3 (bundled).
-
-#### Configuration
-
-Settings managed in `~/.claude-mem/settings.json` (auto-created on first run). Supports mode/language configuration via `CLAUDE_MEM_MODE` (e.g., `"code--zh"` for Simplified Chinese).
-
-#### MCP search tools
-
-Four MCP tools follow a token-efficient workflow: `search` (compact index, ~50-100 tokens/result) → `timeline` (chronological context) → `get_observations` (full details, ~500-1000 tokens/result). Always filter before fetching.
-
----
-
-### 🪨 Bedrock
-
-| | |
-|---|---|
-| **Repository** | [iurykrieger/claude-bedrock](https://github.com/iurykrieger/claude-bedrock) |
-| **Category** | Second Brain · Obsidian Automation · Claude Code Plugin |
-| **License** | MIT |
-| **Language** | HTML (41%) / TypeScript (40%) / JavaScript (16%) |
-| **Version** | 1.1.2 |
-
-#### What it does
-
-Bedrock is a Claude Code plugin that turns any Obsidian vault into a structured Second Brain using AI agents. It organizes knowledge into 7 entity types (actors, people, teams, topics, discussions, projects, fleeting notes) following adapted Zettelkasten principles — with automatic entity detection, bidirectional wikilinks, external source ingestion, deduplication, and sync.
-
-No build system or runtime needed — just markdown files, AI agents, and your vault.
-
-#### Skills
-
-| Skill | Purpose |
-|---|---|
-| `/bedrock:setup` | Interactive vault initialization and configuration |
-| `/bedrock:ask` | Orchestrated vault reader — decomposes questions, searches graph and entities |
-| `/bedrock:teach` | Ingest external sources (Confluence, Google Docs, GitHub, CSV) and create entities |
-| `/bedrock:preserve` | Single write point — detect, match, create/update entities with bidirectional links |
-| `/bedrock:compress` | Deduplication and vault health — broken links, orphans, stale content |
-| `/bedrock:sync` | Re-sync entities with external sources |
-
-#### Install
+Turns an Obsidian vault into a structured second brain using AI agents. 7 entity types, bidirectional wikilinks, external source ingestion.
 
 ```
 /plugin marketplace add iurykrieger/claude-bedrock
-/plugin install iurykrieger/claude-bedrock
 ```
 
-Then run the setup wizard:
+### ⚡ Oh My ClaudeCode — Multi-Agent Parallelism
 
-```
-/bedrock:setup
-```
-
-The setup guides through language selection, dependency checks, vault objective preset (engineering team, product management, company wiki, personal second brain, etc.), and scaffolding of directories, templates, config, and example entities.
-
-#### Vault structure
-
-```
-your-vault/
-├── actors/          # Systems, services, APIs (permanent notes)
-├── people/          # Contributors, team members (permanent notes)
-├── teams/           # Squads, organizational units (permanent notes)
-├── topics/          # Cross-cutting subjects with lifecycle (bridge notes)
-├── discussions/     # Meeting notes, conversations (bridge notes)
-├── projects/        # Initiatives with scope and deadline (index notes)
-└── fleeting/        # Raw ideas, unstructured captures (fleeting notes)
-```
-
-#### Optional dependencies
-
-graphify (semantic code extraction for GitHub repos), confluence-to-markdown, gdoc-to-markdown — none are required.
-
----
-
-### ⚡ Oh My ClaudeCode
-
-| | |
-|---|---|
-| **Repository** | [Yeachan-Heo/oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode) |
-| **Category** | Multi-Agent Orchestration · Parallel Execution · Claude Code Plugin |
-| **License** | MIT |
-| **Language** | TypeScript (69%) / JavaScript (26%) / Python (3%) |
-| **Stars** | 3.6k |
-
-#### What it does
-
-Oh My ClaudeCode (OMC) is a multi-agent orchestration framework for Claude Code with 5 execution modes, 31+ skills, and 32 specialized agents. It provides automatic parallelization, persistent execution (won't stop until verified complete), smart model routing (Haiku for simple tasks, Opus for complex reasoning), and cost optimization that saves 30–50% on tokens.
-
-#### Execution modes
-
-| Mode | Description |
-|---|---|
-| **Autopilot** | Full autonomous workflows |
-| **Ultrapilot** | 3–5x faster via parallel multi-component execution |
-| **Ecomode** | Token-efficient, 30–50% cheaper |
-| **Swarm** | Coordinated parallel independent tasks |
-| **Pipeline** | Sequential multi-stage processing |
-
-#### Install
+31+ skills, 32 specialized agents, 5 execution modes (autopilot, ultrapilot, ecomode, swarm, pipeline). 30–50% token savings.
 
 ```
 /plugin marketplace add https://github.com/Yeachan-Heo/oh-my-claudecode
-/plugin install oh-my-claudecode
 ```
-
-Then run setup:
-
-```
-/oh-my-claudecode:omc-setup
-```
-
-#### Magic keywords
-
-| Keyword | Effect |
-|---|---|
-| `autopilot` | Full autonomous execution |
-| `ralph` | Persistence mode (includes ultrawork parallel execution) |
-| `ulw` | Maximum parallelism |
-| `eco` | Token-efficient execution |
-| `plan` | Planning interview |
-
-Usage is natural language — keywords are optional shortcuts: `autopilot: build a REST API for managing tasks`.
-
-#### Rate limit wait
-
-```bash
-omc wait --start   # Enable auto-resume daemon (requires tmux)
-omc wait --stop    # Disable
-```
-
-#### Requirements
-
-Claude Code CLI, Claude Max/Pro subscription or Anthropic API key.
 
 ---
 
-### 👥 OpenSquad
+## Setup Notes
 
-| | |
-|---|---|
-| **Repository** | [renatoasse/opensquad](https://github.com/renatoasse/opensquad) |
-| **Category** | Multi-Agent Orchestration · Squad Framework · IDE-Agnostic |
-| **License** | MIT |
-| **Language** | TypeScript (35%) / JavaScript (25%) / HTML (24%) / Python (15%) |
-
-#### What it does
-
-OpenSquad is a multi-agent orchestration framework that lets you create squads of AI agents that collaborate on tasks — directly from your IDE. You describe what you need in natural language, and OpenSquad creates a team of specialized agents (researcher, strategist, writer, reviewer, designer, etc.) that execute in a pipeline, pausing only at decision checkpoints where your input is needed.
-
-It supports multiple IDEs: Claude Code, Codex (OpenAI), Cursor, VS Code + Copilot, Open Code, and Antigravity.
-
-It also includes a **Virtual Office** — a 2D visual dashboard that shows your agents working in real time.
-
-#### Install
-
-**Prerequisite:** Node.js 20+
-
-```bash
-npx opensquad init
-```
-
-To update: `npx opensquad update`
-
-#### Usage
-
-```
-/opensquad                  # Open the main menu
-/opensquad create           # Create a new squad
-/opensquad run <name>       # Run a squad
-/opensquad list             # List your squads
-/opensquad edit <name>      # Modify a squad
-/opensquad skills           # Browse installed skills
-/opensquad install <name>   # Install a skill from catalog
-/opensquad dashboard        # Generate the Virtual Office dashboard
-```
-
-#### Virtual Office
-
-After generating the dashboard, serve it locally and open `http://localhost:3000`:
-
-```bash
-/opensquad dashboard
-npx serve squads/<squad-name>/dashboard
-```
-
-#### Example squad creation
-
-```
-/opensquad create "Squad that generates Instagram carousels from trending news, creates the images, and publishes automatically"
-```
-
-The **Architect** agent asks a few questions, designs the squad, and sets everything up. You approve the design before execution begins.
+- **Company profile:** First `/squad` run triggers setup — saved to `_squad/_memory/company.md` (gitignored)
+- **Browser sessions:** Sherlock saves sessions to `_squad/_browser_profile/` (gitignored) — log in once, reuse
+- **Playwright:** Required for Sherlock investigations and dashboard screenshots. Install: `npx playwright install`
+- **Dashboard:** Optional. Run `cd dashboard && npm run dev` to start the local visualization server
 
 ---
 
-*Last updated: April 22, 2026*
+*Last updated: May 5, 2026*
