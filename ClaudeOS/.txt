@@ -1,0 +1,18 @@
+MazyOS está instalado. O que foi criado em PericiasMedicas-JBR:
+
+
+✓ .claude/skills/     — 15 skills (abrir, carrossel, email, salvar, seo, etc.)
+✓ _memoria/           — empresa.md, preferencias.md, estrategia.md (pré-preenchidos)
+✓ identidade/         — design-guide.md (com referência ao 06-Marca/)
+✓ templates/          — perfis, skills, identidade (do MazyOS)
+✓ saidas/             — pasta para docs pontuais
+✓ dados/              — pasta para arquivos a analisar
+✓ CLAUDE.md           — adaptado pro perfil freelancer do Dr. João
+Os arquivos de memória já foram preenchidos com o contexto que existia nos _claude/ — negócio pericial do Dr. João, tom de voz sóbrio/técnico, compliance CFM, estrutura de pastas do cofre.
+
+Próximos passos para completar o setup:
+
+Abrir o projeto PericiasMedicas-JBR no Claude Code (não o MazyOS)
+Preencher CRM + RQE em _memoria/empresa.md
+Definir paleta de cores/tipografia em identidade/design-guide.md
+Depositar logo em 06-Marca/logo.png
