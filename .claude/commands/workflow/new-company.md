@@ -176,6 +176,9 @@ Scan `{weekly_workflows}`, `{tools}`, and `{channels}` for the keywords below. A
 | social media, instagram, tiktok, linkedin post, posts, feed | `content/social-media-post` |
 | newsletter, email list, substack, weekly email, subscribers | `content/newsletter` |
 | blog, seo, google traffic, articles, long-form content | `content/seo-article` |
+| research, content ideas, topic ideation, seo research, trending topics, find ideas, competitive research | `content/content-research` |
+| schedule posts, publish social media, blotato, post to instagram, post to linkedin, social publishing, autopost | `content/blotato` |
+| buffer, free scheduler, schedule 3 channels, free social media, buffer.com | `content/buffer` |
 | email campaign, drip, sequences, nurture, promotional email | `content/email-campaign` |
 | youtube, video, reels, shorts, script, tiktok video | `content/video-script` |
 | landing page, product page, sales page, one-pager, web presence | `dev/landing-page` |

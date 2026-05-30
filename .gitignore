@@ -9,3 +9,6 @@ squads/*/_build/
 # Dashboard build artifacts
 dashboard/node_modules/
 dashboard/dist/
+
+# Playwright
+.playwright-mcp/

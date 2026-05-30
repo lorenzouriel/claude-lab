@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-05-30T00:00:00Z",
+  "company": {
+    "name": "Uriel",
+    "slug": "uriel",
+    "industry": "Data Engineering & AI",
+    "profile": "Solopreneur / Freelancer",
+    "language": "English",
+    "tagline": "Data Engineering + AI solopreneur — builds pipelines, tunes databases, ships open source, and writes about all of it."
+  },
+  "skills": [
+    { "id": "newsletter", "category": "content", "label": "Newsletter", "installed": true, "custom": false },
+    { "id": "social-media-post", "category": "content", "label": "Social Media Post", "installed": true, "custom": false },
+    { "id": "seo-article", "category": "content", "label": "SEO Article", "installed": true, "custom": false },
+    { "id": "video-script", "category": "content", "label": "Video Script", "installed": true, "custom": false },
+    { "id": "carousel-post", "category": "content", "label": "Carousel Post", "installed": true, "custom": false },
+    { "id": "content-planner", "category": "content", "label": "Content Planner", "installed": true, "custom": false },
+    { "id": "code-review", "category": "dev", "label": "Code Review", "installed": true, "custom": false },
+    { "id": "pr-description", "category": "dev", "label": "PR Description", "installed": true, "custom": false },
+    { "id": "data-analysis", "category": "data", "label": "Data Analysis", "installed": true, "custom": false },
+    { "id": "kpi-dashboard", "category": "data", "label": "KPI Dashboard", "installed": true, "custom": false },
+    { "id": "weekly-review", "category": "ops", "label": "Weekly Review", "installed": true, "custom": false },
+    { "id": "project-brief", "category": "ops", "label": "Project Brief", "installed": true, "custom": false },
+    { "id": "sycophancy", "category": "mindset", "label": "Sycophancy (Honest Feedback)", "installed": true, "custom": false },
+    { "id": "humanizer", "category": "content", "label": "Humanizer", "installed": true, "custom": false },
+    { "id": "content-workflow", "category": "custom", "label": "Content Workflow (custom)", "installed": false, "custom": true }
+  ],
+  "wiki": {
+    "projects": ["Company OS Workspace", "WhatsApp Sales AI Agent", "Data & AI Knowledge Selling"],
+    "areas": ["Marketing", "Engineering", "Client Relations", "Finance", "Operations"]
+  }
+}
