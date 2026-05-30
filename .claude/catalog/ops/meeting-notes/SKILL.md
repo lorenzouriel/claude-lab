@@ -2,122 +2,132 @@
 name: meeting-notes
 category: ops
 description: >
-  Transforms a meeting transcript or rough notes into structured meeting notes with
-  context, decisions made, and action items with owners and deadlines.
+  Transforms meeting transcripts, rough notes, or voice-to-text into structured
+  meeting notes. Extracts decisions made, action items (verb-first, with owner and
+  deadline), parking lot items, and context. Action items always have an owner.
 triggers:
   - "meeting notes"
-  - "summarize this meeting"
-  - "write up the meeting"
-  - "action items from meeting"
+  - "meeting transcript"
+  - "take notes"
+  - "summarize meeting"
+  - "meeting summary"
   - "/meeting-notes"
 workflow_signals:
   - meetings
   - standups
   - team calls
-  - 1:1s
   - meeting notes
-  - meeting summary
+  - 1:1s
+  - transcription
 languages:
   - en
   - pt-br
 ---
 
-# /meeting-notes
+# /meeting-notes — Transcript → Structured Meeting Notes
 
-Turns meeting transcripts or rough notes into structured, actionable documents.
-
----
-
-## Step 1 — Gather input
-
-If the transcript or notes aren't provided, ask:
-
-> "Paste the transcript, rough notes, or bullet points from the meeting — I'll structure them into formal notes."
+Extracts decisions and action items from any format of meeting notes.
 
 ---
 
-## Step 2 — Write the meeting notes
+## Phase 1 — Input Classification
+
+Classify the input type to calibrate extraction:
+
+| Input type | Approach |
+|---|---|
+| Full transcript (with speaker names) | Extract verbatim decisions; attribute action items to speakers |
+| Rough notes / bullet points | Infer structure; flag unclear ownership |
+| Voice-to-text (unformatted) | Clean grammar; group by topic; ask about ownership |
+| Summary already written | Restructure into standard format; don't invent new content |
+
+If action item owners are unclear, list them with `[Owner TBD]` and flag at the end.
+
+---
+
+## Phase 2 — Extract Key Elements
+
+Before writing the formatted output, extract:
+
+1. **Meeting type** — standup / planning / retrospective / 1:1 / client call / team meeting
+2. **Decisions made** — any conclusion reached that won't be re-discussed (marked as final)
+3. **Action items** — specific tasks with a named owner
+4. **Parking lot** — topics raised but deferred (needs a separate meeting or async)
+5. **Blockers** — things preventing progress right now
+
+---
+
+## Phase 3 — Generate Structured Notes
 
 ```markdown
-# Meeting Notes: {Meeting Title}
+# Meeting Notes — [Meeting Title]
 
-**Date:** {YYYY-MM-DD}
-**Time:** {HH:MM} {timezone}
-**Duration:** {X minutes}
-**Attendees:** {Name (Role), Name (Role), ...}
-**Facilitator:** {Name}
-**Note-taker:** {Name / AI-assisted}
+**Date:** [YYYY-MM-DD]
+**Time:** [HH:MM] — [HH:MM] [Timezone]
+**Type:** [Standup / Planning / Retrospective / 1:1 / Client call]
+**Attendees:** [Names, or roles if anonymous]
+**Facilitator:** [Name if identifiable]
+**Recorded by:** [Name or "AI-assisted"]
 
 ---
 
 ## Context
 
-{1-2 sentences: Why was this meeting called? What was the agenda or trigger?}
+[1–3 sentences: Why did this meeting happen? What was the trigger or recurring cadence?]
 
 ---
 
-## Key Discussion Points
+## Discussion Summary
 
-### {Topic 1}
-{Summary of the discussion. What was raised, debated, or explored. 3-5 sentences.}
-
-### {Topic 2}
-{Summary of the discussion.}
-
-### {Topic 3}
-{Summary of the discussion.}
+[Chronological or topic-organized summary of what was discussed.
+Keep it factual — what was said, not what should have been said.
+Aim for 3–7 bullets or short paragraphs, not an essay.]
 
 ---
 
 ## Decisions Made
 
-| # | Decision | Made by | Context |
-|---|----------|---------|---------|
-| 1 | {Clear statement of what was decided} | {person/group} | {Why this decision was made} |
-| 2 | {Decision} | {person/group} | {Context} |
+- [Decision — stated as a fact: "We will use Stripe for payment processing"]
+- [Decision — include the reasoning if it helps future recall]
 
-**Note:** If no decisions were made in this meeting, write "No decisions made — this was a working session."
+*Note: Items listed here are final — they won't be reopened unless a specific condition changes.*
 
 ---
 
 ## Action Items
 
-| # | Action | Owner | Due Date | Priority |
-|---|--------|-------|----------|----------|
-| 1 | {Specific, verb-first task} | {Name} | {YYYY-MM-DD or "Next meeting"} | High/Med/Low |
-| 2 | {Action} | {Name} | {date} | |
-| 3 | {Action} | {Name} | {date} | |
+| Action | Owner | Due |
+|---|---|---|
+| [Verb-first: "Send the contract to..." / "Schedule the review for..." / "Fix the bug on..."] | [Name] | [Date or "EOW"] |
+| [Another action] | [Name] | [Date] |
+
+*All action items require an owner. If the owner is unknown, mark as [Owner TBD] — don't skip.*
 
 ---
 
 ## Parking Lot
 
-{Topics that came up but weren't addressed — to revisit in a future meeting.}
-- {Item}
-- {Item}
+*Topics raised but not resolved — need async discussion or a follow-up meeting:*
+
+- [Topic] — [who should drive resolution?]
+- [Topic]
 
 ---
 
 ## Next Meeting
 
-**When:** {date / TBD}
-**Agenda items already identified:**
-- {Item}
+**When:** [Date/time if scheduled]
+**Agenda items carried forward:**
+- [Item from parking lot or incomplete action]
 ```
 
 ---
 
-## Step 3 — Format for sharing
-
-After the notes, ask:
-> "Want this formatted for Slack/email (shorter version) or as a wiki page?"
-
----
-
 ## Rules
-- Action items must be verb-first and specific: "Send proposal to client X by Friday" not "Proposal"
-- Every action item needs an owner — "team" is not an owner
-- Decisions section: if something was discussed but not decided, it goes in Parking Lot, not Decisions
-- Don't editorialize — write what was said and decided, not your opinion of whether it was right
-- If the transcript has contradictions, flag them: "[Note: There was disagreement on this point — confirm with attendees]"
-- Save to `wiki/Areas/{team-or-project}/meeting-{YYYY-MM-DD}.md`
+
+- Action items: always verb-first ("Send", "Schedule", "Review", "Fix") — not "we need to..."
+- Action items without owners don't get done — flag all `[Owner TBD]` at the end
+- Decisions must be stated as facts ("We decided to X") — not as discussions ("We talked about X")
+- Parking lot is a first-class section — don't bury it in discussion notes
+- Never attribute a statement to someone unless it's clear from the transcript
+- If the transcript is unclear about a decision, write `[NEEDS CONFIRMATION: ...]`

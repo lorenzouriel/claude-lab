@@ -64,9 +64,17 @@
          │  │   ├── Resources/       PARA - references    │
          │  │   └── Archives/        PARA - completed     │
          │  ├── .claude/                                  │
-         │  │   └── skills/          copied from catalog  │
-         │  │       ├── {skill-1}/SKILL.md                │
-         │  │       └── {skill-N}/SKILL.md                │
+         │  │   ├── skills/          copied from catalog  │
+         │  │   │   ├── {skill-1}/SKILL.md                │
+         │  │   │   └── {skill-N}/SKILL.md                │
+         │  │   ├── commands/workflow/ SDD methodology    │
+         │  │   │   ├── brainstorm.md                     │
+         │  │   │   ├── define.md                         │
+         │  │   │   ├── design.md                         │
+         │  │   │   ├── build.md                          │
+         │  │   │   ├── iterate.md                        │
+         │  │   │   └── ship.md                           │
+         │  │   └── sdd/             artifacts (empty)   │
          │  ├── data/                files to analyze     │
          │  ├── outputs/             generated (gitign.)  │
          │  ├── dashboard/                                │
@@ -82,8 +90,8 @@
 
 | Component | Purpose | Location |
 |-----------|---------|----------|
-| **Wizard Command** | 8-phase interview + generation driver | `.claude/commands/workflow/new-company.md` |
-| **Skill Catalog** | Library of 21 reusable skill SKILL.md files organized by category | `.claude/catalog/{category}/{skill}/SKILL.md` |
+| **Wizard Command** | 9-phase interview + generation driver (Phase 8.8 copies SDD) | `.claude/commands/workflow/new-company.md` |
+| **Skill Catalog** | Library of 22 reusable skill SKILL.md files organized by category | `.claude/catalog/{category}/{skill}/SKILL.md` |
 | **Skill Matcher** | Logic table (inside wizard) mapping workflow signals → catalog skills | Embedded in Phase 4 of wizard command |
 | **Dashboard Template** | Static HTML file with `{{placeholder}}` slots for company data | `.claude/templates/company-os/dashboard.html` |
 | **Generation Engine** | Batch of Write tool calls in Phase 8 using interview data | Phase 8 section of wizard command |
@@ -227,6 +235,29 @@
 
 ---
 
+### Decision 7: SDD Workflow Commands Always Copied to Company Workspace
+
+| Attribute | Value |
+|-----------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-29 |
+
+**Context:** The company workspace should be a self-sufficient environment where the client can run the full SDD methodology (brainstorm → define → design → build → ship) independently, without needing to work inside master-claude.
+
+**Choice:** Step 8.8 of the wizard reads each SDD command from `.claude/commands/workflow/` in master-claude and writes a copy to `{slug}/.claude/commands/workflow/`. The SDD folder structure (`sdd/features/`, `sdd/reports/`, `sdd/archive/`) is also created empty. This step is not optional — every generated workspace gets the SDD commands.
+
+**Rationale:** The client is building their business OS as a standalone repo. If they want to add features (automations, integrations, internal tools), they should be able to apply the same phased methodology used to build their OS in the first place. Without the SDD commands, they'd need to switch back to master-claude to brainstorm.
+
+**Alternatives Rejected:**
+1. Make SDD commands optional (selected during interview) — the client might not know they want it during setup; it costs nothing to include it always
+2. Symlink to master-claude SDD commands — breaks when the company folder is moved or pushed independently
+
+**Consequences:**
+- Every company workspace includes 6 extra command files (~30KB total)
+- SDD commands are copies — if master-claude commands are updated, the company workspace doesn't auto-update (acceptable: client owns their setup)
+
+---
+
 ## File Manifest
 
 ### Wave 1: Catalog (no dependencies)
@@ -234,8 +265,9 @@
 | # | File | Action | Purpose | Agent |
 |---|------|--------|---------|-------|
 | 1 | `.claude/catalog/README.md` | Create | Catalog index + matching guide | (general) |
-| 2 | `.claude/catalog/content/social-media-post/SKILL.md` | Create | Social media content creation | @code-documenter |
-| 3 | `.claude/catalog/content/newsletter/SKILL.md` | Create | Email newsletter writing | @code-documenter |
+| 2 | `.claude/catalog/content/carousel-post/SKILL.md` | Create | HTML+PNG carousel (Playwright), named layouts, auto-caption | @code-documenter |
+| 3 | `.claude/catalog/content/social-media-post/SKILL.md` | Create | Social media content creation | @code-documenter |
+| 4 | `.claude/catalog/content/newsletter/SKILL.md` | Create | Email newsletter writing | @code-documenter |
 | 4 | `.claude/catalog/content/seo-article/SKILL.md` | Create | Long-form SEO content | @code-documenter |
 | 5 | `.claude/catalog/content/email-campaign/SKILL.md` | Create | Marketing email sequences | @code-documenter |
 | 6 | `.claude/catalog/content/video-script/SKILL.md` | Create | YouTube/Reel video scripts | @code-documenter |
@@ -268,7 +300,17 @@
 |---|------|--------|---------|-------|
 | 24 | `.claude/commands/workflow/new-company.md` | Create | The 8-phase wizard command (main deliverable) | (general) |
 
-**Total Files:** 24
+**Total Files:** 38 (25 original + 8 new catalog skills + 5 updated files; agent/KB copy is read-then-write at runtime)
+
+**Catalog breakdown:**
+- content/: 6 skills (carousel-post added, all 5 existing rewritten as workflow-depth skills)
+- dev/: 6 skills (landing-page added, all 5 existing rewritten)
+- marketing/: 4 skills (all rewritten)
+- ops/: 4 skills (all rewritten)
+- data/: 3 skills (all rewritten)
+- office/: 4 new skills (office-docx, office-pdf, office-pptx, office-xlsx)
+- visual/: 2 new skills (visual-explainer, excalidraw-diagram)
+- mindset/: 1 new skill (sycophancy)
 
 ---
 

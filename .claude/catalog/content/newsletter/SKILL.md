@@ -2,99 +2,135 @@
 name: newsletter
 category: content
 description: >
-  Writes email newsletters with subject line, preview text, hook, body sections, and CTA.
-  Adapts length and format for weekly, bi-weekly, or monthly cadences.
-  Reads brand voice and company context before writing.
+  Writes email newsletters with 3 subject line options, preview text, hook, body sections,
+  and CTA. Decision-tree driven by audience and cadence. Reads brand voice before writing.
+  Structures content for scannability — most readers skim before they read.
 triggers:
-  - "write a newsletter"
+  - "newsletter"
   - "email newsletter"
   - "weekly email"
-  - "newsletter draft"
+  - "subscriber email"
+  - "write a newsletter"
   - "/newsletter"
 workflow_signals:
   - newsletter
   - email list
   - substack
   - weekly email
-  - subscribers
+  - subscriber
+  - email content
 languages:
   - en
   - pt-br
 ---
 
-# /newsletter
+# /newsletter — Email Newsletter Writer
 
-Writes email newsletters that match the company's voice and deliver real value to subscribers.
+Writes subscriber emails that people open, read, and click.
 
 ## Before writing, read:
-- `_memory/company.md` — who we are, what we do, our audience
-- `_memory/preferences.md` — tone, style, what to avoid
-- `_memory/strategy.md` — current focus and priorities
+- `_memory/company.md` — business context, audience
+- `_memory/preferences.md` — voice, tone, what to avoid
 
 ---
 
-## Step 1 — Clarify if not stated
+## Phase 1 — Clarify
 
-Ask in one question if the topic or angle isn't clear:
+If not provided, ask:
 
-> "What's the main topic or story for this newsletter? And is this a weekly update, a deep-dive, or a promotional send?"
+> "What's this newsletter about? And what's the one thing you want readers to do or feel after reading?"
 
----
-
-## Step 2 — Write the newsletter
-
-### Subject Line
-Write 3 options:
-1. Curiosity gap: "The thing nobody tells you about [topic]"
-2. Direct value: "How to [outcome] in [timeframe]"
-3. Story hook: "[Relatable situation] — here's what I did"
-
-**Preview text** (45-90 chars): Complements the subject line. Don't repeat it — continue the thought.
+If context is already clear, skip to Phase 2.
 
 ---
 
-### Body Structure
+## Phase 2 — Newsletter Type Decision
 
-**Opening hook (2-3 lines)**
-Personal story, surprising fact, or strong opinion. Draws the reader in before pitching anything.
+**Curated digest:** Summarize external links/news with your commentary. Structure: intro → 3–5 items with headline + 1-sentence commentary + link → outro + CTA.
 
-**Main section(s)**
-- Each section = one idea
-- Use headers for newsletters over 400 words
-- Short paragraphs: 2-4 lines max
-- No bullet point dumps — write in sentences
+**Original content:** One long idea, story, or lesson. Structure: hook → story/argument → insight → CTA.
 
-**CTA (one per newsletter)**
-Clear single action: read the article, buy the product, reply with X, join the waitlist.
-Never two CTAs. The second dilutes both.
+**Product/announcement:** Company news or offer. Structure: headline → what's new → why it matters to the reader → clear CTA.
 
-**Sign-off**
-Warm, human, consistent with brand voice. First name only if the brand is personal.
+**Hybrid:** Short intro + one original piece + 1–2 links. Best for weekly newsletters with mixed content.
 
 ---
 
-### Length Guide
+## Phase 3 — Subject Line Options
 
-| Type | Words |
-|------|-------|
-| Weekly update | 200-400 |
-| Educational deep-dive | 500-900 |
-| Promotional send | 150-300 |
-| Story-led | 400-700 |
+Write 3 subject lines using different approaches:
+
+| Type | Formula | Example |
+|---|---|---|
+| Curiosity gap | "[Unexpected claim] — here's why" | "We almost didn't ship this — here's why" |
+| Specific benefit | "[Result] in [timeframe]" | "Double your open rates in 30 days" |
+| Direct | State the topic plainly | "This week: pricing strategy for founders" |
+
+Add **preview text** for each (50–90 chars shown in inbox after subject):
+
+```
+Subject: [subject line]
+Preview: [preview text — continues the thought from the subject]
+```
 
 ---
 
-## Step 3 — Plain-text fallback
+## Phase 4 — Write the Newsletter
 
-After the HTML-ready version, offer:
-> "Want a plain-text version for readers who prefer it?"
+**Standard structure:**
+
+```markdown
+## [Subject line as H2]
+
+[HOOK — 1–3 sentences. The reason they should keep reading. Can be a story open,
+a bold claim, or a question. Never "in today's newsletter we will..."]
+
+---
+
+[BODY — the meat of the content]
+
+[For original content: one idea, developed in 300–600 words]
+[For digest: 3–5 items, each with headline + 1 sentence + link]
+[For announcements: what → why it matters → proof]
+
+---
+
+[BRIDGE — 1–2 sentences connecting the body to the CTA]
+
+[CTA — one clear action. Button-style: "[Action verb] [what they get]"]
+```
+
+**Scannability rules:**
+- Max 3 sentences per paragraph
+- Subheadings every 150–200 words for longer pieces
+- One bold or italic highlight per section max
+- No bullet lists of more than 5 items
+
+---
+
+## Phase 5 — Checkpoint
+
+Present the 3 subject line options + the full email. Ask:
+
+> "Which subject line? And any tweaks to the email before it's ready?"
+
+---
+
+## Output
+
+Deliver:
+1. Chosen subject line + preview text
+2. Full newsletter body (plain text + markdown formatting for easy copying)
+3. Word count and estimated reading time
+
+Save to `outputs/content/newsletters/{issue-slug}-{YYYY-MM-DD}.md`
 
 ---
 
 ## Rules
-- Subject line A/B test: always offer 3 options, never 1
-- One CTA — not two
-- No "Hi [First Name]" unless asked — it's a placeholder that often breaks
-- Write for scanning: short paragraphs, occasional bold on key phrases, clear structure
-- Tone follows `_memory/preferences.md` exactly — check the writing example section
-- Save to `outputs/newsletters/newsletter-{topic}-{YYYY-MM-DD}.md` when complete
+
+- Never start the body with "I" or the company name
+- Never write "In today's newsletter..." or "Today I want to talk about..."
+- One CTA per email — multiple CTAs reduce clicks
+- If the user provides previous newsletters, read them first and match the voice
+- Subject lines: 40–60 chars for mobile; flag anything over 60 chars

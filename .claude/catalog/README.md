@@ -6,11 +6,14 @@ Reusable skills for the Company OS Generator. When `/workflow:new-company` runs 
 
 | Category | Skills | Best For |
 |----------|--------|----------|
-| [content/](#content) | 5 | Social media, newsletters, SEO, email campaigns, video |
-| [dev/](#dev) | 5 | Code review, PRs, API docs, bug reports, tech specs |
+| [content/](#content) | 6 | Carousels (HTML+PNG), social media, newsletters, SEO, email campaigns, video |
+| [dev/](#dev) | 6 | Code review, PRs, API docs, bug reports, tech specs, landing pages |
 | [marketing/](#marketing) | 4 | Ad copy, campaign briefs, competitor analysis, growth reports |
 | [ops/](#ops) | 4 | Meeting notes, project briefs, weekly reviews, SOPs |
 | [data/](#data) | 3 | Data analysis, report building, KPI dashboards |
+| [office/](#office) | 4 | Word documents, PDF manipulation, PowerPoint, Excel/spreadsheets |
+| [visual/](#visual) | 2 | HTML visual diagrams (Mermaid/CSS), Excalidraw diagrams |
+| [mindset/](#mindset) | 1 | Critical thinking partner (anti-sycophancy) |
 
 ---
 
@@ -20,6 +23,15 @@ Use this table during Phase 4 of the wizard to map workflow signals to skills.
 
 | Workflow Signal (keyword in user answer) | Skills to Install |
 |------------------------------------------|-------------------|
+| carousel, carrossel, slides, swipe post, visual content, instagram carousel | `content/carousel-post` |
+| landing page, product page, sales page, one-pager, web presence | `dev/landing-page` |
+| word, docx, document editing, tracked changes, redline, contract | `office/office-docx` |
+| pdf, extract pdf, merge pdf, pdf form, ocr | `office/office-pdf` |
+| presentation, powerpoint, pptx, slide deck, pitch deck | `office/office-pptx` |
+| excel, spreadsheet, xlsx, financial model, csv | `office/office-xlsx` |
+| diagram, visualize, architecture diagram, flowchart, comparison table | `visual/visual-explainer` |
+| excalidraw, draw a diagram, workflow diagram, concept map | `visual/excalidraw-diagram` |
+| real talk, honest feedback, pressure test, devil advocate, critical review | `mindset/sycophancy` |
 | social media, instagram, tiktok, linkedin post, posts | `content/social-media-post` |
 | newsletter, email list, substack, weekly email | `content/newsletter` |
 | blog, seo, google traffic, articles, long-form | `content/seo-article` |
@@ -79,6 +91,9 @@ languages:
 ---
 
 ## content/
+
+### carousel-post
+Carousel and visual posts for Instagram, TikTok, LinkedIn. Generates styled HTML + renders to 1080×1350 PNG via Playwright. Named layouts (COVER, SOLO, DUO, NUMBER, QUOTE, FINAL CTA), brand color alternation, feed sequence planning, auto-caption, and optional AI photo generation.
 
 ### social-media-post
 Creates platform-optimized social media posts for Instagram, LinkedIn, X, TikTok. Reads brand voice and identity before writing.
@@ -158,3 +173,36 @@ KPI report from raw numbers. Executive summary, metric breakdown, trend commenta
 
 ### kpi-dashboard
 Generates a self-contained HTML KPI dashboard from data. No build step — inline charts (Chart.js via CDN).
+
+---
+
+## office/
+
+### office-docx
+Create, edit, analyze, and redline Word (.docx) documents. Decision-tree driven: text extraction (pandoc), new doc creation (docx-js), OOXML editing (Python), or redlining with tracked changes.
+
+### office-pdf
+PDF manipulation: text extraction, table extraction, create new PDFs, merge/split, OCR scanned pages, watermarks, password protection.
+
+### office-pptx
+PowerPoint creation and editing. Three workflows: HTML→PPTX for new decks, template rearrange+replace for existing templates, OOXML XML editing for existing files. Includes thumbnail validation.
+
+### office-xlsx
+Spreadsheet creation, editing, analysis. Zero formula errors required. Financial model color conventions. Handles CSV, XLSX, financial models, and data visualization.
+
+---
+
+## visual/
+
+### visual-explainer
+Self-contained HTML visual diagrams. Decision-tree driven rendering (Mermaid for topology/flow/sequence/ER/state, CSS Grid for text-heavy architecture, Chart.js for dashboards). Multiple aesthetic directions with anti-slop rules.
+
+### excalidraw-diagram
+Excalidraw JSON diagram files that make visual arguments. Evidence artifacts, multi-zoom architecture, named visual patterns (fan-out, convergence, timeline, tree, assembly line). Render-and-validate loop required.
+
+---
+
+## mindset/
+
+### sycophancy
+Critical thinking partner with constructive disagreement as default. Finds untested assumptions, argues the opposing case, holds position unless given new evidence. Use for pressure-testing ideas, decisions, or plans.

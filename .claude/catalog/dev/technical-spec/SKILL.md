@@ -2,15 +2,17 @@
 name: technical-spec
 category: dev
 description: >
-  Writes a technical specification document. Covers problem, proposed solution,
-  architecture, implementation plan, trade-offs, and open questions.
-  Used before implementation to align the team.
+  Writes technical specification documents. Phase-driven: problem alignment → solution
+  design → implementation plan → open questions. Non-Goals section is mandatory.
+  Produces an ADR (Architecture Decision Record) format with alternatives, rationale,
+  and consequences.
 triggers:
-  - "write a spec"
   - "technical spec"
-  - "technical specification"
-  - "write an RFC"
+  - "tech spec"
   - "design doc"
+  - "architecture doc"
+  - "rfc"
+  - "write a spec"
   - "/technical-spec"
 workflow_signals:
   - specs
@@ -24,162 +26,149 @@ languages:
   - pt-br
 ---
 
-# /technical-spec
+# /technical-spec — Technical Specification Document
 
-Writes technical specification documents that align teams before implementation starts.
+Produces a complete technical spec. Problem section must be agreed on before solution is written.
 
----
-
-## Step 1 — Gather context
-
-If not provided, ask in one question:
-
-> "What problem does this spec address, and do you have a solution in mind or are we still exploring options?"
+## Before writing, read:
+- `_memory/company.md` — tech stack, team structure
+- `_memory/strategy.md` — current priorities and constraints
 
 ---
 
-## Step 2 — Write the spec
+## Phase 1 — Problem Alignment
 
-````markdown
-# Technical Spec: {Feature / System Name}
+Before designing anything, write and confirm the problem statement:
 
-**Author:** {name}
-**Date:** {YYYY-MM-DD}
-**Status:** Draft / In Review / Accepted / Superseded
-**Reviewers:** {list if known}
-
----
-
-## Summary
-
-{2-3 sentences: what this spec is about and what decision it asks reviewers to make or confirm.}
-
----
-
+```markdown
 ## Problem
 
-### Background
+### What we're trying to solve
+[1–3 sentences. The actual problem, not the solution.]
 
-{Context. What situation led to this spec? What's the current state of the system?}
+### Why it matters now
+[Urgency: what happens if we don't solve this? Who is affected?]
 
-### Problem Statement
+### Current state
+[How does this work today? What are the pain points?]
 
-{The specific problem to solve. Be precise — not "the system is slow" but "the checkout API takes >5s for users with >100 items in cart."}
+### Success criteria
+[How will we know this is solved? Measurable outcomes.]
 
-### Goals
+### Non-Goals (critical — be explicit)
+[What this solution deliberately does NOT solve.
+This section is mandatory. If nothing is out of scope, the spec is too broad.]
+```
 
-- {What we want to achieve}
-- {Another goal}
-
-### Non-Goals
-
-- {What we are explicitly NOT trying to solve with this change}
+**CHECKPOINT:** Present Phase 1 and wait for confirmation before writing the solution.
 
 ---
 
+## Phase 2 — Solution Design
+
+After problem confirmation:
+
+```markdown
 ## Proposed Solution
 
 ### Overview
-
-{High-level description of the approach in 2-4 sentences.}
+[2–4 sentences. The approach at a high level.]
 
 ### Architecture
 
-```
-[Component A] → [Component B] → [Storage]
-      ↓
-[External API]
-```
-
-### Key Components
-
-| Component | Responsibility | Technology |
-|-----------|---------------|------------|
-| {name} | {what it does} | {tech} |
-
-### Data Model
-
-{Schema changes, new tables/collections, or data structures. Use code blocks.}
-
-### API Changes
-
-{New or modified endpoints. Reference the api-documentation skill format.}
+[Diagram or description of the system components and how they interact.
+For complex systems: ASCII diagram or reference to a visual-explainer diagram.]
 
 ### Implementation Plan
 
-| Phase | Tasks | Estimated Effort |
-|-------|-------|-----------------|
-| 1 | {Tasks} | {S / M / L} |
-| 2 | {Tasks} | {S / M / L} |
+#### Phase 1: [Name] — [estimated time]
+[Steps and deliverables]
+
+#### Phase 2: [Name] — [estimated time]
+[Steps and deliverables]
+
+### Data Model (if applicable)
+
+[Schema changes, new tables/fields, migration strategy]
+
+### API Changes (if applicable)
+
+[New endpoints, changed contracts, backwards compatibility]
+
+### Rollout Strategy
+
+- [ ] Feature flag controlled? [Yes: describe the flag / No]
+- [ ] Rollback plan: [How do we revert if this breaks?]
+- [ ] Monitoring: [What metrics/alerts will we add?]
+- [ ] Comms: [Who needs to know before/after this ships?]
+```
 
 ---
 
-## Alternative Approaches
+## Phase 3 — Alternatives Considered (ADR Format)
 
-### Option A: {Name} ← Recommended
+For each major architectural decision:
 
-{Description}
+```markdown
+## Alternatives Considered
 
-**Pros:** {benefit 1}, {benefit 2}
-**Cons:** {trade-off 1}
+### [Option A — what was chosen]
+**Why chosen:** [Specific reasoning]
+**Trade-off accepted:** [What we gave up]
 
-### Option B: {Name}
+### [Option B — rejected]
+**Why rejected:** [Specific reasoning — not just "too complex"]
 
-{Description}
-
-**Why not recommended:** {reason}
-
----
-
-## Trade-offs and Risks
-
-| Risk | Likelihood | Impact | Mitigation |
-|------|-----------|--------|------------|
-| {Risk description} | Low/Med/High | Low/Med/High | {How to handle} |
+### [Option C — rejected]
+**Why rejected:** [Specific reasoning]
+```
 
 ---
 
-## Dependencies
+## Phase 4 — Open Questions
 
-- {External system or team this depends on}
-- {Library or service required}
-
----
-
-## Testing Strategy
-
-- Unit tests: {what to cover}
-- Integration tests: {what to cover}
-- Load/performance tests: {if applicable}
-- Rollback plan: {how to revert if issues arise}
-
----
-
-## Rollout Plan
-
-- [ ] Feature flag / gradual rollout? {Yes — roll out to X% first / No — full deploy}
-- [ ] Monitoring: {what metrics to watch}
-- [ ] Definition of done: {when is this considered shipped}
-
----
-
+```markdown
 ## Open Questions
 
-| Question | Owner | Due |
-|----------|-------|-----|
-| {Question that needs answering before implementation} | {who} | {date} |
+| Question | Owner | Due by |
+|---|---|---|
+| [Specific question needing a decision] | [@person] | [date or milestone] |
+| [Another question] | [@person] | [date or milestone] |
+
+## Risks
+
+| Risk | Likelihood | Impact | Mitigation |
+|---|---|---|---|
+| [What could go wrong?] | High/Med/Low | High/Med/Low | [How we reduce it] |
+```
 
 ---
 
-## Appendix
+## Output
 
-{Supporting diagrams, external links, related specs.}
-````
+Deliver the full spec in one document with all four phases. Note any assumptions made where information was missing.
+
+**Metadata block at the top:**
+```markdown
+# [Feature Name] — Technical Spec
+
+| Field | Value |
+|---|---|
+| **Author** | [Name] |
+| **Date** | [YYYY-MM-DD] |
+| **Status** | Draft / In Review / Approved |
+| **Reviewers** | [Names or teams] |
+| **Related** | [Links to issues, PRs, previous specs] |
+```
+
+Save to `outputs/docs/specs/{feature-slug}-spec-{YYYY-MM-DD}.md`
 
 ---
 
 ## Rules
-- "Non-Goals" section is required — it prevents scope creep
-- Open Questions must have an owner — questions without owners don't get answered
-- Alternatives section is required — document why the rejected approach wasn't chosen
-- Save to `wiki/Resources/{spec-name}-spec.md` for team reference
+
+- Non-Goals section is mandatory — spec without it is incomplete
+- Problem section must be agreed on before writing the solution
+- Alternatives: at least 2 must be documented with specific rejection reasoning
+- Open questions must have owners — "TBD" ownership means the question won't get answered
+- Avoid: "We will use X because it's better." Say why it's better for this specific context

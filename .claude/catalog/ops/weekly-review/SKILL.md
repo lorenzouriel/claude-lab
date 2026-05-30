@@ -2,139 +2,123 @@
 name: weekly-review
 category: ops
 description: >
-  Creates a weekly wins, blockers, and next week plan document. Structured for
-  async sharing with a team or personal retrospective use.
+  Runs a structured weekly review. Extracts wins, WIP, blockers, lessons, and next week's
+  plan from rough notes or conversation. Identifies the single #1 priority for next week.
+  Can be async (from notes) or interactive (guided questions).
 triggers:
   - "weekly review"
   - "week review"
-  - "weekly update"
   - "weekly retrospective"
+  - "week in review"
+  - "end of week"
   - "/weekly-review"
 workflow_signals:
   - weekly review
   - retrospective
   - weekly sync
-  - weekly update
   - week in review
+  - EOW
 languages:
   - en
   - pt-br
 ---
 
-# /weekly-review
+# /weekly-review — Weekly Review & Planning
 
-Creates weekly reviews that close the loop on what happened and open the next week with clarity.
+Structured reflection. Can be async (from notes) or interactive (question-by-question).
 
-## Before writing, read:
-- `_memory/strategy.md` — current goals and priorities
-- `_memory/company.md` — context on team and projects
-
----
-
-## Step 1 — Gather input
-
-Ask in one question if not provided:
-
-> "Tell me what happened this week — wins, blockers, what you're working on next. Even rough notes work."
+## Before running, read:
+- `_memory/strategy.md` — current goals, KPIs, priorities
 
 ---
 
-## Step 2 — Write the weekly review
+## Phase 1 — Mode Selection
+
+**Async mode:** User pastes notes or a brain dump → extract structure from raw input.
+
+**Interactive mode:** Ask one question at a time:
+1. "What did you actually ship, finish, or move forward this week?"
+2. "What's still in progress and where does it stand?"
+3. "What got in the way? Any blockers still active?"
+4. "What didn't get done that was supposed to?"
+5. "What's the #1 thing you need to accomplish next week?"
+6. "Any lessons from this week worth writing down?"
+
+---
+
+## Phase 2 — Generate Weekly Review
 
 ```markdown
-# Weekly Review: Week of {YYYY-MM-DD}
+# Weekly Review — Week of [YYYY-MM-DD]
 
-**Prepared by:** {Name}
-**Date written:** {YYYY-MM-DD}
+## Wins — What shipped or moved forward
 
----
+- [Concrete win: specific, not vague]
+- [Another win]
+- [Another]
 
-## This Week at a Glance
-
-{2-3 sentences: overall tone of the week. Was it productive, reactive, a turning point? What's the headline?}
-
----
-
-## Wins
-
-Things completed, shipped, or progressed this week:
-
-- ✅ {Specific win — what, not just that it happened. "Launched email sequence — first send hit 42% open rate"}
-- ✅ {Another win}
-- ✅ {Another win}
+*Note: "Almost finished" is not a win. Only count completed or measurably advanced items.*
 
 ---
 
-## Work in Progress
+## In Progress — Current state of active work
 
-What moved forward but isn't done yet:
-
-| Project / Task | Status | Next step |
-|---------------|--------|-----------|
-| {Task} | {X% done / In review / Waiting on Y} | {Specific next action} |
-| {Task} | {status} | {next step} |
+| Project / Task | Current status | Next action | ETA |
+|---|---|---|---|
+| [Name] | [Where it stands] | [What happens Monday morning] | [Date] |
 
 ---
 
-## Blockers
+## Blockers — What's stuck right now
 
-What's stuck and why:
-
-- 🔴 **{Blocker}** — {What's blocking it and what needs to happen to unblock. Who can help?}
-- 🟡 **{Slow mover}** — {Not fully blocked, but slower than expected. Why?}
-
-If no blockers: "No blockers this week."
+- [Blocker: who or what is blocking, and what's needed to unblock]
+- [If no blockers: "None currently active"]
 
 ---
 
 ## What Didn't Get Done
 
-Items that were planned but didn't happen:
+- [Item that was planned but didn't happen]
+- [Honest explanation: why?]
 
-- ❌ {Task} — {Why it slipped: deprioritized / blocked / underestimated}
-- ❌ {Task} — {Why}
-
----
-
-## Lessons Learned
-
-{1-3 things that became clearer this week. Process improvements, mistakes not to repeat, things that worked unexpectedly well.}
-
-- {Lesson}
-- {Lesson}
+*This section prevents the same item from being "next week's goal" five weeks in a row.*
 
 ---
 
-## Next Week Plan
+## Lessons
 
-| Priority | Task | Owner | Time estimate |
-|----------|------|-------|--------------|
-| 1 | {Most important thing} | {Name} | {X hrs / 1 day} |
-| 2 | {Second priority} | {Name} | {estimate} |
-| 3 | {Third priority} | {Name} | {estimate} |
-
-**This week's #1 goal:** {One sentence — if nothing else gets done, this must.}
+- [One thing learned this week — process, technical, or personal]
+- [Another, if there's a genuine one — don't force it]
 
 ---
 
-## Metrics Snapshot (optional)
+## Next Week — Plan
 
-| Metric | This Week | Last Week | Trend |
-|--------|-----------|-----------|-------|
-| {Metric} | {value} | {value} | {↑↓→} |
+### #1 Priority
+[One thing. The most important. If this is all that gets done next week, it's still a good week.]
+
+### Also planned
+- [Task]
+- [Task]
+- [Task]
+
+*Keep this list honest — a list of 20 things is a list of 0 priorities.*
 
 ---
 
-## Notes / Context for Next Week
+## Reflection (Optional)
 
-{Anything a team member picking this up next week needs to know. Upcoming events, waiting on external parties, decisions pending.}
+[One paragraph if there's something worth capturing — a pattern, a realization, a decision.
+Not required every week. Only write this if there's something real to say.]
 ```
 
 ---
 
 ## Rules
-- Wins must be specific — "worked on the project" is not a win
-- Blockers must have a clear owner or escalation path — write who can unblock it
-- "What Didn't Get Done" is not a shame section — it's a signal to reprioritize or re-scope
-- Next Week Plan: #1 priority must be truly the most important, not just the most urgent
-- Save to `wiki/Areas/{team-or-self}/week-{YYYY-MM-DD}.md`
+
+- "Almost done" doesn't go in Wins — it goes in In Progress
+- The #1 Priority must be one thing, not a list
+- What Didn't Get Done: required section — not having it enables avoidance
+- Blockers: name the actual blocker (person, decision, missing info) — not just "it's complicated"
+- If reading `_memory/strategy.md`: check whether the #1 Priority aligns with current goals
+- Save to `outputs/ops/reviews/weekly-{YYYY-MM-DD}.md`

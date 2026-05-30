@@ -2,13 +2,15 @@
 name: bug-report
 category: dev
 description: >
-  Creates a structured bug report from a description. Title, severity, steps to reproduce,
-  expected vs actual behavior, environment, and any available logs or screenshots.
+  Creates structured bug reports from a description. Severity-classified (Critical/High/Medium/Low)
+  with reproduction steps, expected vs. actual behavior, environment table, and diagnostic data.
+  Asks targeted questions to fill gaps before generating the report.
 triggers:
-  - "write a bug report"
   - "bug report"
-  - "report this bug"
-  - "create issue"
+  - "report a bug"
+  - "file a bug"
+  - "this is broken"
+  - "something is wrong"
   - "/bug-report"
 workflow_signals:
   - bugs
@@ -21,123 +23,124 @@ languages:
   - pt-br
 ---
 
-# /bug-report
+# /bug-report — Structured Bug Report
 
-Transforms a rough bug description into a structured, actionable report.
-
----
-
-## Step 1 — Gather information
-
-If the description is incomplete, ask one question at a time:
-
-1. "What's the exact behavior you're seeing — and what did you expect to happen?"
-2. "What are the exact steps to reproduce it?"
-3. "What's your environment — OS, browser/app version, account type?"
-
-Don't ask all three at once — wait for each answer.
+Classifies severity, extracts reproduction steps, and produces a complete report ready for an issue tracker.
 
 ---
 
-## Step 2 — Generate the bug report
+## Phase 1 — Severity Classification
 
-````markdown
-## Bug Report: {Short descriptive title}
+Before writing the report, classify severity:
 
-**Severity:** {Critical / High / Medium / Low}
+| Severity | Criteria | Examples |
+|---|---|---|
+| **Critical** | System down, data loss, security breach, blocks all users | Payment failure, data corruption, login broken for all users |
+| **High** | Core feature broken for many users, no workaround | Search returns wrong results, checkout fails for 20% of users |
+| **Medium** | Feature broken with workaround, affects subset of users | Export fails for CSV files >10MB, mobile layout broken on iOS |
+| **Low** | Minor issue, cosmetic, affects edge cases | Tooltip text incorrect, animation jank on slow connections |
+
+---
+
+## Phase 2 — Information Gathering
+
+If any of these are missing, ask targeted questions (one at a time):
+
+1. **Reproduction steps** — "Can you walk me through exactly what you did, step by step, starting from opening the app?"
+2. **Expected behavior** — "What should have happened?"
+3. **Actual behavior** — "What actually happened? Any error messages, screenshots, logs?"
+4. **Environment** — "What browser/OS/device/version? Does it happen on all environments or just one?"
+5. **Frequency** — "Does this happen every time, sometimes, or just once?"
+6. **Impact** — "How many users are affected? Is there a workaround?"
+
+**Stop asking when you have enough to write a useful report.** Don't interrogate for information that doesn't change the bug's handling.
+
+---
+
+## Phase 3 — Generate Report
+
+```markdown
+## Bug: [Short title — verb + what broke, max 80 chars]
+
+**Severity:** [Critical / High / Medium / Low]
 **Status:** Open
-**Reported:** {date}
-**Reporter:** {name if provided}
+**Reported:** [Date]
+**Reported by:** [User/team if provided]
 
 ---
 
-### Description
+### Summary
 
-{1-2 sentences describing the bug clearly. What's broken, where, and what the user was trying to do.}
+[2–3 sentences: What broke? When does it happen? What's the user impact?]
 
 ---
 
 ### Steps to Reproduce
 
-1. {First step — be precise, e.g., "Open the app and log in as a standard user"}
-2. {Next step}
-3. {Next step}
-4. {The step that triggers the bug}
+1. [Specific first step — include URLs, paths, or values where relevant]
+2. [Second step]
+3. [Continue until the bug appears]
+
+**Frequency:** [Always / Sometimes (~X%) / Once]
 
 ---
 
 ### Expected Behavior
 
-{What should happen when the steps above are followed.}
+[What should happen at step N?]
 
 ---
 
 ### Actual Behavior
 
-{What actually happens. Include exact error messages, codes, or behaviors observed.}
+[What actually happens? Include error messages verbatim.]
 
 ---
 
 ### Environment
 
 | Field | Value |
-|-------|-------|
-| OS | {Windows 11 / macOS 14 / Ubuntu 22.04} |
-| Browser / App version | {Chrome 124 / App v2.1.3} |
-| Device | {Desktop / iPhone 15 / etc.} |
-| Account type | {Free / Pro / Admin} |
-| Region / timezone | {if relevant} |
+|---|---|
+| Browser / Client | [Chrome 121, iOS App 2.3.1, etc.] |
+| OS | [macOS 14.2, Windows 11, etc.] |
+| Device | [MacBook Pro M2, iPhone 15, etc.] |
+| Environment | [Production / Staging / Development] |
+| User account | [Anonymous / Specific role or plan] |
+| Feature flags | [Any enabled?] |
 
 ---
 
-### Logs / Error Messages
+### Diagnostic Data
+
+[Error messages, stack traces, logs — paste verbatim in code block]
 
 ```
-{Paste exact error messages, stack traces, or console output here}
+[error log or stack trace here]
 ```
 
----
-
-### Screenshots / Screen Recording
-
-{List or attach if available. "None available" if not.}
-
----
-
-### Frequency
-
-- [ ] Always reproducible
-- [ ] Intermittent (~{X}% of the time)
-- [ ] Happened once
+[Screenshots or recordings: [describe or embed]]
 
 ---
 
 ### Impact
 
-{Who is affected and how — e.g., "All users trying to check out with a discount code see a blank page instead of the confirmation screen."}
+- Users affected: [all / subset — describe]
+- Workaround: [Describe if exists, or "None"]
+- Revenue / SLA impact: [Note if applicable]
 
 ---
 
-### Workaround
+### Notes
 
-{If there's a workaround, describe it. "None known" if not.}
-````
-
----
-
-## Severity Guide
-
-| Severity | Meaning |
-|----------|---------|
-| Critical | Data loss, security breach, or complete feature/app unavailable in production |
-| High | Core feature broken for most users, no workaround |
-| Medium | Feature partially broken or broken for some users, workaround exists |
-| Low | Minor visual issue, edge-case behavior, cosmetic problem |
+[Any additional context, related issues, or suspected cause]
+```
 
 ---
 
 ## Rules
-- Steps to reproduce must be specific enough for a developer who's never seen the bug to follow them
-- Expected vs Actual behavior must be distinct sections — don't conflate them
-- If the user says "it doesn't work," ask what specifically doesn't work before writing the report
-- Save to `outputs/bugs/bug-{slug}-{YYYY-MM-DD}.md`
+
+- Severity is assigned based on user impact and urgency — not how annoying it is to the reporter
+- Reproduction steps must be specific enough for a developer who didn't see the bug to reproduce it
+- Error messages go verbatim in code blocks — never paraphrase error messages
+- "Sometimes" is not enough — get a frequency estimate (always, ~50%, once) and conditions that trigger it
+- Critical bugs: add "CRITICAL — needs immediate attention" at the top of the report

@@ -2,179 +2,189 @@
 name: sop-writer
 category: ops
 description: >
-  Creates a Standard Operating Procedure (SOP) document. Purpose, trigger, roles,
-  step-by-step process, exceptions, and related documents. Turns recurring
-  workflows into repeatable, delegatable processes.
+  Creates Standard Operating Procedure (SOP) documents. Trigger-based structure with
+  roles, step-by-step process (Who/When/How/Output per step), decision points, quality
+  checks, and exception handling. Validates completeness before delivery.
 triggers:
-  - "write an SOP"
+  - "sop"
   - "standard operating procedure"
-  - "document this process"
-  - "process documentation"
+  - "process document"
   - "playbook"
+  - "how-to guide"
+  - "write a process"
   - "/sop-writer"
 workflow_signals:
   - sop
   - processes
   - procedures
-  - documentation
   - playbook
-  - process documentation
+  - documentation
+  - process design
 languages:
   - en
   - pt-br
 ---
 
-# /sop-writer
+# /sop-writer — Standard Operating Procedure
 
-Creates SOPs that make any recurring workflow repeatable by anyone on the team.
-
-## Before writing, read:
-- `_memory/company.md` — team roles, tools used, how the business operates
+Trigger-based process documentation. Every step has an owner and an output.
 
 ---
 
-## Step 1 — Gather input
+## Phase 1 — Process Scoping
 
-Ask in one question if not provided:
+Before writing, ask targeted questions if the information is missing:
 
-> "Describe the process — what triggers it, who does it, and what the steps are. Even rough is fine."
+1. **What triggers this process?** — What event or condition starts it? (New client onboarded, invoice received, support ticket escalated)
+2. **What's the end state?** — How do you know it's done?
+3. **Who's involved?** — List roles (not names) who touch this process
+4. **How often does this happen?** — Frequency and volume context
+5. **What tools or systems are used?**
+6. **What can go wrong?** — Common exceptions or failure modes
 
 ---
 
-## Step 2 — Write the SOP
+## Phase 2 — Generate SOP
 
 ```markdown
-# SOP: {Process Name}
+# SOP: [Process Name]
 
+**SOP ID:** [SOP-XXX]
 **Version:** 1.0
-**Owner:** {Name / Role}
-**Last Updated:** {YYYY-MM-DD}
-**Review Date:** {YYYY-MM-DD} *(recommend reviewing every 6 months)*
-**Status:** Active
+**Last updated:** [YYYY-MM-DD]
+**Owner:** [Role responsible for this SOP]
+**Approved by:** [Role or name]
 
 ---
 
 ## Purpose
 
-{One sentence: What does this process accomplish and why does it exist?}
-
-Example: "Ensures new client onboarding is completed consistently within 3 business days of contract signing."
+[1–2 sentences: what this process achieves and why it exists]
 
 ---
 
 ## Scope
 
-**Applies to:** {Who follows this SOP — e.g., "All account managers"}
-**Does NOT apply to:** {Exclusions if any}
+**Applies to:** [Which team, system, or type of request this covers]
+**Does NOT apply to:** [Exclusions]
+**Frequency:** [Daily / Weekly / Per event / As needed]
 
 ---
 
 ## Trigger
 
 **This process starts when:**
-{The specific event that kicks it off — e.g., "A new contract is signed in DocuSign" or "A customer submits a support ticket tagged 'billing'"}
+[Specific event — "A new client signs a contract in HubSpot" / "An invoice is received from a vendor" / "A user submits a support ticket tagged Urgent"]
+
+**Initiated by:** [Role]
 
 ---
 
 ## Roles & Responsibilities
 
 | Role | Responsibility in this process |
-|------|-------------------------------|
-| {Role 1} | {What they do — specific actions} |
-| {Role 2} | {What they do} |
-| {Role 3 / Tool} | {Automated action or tool used} |
-
----
-
-## Prerequisites
-
-Before starting this process, ensure:
-- [ ] {Requirement — e.g., "Access to CRM is granted"}
-- [ ] {Another prerequisite}
+|---|---|
+| [Role A] | [What they own in this process] |
+| [Role B] | [What they own] |
+| [External / system] | [What the system does automatically] |
 
 ---
 
 ## Process Steps
 
-### Phase 1: {Phase name}
+### Step 1 — [Step name]
 
-**Step 1.1 — {Action}**
-- **Who:** {Role}
-- **When:** {Timing — e.g., "Within 1 hour of trigger"}
-- **How:** {Detailed instructions — specific, not vague}
-- **Using:** {Tool, template, or system — link if possible}
-- **Output:** {What's produced — e.g., "Welcome email sent, CRM record updated"}
+| Field | Detail |
+|---|---|
+| **Who** | [Role] |
+| **When** | [Within X hours of trigger / At the same time as Step 2 / After Step N is complete] |
+| **How** | [Specific instructions — tool, action, inputs needed] |
+| **Output** | [What is produced — artifact, status change, notification sent] |
 
-**Step 1.2 — {Action}**
-- **Who:** {Role}
-- **When:** {Timing}
-- **How:** {Instructions}
-- **Output:** {Output}
+**Decision point:**
+```
+If [condition A] → proceed to Step 2
+If [condition B] → go to Exception: [Name]
+```
 
 ---
 
-### Phase 2: {Phase name}
+### Step 2 — [Step name]
 
-**Step 2.1 — {Action}**
 [Same structure]
 
 ---
 
-## Decision Points
-
-| Situation | Action |
-|-----------|--------|
-| {If X happens} | {Do Y — e.g., "Escalate to manager, do not proceed"} |
-| {If Y is missing} | {Do Z} |
-
----
-
-## Exceptions & Edge Cases
-
-| Exception | How to Handle |
-|-----------|--------------|
-| {e.g., Client is in a different timezone} | {Adjust communication timing, note in CRM} |
-| {Another edge case} | {Handling} |
-
----
-
-## Tools & Templates
-
-| Tool / Template | Purpose | Link / Location |
-|-----------------|---------|-----------------|
-| {CRM} | {Track client status} | {URL or path} |
-| {Template name} | {Used in Step X} | {wiki/Resources/templates/} |
+[Continue for all steps...]
 
 ---
 
 ## Quality Checks
 
 Before marking this process complete, verify:
-- [ ] {Checklist item — e.g., "Client received welcome email and confirmed receipt"}
-- [ ] {Another check}
-- [ ] Process logged in {system}
+- [ ] [Specific check — "Invoice is in accounting system with correct GL code"]
+- [ ] [Another check]
+- [ ] [Notification sent to relevant party]
+
+---
+
+## Exceptions & Edge Cases
+
+### Exception: [Name]
+
+**When it happens:** [Condition]
+**Who handles it:** [Role]
+**What to do:**
+1. [Step]
+2. [Step]
+**Escalate to:** [Role / Manager] if [condition]
+
+---
+
+## Tools & Systems
+
+| Tool | Used in step(s) | Purpose |
+|---|---|---|
+| [Tool name] | Step 1, 3 | [What it does in this process] |
 
 ---
 
 ## Related Documents
 
-- {Link to related SOP or template}
-- {Wiki page with context}
+- [Link to related SOP, template, or form]
 
 ---
 
-## Version History
+## Revision History
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0 | {date} | {name} | Initial version |
+| Version | Date | Changed by | Summary |
+|---|---|---|---|
+| 1.0 | [Date] | [Name] | Initial version |
 ```
 
 ---
 
+## Phase 3 — Completeness Check
+
+After generating, verify:
+```
+SOP Completeness Check:
+[ ] Every step has a named role (not "someone" or "the team")
+[ ] Every step has a clear output / artifact
+[ ] Trigger is specific — not "when needed"
+[ ] At least one exception or edge case documented
+[ ] Quality checks are verifiable (yes/no), not vague
+[ ] Tools section complete
+```
+
+Flag any gaps before delivering.
+
+---
+
 ## Rules
-- Steps must be specific enough for someone unfamiliar with the process to follow alone
-- Every step must have an owner — "team" is not an owner
-- Decision Points section is required — every real process has "what if" scenarios
-- Quality Checks are the last gate — they prevent the process from "completing" without actually being done
-- Save to `wiki/Resources/sops/{process-name}-sop.md`
+
+- Every step must have an owner role — shared ownership means no ownership
+- Outputs must be concrete: a document, a status in a system, a notification sent — not "task completed"
+- Decision points must be explicit — SOPs that say "use judgment here" aren't SOPs
+- Write for someone new to the role — assume nothing is obvious
+- Save to `outputs/ops/sops/{sop-name}-v1-{YYYY-MM-DD}.md`

@@ -2,118 +2,161 @@
 name: email-campaign
 category: content
 description: >
-  Writes marketing email sequences — welcome series, nurture drips, promotional campaigns,
-  and re-engagement flows. Can write one email at a time or a full sequence.
-  Reads brand voice and company context before writing.
+  Writes marketing email sequences. Decision-tree driven by campaign type (welcome,
+  nurture, promotional, re-engagement, onboarding). Designs the full sequence first,
+  then writes one email at a time. One CTA per email. Reads brand voice before writing.
 triggers:
   - "email campaign"
   - "email sequence"
-  - "welcome email"
-  - "nurture sequence"
   - "drip campaign"
+  - "welcome sequence"
+  - "nurture sequence"
+  - "email automation"
   - "/email-campaign"
 workflow_signals:
   - email campaign
   - drip
   - sequences
   - nurture
-  - welcome series
   - promotional email
+  - email marketing
+  - automation
 languages:
   - en
   - pt-br
 ---
 
-# /email-campaign
+# /email-campaign — Email Marketing Sequences
 
-Writes email marketing sequences that convert without feeling pushy.
+Designs the full sequence before writing. One CTA per email — always.
 
 ## Before writing, read:
-- `_memory/company.md` — product/service, ICP, company voice
-- `_memory/preferences.md` — tone, what to avoid
-- `_memory/strategy.md` — current offer, priorities
+- `_memory/company.md` — business, product, ICP, revenue model
+- `_memory/preferences.md` — voice, tone, forbidden phrases
 
 ---
 
-## Step 1 — Clarify if not stated
+## Phase 1 — Campaign Type Decision
 
-Ask in one question:
+Identify which campaign type fits:
 
-> "What type of sequence — welcome series, nurture, promotional, or re-engagement? And what's the end goal (trial, purchase, call booked)?"
+| Type | Purpose | Typical length |
+|---|---|---|
+| **Welcome** | Introduce new subscriber to brand | 3–5 emails, Day 0/1/3/7/14 |
+| **Nurture / lead** | Build trust, educate toward purchase | 5–8 emails, weekly |
+| **Promotional** | Drive a specific sale or event | 3–5 emails, compressed timeline |
+| **Re-engagement** | Win back inactive subscribers | 3 emails over 2 weeks |
+| **Onboarding** | Guide new customers through setup | 4–7 emails, Day 0/1/3/7/14/30 |
+| **Post-purchase** | Upsell, referral, review | 3–4 emails, Day 0/3/7/30 |
+
+If unclear, ask:
+
+> "What triggered this campaign — a new signup, a purchase, a specific segment, or a promotion?"
 
 ---
 
-## Step 2 — Sequence map (before writing)
+## Phase 2 — Sequence Design
 
-For sequences over 2 emails, confirm the plan:
+Design the full sequence before writing any email:
+
+```markdown
+## Campaign: [Type] — [Topic/Product]
+
+Goal: [What action do we want at the end of the sequence?]
+Audience: [Who receives this? How did they enter the sequence?]
+
+### Sequence
+
+Email 1 — [Send time] — [Subject line idea]
+Goal: [What this email does]
+CTA: [One action]
+
+Email 2 — [Send time] — [Subject line idea]
+Goal: [What this email does]
+CTA: [One action]
+
+[Continue...]
+
+### Success metrics to track
+- Open rate goal: [X%]
+- Click rate goal: [X%]
+- Conversion goal: [what counts as a conversion?]
+```
+
+**CHECKPOINT:** Present the sequence design. Get approval before writing emails.
+
+---
+
+## Phase 3 — Write Each Email
+
+Write one email at a time. After each, pause and ask:
+
+> "Email [N] ready. Want adjustments before I write Email [N+1]?"
+
+**Standard email structure:**
+
+```markdown
+Subject: [40–60 chars, includes keyword or curiosity hook]
+Preview text: [50–90 chars, extends the subject line thought]
+
+---
+
+[HOOK — 1–3 sentences. The one reason they should keep reading.]
+
+[BODY — 150–300 words. One idea only. No multiple topics per email.]
+
+[BRIDGE — 1 sentence connecting body to the action]
+
+[CTA — ONE clear action: button text in [brackets] + the URL/action]
+
+[SIGN-OFF]
+[Name / Company]
+
+---
+P.S. [Optional — secondary point or reminder. If used, it must add value, not just repeat the CTA.]
+```
+
+**Voice rules (read `_memory/preferences.md` to calibrate):**
+- Active voice
+- Short sentences (avg <20 words)
+- Specific over vague: "14% higher conversions" not "better results"
+- Talk to one person, not a list ("you" not "subscribers")
+
+---
+
+## Phase 4 — Subject Line Set
+
+After all emails are written, produce the full subject line set:
 
 ```
-Sequence: [type]
-Goal: [conversion action]
-Audience: [who receives this]
-Emails: [N]
-Sending cadence: [Day 0, Day 2, Day 5...]
-
-Email 1 — [theme]: [one-line description]
-Email 2 — [theme]: [one-line description]
-...
+Email 1: [Subject line] | Preview: [Preview text]
+Email 2: [Subject line] | Preview: [Preview text]
+[...]
 ```
 
-Ask: "Does this flow work? I'll write each email once you confirm."
+Check each for:
+- Length: 40–60 chars
+- Mobile truncation: first 30 chars carry the meaning
+- Curiosity or benefit is clear without opening
 
 ---
 
-## Step 3 — Write each email
+## Output
 
-### Structure (applies to every email)
+Deliver:
+1. Sequence design (confirmed)
+2. All emails in order, clearly labeled (Email 1 of N, etc.)
+3. Full subject line + preview text set
+4. Notes on timing and segmentation
 
-**Subject line** (3 options)
-- Option A: Curiosity / open loop
-- Option B: Direct benefit
-- Option C: Short and personal
-
-**Preview text** (40-80 chars)
-Continues the subject line — don't repeat it.
-
-**Body**
-- Opening: personal, context-aware. Reference the sequence stage ("You signed up 3 days ago / You haven't opened in a while / You're on Day 5 of your trial")
-- Problem or insight (1-2 paragraphs)
-- Transition to solution/offer (1 paragraph)
-- CTA: one link, clear action
-
-**Closing**
-Warm sign-off. First name of sender if personal brand. Company name if brand.
-
----
-
-### Sequence Types
-
-**Welcome series (3-5 emails)**
-- Email 1 (Day 0): Deliver the lead magnet + set expectations
-- Email 2 (Day 2): Your story / why you built this
-- Email 3 (Day 4): Social proof — customer result or case study
-- Email 4 (Day 6): Overcome objection or FAQ
-- Email 5 (Day 8): Make the ask — clear offer with deadline
-
-**Nurture drip (ongoing)**
-- Value-first: 2-3 educational emails before any pitch
-- Pitch ratio: max 1 commercial email per 3 value emails
-
-**Promotional (3-5 days)**
-- Day 1: Launch — introduce the offer
-- Day 2-3: Proof + objection handling
-- Day 4: Urgency (real scarcity only — no fake countdown)
-- Day 5: Last chance + FAQ
-
-**Re-engagement**
-- One email: acknowledge absence, offer value or simple check-in
-- If no reply/click: suppress or remove from list
+Save to `outputs/content/email-campaigns/{campaign-slug}-{YYYY-MM-DD}/`
 
 ---
 
 ## Rules
-- One CTA per email — never two
-- Subject line options always: 3, not 1
-- No fake urgency (fake countdown timers, fake "only 3 left")
-- Tone from `_memory/preferences.md` applies to every email
-- Save each email to `outputs/campaigns/{campaign-name}/email-{N}.md`
+
+- One CTA per email — multiple CTAs reduce clicks
+- Never send two promotional emails on the same day
+- Sequence design must be approved before writing — prevents structural rewrites mid-sequence
+- If re-writing an existing sequence: read all current emails first before suggesting changes
+- P.S. lines are optional — only use if they genuinely add value

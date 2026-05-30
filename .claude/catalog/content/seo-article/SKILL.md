@@ -2,116 +2,158 @@
 name: seo-article
 category: content
 description: >
-  Writes long-form SEO content (800-2000 words) with keyword targeting, optimized headers,
-  meta description, and internal linking recommendations. Reads company context and brand
-  voice before writing.
+  Writes long-form SEO content (800–2500 words). Phase-driven: keyword research brief
+  → structural outline → full article → SEO checklist. Produces H1/H2/H3 structure,
+  meta description, internal link suggestions, and a final SEO checklist before delivery.
 triggers:
-  - "write a blog post"
   - "seo article"
-  - "blog post about"
-  - "article for google"
+  - "blog post"
+  - "long form content"
+  - "blog article"
+  - "seo content"
+  - "write for google"
   - "/seo-article"
 workflow_signals:
   - blog
   - seo
   - google traffic
   - articles
-  - long-form
-  - organic search
+  - long-form content
+  - content marketing
 languages:
   - en
   - pt-br
 ---
 
-# /seo-article
+# /seo-article — Long-Form SEO Content
 
-Writes SEO-optimized long-form articles that rank and convert.
+Produces structured, keyword-optimized articles. Brief first, article second.
 
 ## Before writing, read:
-- `_memory/company.md` — business context, audience, services
-- `_memory/preferences.md` — tone, writing style, forbidden phrases
-- `_memory/strategy.md` — current focus, product priorities
+- `_memory/company.md` — business context, audience, domain expertise
+- `_memory/preferences.md` — voice, tone, what to avoid
+- `identity/design-guide.md` — brand voice summary
 
 ---
 
-## Step 1 — Clarify if not stated
+## Phase 1 — Keyword Brief
 
-If keyword or topic isn't clear, ask:
+Before writing a word of the article, produce a brief:
 
-> "What's the main keyword or topic? And what should the reader be able to do or understand after reading it?"
+```markdown
+## SEO Brief
 
----
-
-## Step 2 — SEO brief (before writing)
-
-Show the user this before drafting:
-
-```
-Target keyword: [keyword]
-Secondary keywords: [2-3 related terms]
-Search intent: [informational / commercial / navigational]
-Target word count: [800 / 1200 / 2000]
-Audience: [from _memory/company.md]
-CTA goal: [newsletter signup / product page / contact]
+**Primary keyword:** [exact phrase, 2–4 words]
+**Search intent:** [Informational / Commercial / Transactional / Navigational]
+**Secondary keywords:** [3–5 related terms to include naturally]
+**Target audience:** [who is searching this?]
+**Article goal:** [rank for keyword / build authority / capture leads / answer FAQ]
+**Target length:** [800–1200 / 1200–1800 / 1800–2500 words]
+**Competitor gap:** [what are existing articles missing that this one should cover?]
 ```
 
-Ask: "Does this look right? I'll write the article based on this."
+**CHECKPOINT:** Present the brief. Wait for confirmation before writing the article.
 
 ---
 
-## Step 3 — Write the article
+## Phase 2 — Structural Outline
 
-### Structure
+After brief approval, write a detailed outline:
 
-**Title (H1)**
-- Include exact keyword near the start
-- Max 60 characters for full display in Google
-- Power words: "Complete", "Guide", "How to", "Best", current year
+```markdown
+## Outline
 
-**Meta description** (write after article)
-- 150-160 characters
-- Include keyword naturally
-- One clear benefit or promise
-- No clickbait
+**H1:** [Primary keyword in natural phrasing — not stuffed, reads like a real headline]
 
-**Opening paragraph (no H2)**
-- Hook: stat, question, or bold claim
-- Include target keyword in first 100 words
-- State what the article covers and for whom
-
-**Body sections (H2 + H3)**
-- H2 for major sections (include keyword variations)
-- H3 for subsections
-- 2-4 paragraphs per H2
-- Use numbered lists for processes, bullet points for features/options
-- Short paragraphs (3-4 lines)
-- Bold key terms on first use
-
-**Internal links**
-After writing, suggest 2-3 internal links:
-> "You could link [anchor text] to your [page about X]"
-
-**CTA section (final H2)**
-- Don't make it sound like an ad
-- Frame as the natural next step
-- One action, clear benefit
+**Meta description:** [150–160 chars — includes primary keyword, has a clear hook]
 
 ---
 
-## Step 4 — SEO checklist before delivery
+**Introduction** (100–150 words)
+- Hook: [what problem or question opens the article?]
+- Promise: [what will the reader know/be able to do after reading?]
 
-- [ ] H1 contains exact keyword
-- [ ] Keyword in first 100 words
-- [ ] At least 2 keyword variations in H2s
-- [ ] Meta description ≤ 160 chars with keyword
-- [ ] No keyword stuffing (keyword density ~1-2%)
-- [ ] Short paragraphs throughout
-- [ ] At least one image alt text suggestion
+**H2: [Section title including secondary keyword]**
+- [Key point 1]
+- [Key point 2]
+- [Supporting data or example]
+
+**H2: [Section title]**
+[Continue...]
+
+**H2: [Section with "how to" or step-by-step if relevant]**
+
+**Conclusion** (100–150 words)
+- Summary of key takeaway
+- CTA: [what do you want the reader to do next?]
+
+**Internal links to suggest:** [2–3 pages on the site this article could link to]
+```
+
+**CHECKPOINT:** Present outline. Get approval before writing.
+
+---
+
+## Phase 3 — Write the Article
+
+Write the full article following the approved outline.
+
+**Formatting rules:**
+- H1: exactly one, contains the primary keyword
+- H2s: 3–6 per article, contain secondary keywords naturally
+- H3s: use for sub-sections, numbered lists, or step-by-step breakdowns
+- Paragraphs: max 4 sentences; 2–3 sentence paragraphs are ideal for web
+- First paragraph: includes primary keyword within first 100 words
+- Bold: use for key terms or important phrases (max 1 per paragraph)
+- Images: note `[IMAGE: descriptive alt text with keyword]` where images should go
+
+**Writing quality rules:**
+- Use active voice throughout
+- Cite specific data/statistics with sources (even if hypothetical for drafts)
+- Include a real example, case study, or story in at least one H2 section
+- Use "you" to speak directly to the reader
+- No filler phrases: "It's important to note...", "In conclusion...", "As we can see..."
+
+---
+
+## Phase 4 — SEO Checklist
+
+After writing, run through this checklist and note any gaps:
+
+```
+SEO Checklist:
+[ ] H1 contains primary keyword (exact or natural variation)
+[ ] Primary keyword appears in first 100 words
+[ ] Meta description: 150–160 chars, includes keyword, has hook
+[ ] H2s include secondary keywords (not stuffed — reads naturally)
+[ ] Article length: [X] words (target: [Y])
+[ ] At least one data point or statistic included
+[ ] CTA clear in conclusion
+[ ] 2–3 internal link suggestions noted
+[ ] Alt text noted for all image placeholders
+[ ] No keyword stuffing — primary keyword appears [N] times
+```
+
+---
+
+## Output
+
+Deliver in this order:
+1. SEO brief (confirmed)
+2. Outline (confirmed)
+3. Full article with H1/H2/H3 structure
+4. Meta description (separate, clearly labeled)
+5. SEO checklist results
+6. Internal link suggestions
+
+Save to `outputs/content/articles/{keyword-slug}-{YYYY-MM-DD}.md`
 
 ---
 
 ## Rules
-- Never write keyword-stuffed content — it reads badly and Google penalizes it
-- Tone from `_memory/preferences.md` applies even in SEO content — don't go corporate
-- Save to `outputs/blog/{slug}-{YYYY-MM-DD}.md`
-- Suggest a featured image concept at the end (describe it, don't generate unless asked)
+
+- Brief and outline are NOT optional steps — they prevent wasted full-article rewrites
+- Never write the article before the brief is confirmed
+- If the user gives a keyword, research what the top results cover (ask them if you can't search)
+- Keyword density: primary keyword 1–2% (about 1 every 100–150 words max)
+- Never sacrifice readability for keyword inclusion — if it sounds stuffed, it is

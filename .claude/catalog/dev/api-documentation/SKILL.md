@@ -2,169 +2,179 @@
 name: api-documentation
 category: dev
 description: >
-  Generates API documentation from route handlers, code, or plain description.
-  Covers endpoint, method, auth, params, request/response schema, examples, and error codes.
+  Generates API documentation from route handlers, code, OpenAPI specs, or plain
+  description. Produces endpoint docs with parameters, request/response schemas,
+  curl examples, error codes, and authentication notes. Decision-tree driven by
+  input type (code / spec / description).
 triggers:
-  - "document this API"
-  - "API docs"
-  - "write API documentation"
-  - "document endpoint"
+  - "api documentation"
+  - "api docs"
+  - "document this api"
+  - "document endpoints"
+  - "openapi"
+  - "swagger"
   - "/api-documentation"
 workflow_signals:
-  - api docs
   - documentation
+  - api docs
   - readme
-  - endpoint
+  - technical docs
   - swagger
   - openapi
+  - endpoints
 languages:
   - en
   - pt-br
 ---
 
-# /api-documentation
+# /api-documentation — API Endpoint Documentation
 
-Generates clear, complete API documentation from code or description.
-
----
-
-## Step 1 — Gather input
-
-If not provided, ask:
-
-> "Paste the route handler(s) or describe the endpoint — I'll generate the docs."
+Produces documentation that developers can actually use — with curl examples, error codes, and auth notes.
 
 ---
 
-## Step 2 — Generate documentation
+## Phase 1 — Input Type Decision
+
+Detect the input and pick the right approach:
+
+**Code input (route handlers, controllers):**
+- Read the code to extract: method, path, parameters, body schema, response structure, auth requirements
+- Look for validation logic to document constraints
+- Check error handling to document error codes
+
+**OpenAPI / Swagger spec:**
+- Parse the YAML/JSON to extract all endpoints
+- Expand `$ref` references mentally
+- Note deprecated endpoints
+
+**Plain description:**
+- Ask: "Is there a request body? What does a successful response look like? Any auth required?"
+- Note that the output will be a draft needing developer verification
+
+---
+
+## Phase 2 — Per-Endpoint Documentation
 
 For each endpoint, produce this structure:
 
-````markdown
-## {Method} {/path}
+```markdown
+### [METHOD] /path/to/endpoint
 
-**Summary:** {One sentence describing what this endpoint does}
+> [One-sentence description of what this endpoint does]
 
-**Authentication:** {None / Bearer token / API key / OAuth2}
+**Authentication:** [None | Bearer token | API key | OAuth2 scope: write:resource]
 
 ---
 
-### Parameters
+#### Parameters
 
-#### Path Parameters
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-| `{param}` | string | Yes | {Description} |
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `user_id` | path | string | ✓ | Unique user identifier |
+| `page` | query | integer | ✗ | Page number, default: 1 |
+| `limit` | query | integer | ✗ | Results per page, default: 20, max: 100 |
 
-#### Query Parameters
-| Name | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| `{param}` | string | No | `{default}` | {Description} |
+---
 
 #### Request Body
-Content-Type: `application/json`
 
 ```json
 {
-  "field1": "string",
-  "field2": 123,
-  "field3": {
-    "nested": true
+  "name": "string",        // Required. Display name, max 100 chars.
+  "email": "string",       // Required. Valid email address.
+  "role": "admin | user",  // Optional. Default: "user".
+  "metadata": {            // Optional. Arbitrary key-value pairs.
+    "key": "value"
   }
 }
 ```
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `field1` | string | Yes | {Description} |
-| `field2` | integer | No | {Description} |
-
 ---
 
-### Responses
+#### Responses
 
-#### 200 OK
+**200 OK**
 ```json
 {
-  "id": "abc123",
-  "status": "success",
-  "data": {}
+  "id": "usr_abc123",
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "role": "admin",
+  "created_at": "2024-01-15T10:30:00Z"
 }
 ```
 
-#### 400 Bad Request
+**400 Bad Request** — Validation error
 ```json
-{
-  "error": "invalid_input",
-  "message": "field1 is required"
-}
+{ "error": "validation_failed", "message": "email is required", "field": "email" }
 ```
 
-#### 401 Unauthorized
+**401 Unauthorized** — Missing or invalid token
 ```json
-{
-  "error": "unauthorized",
-  "message": "Valid Bearer token required"
-}
+{ "error": "unauthorized", "message": "Invalid or expired token" }
 ```
 
-#### 404 Not Found
+**404 Not Found** — Resource doesn't exist
 ```json
-{
-  "error": "not_found",
-  "message": "{resource} not found"
-}
+{ "error": "not_found", "message": "User not found" }
 ```
 
 ---
 
-### Example Request
+#### Example
 
 ```bash
-curl -X {METHOD} https://api.example.com{/path} \
+curl -X POST https://api.example.com/v1/users \
   -H "Authorization: Bearer {token}" \
   -H "Content-Type: application/json" \
   -d '{
-    "field1": "value"
+    "name": "Jane Doe",
+    "email": "jane@example.com"
   }'
 ```
-
-### Example Response
-
-```json
-{
-  "id": "abc123",
-  "status": "success"
-}
 ```
-````
 
 ---
 
-## Step 3 — Multiple endpoints
+## Phase 3 — API Overview Section
 
-If documenting several endpoints, group them by resource:
+Before individual endpoints, produce a top-level overview:
 
 ```markdown
-# API Reference
+# {API Name} API Reference
 
-## Authentication
-[POST /auth/login]
-[POST /auth/refresh]
-[DELETE /auth/logout]
+**Base URL:** `https://api.example.com/v1`
+**Authentication:** [Describe auth scheme with example header]
+**Rate limits:** [X requests per minute per IP / token]
+**Content-Type:** `application/json` for all requests and responses
+**Versioning:** [How the API is versioned]
 
-## Users
-[GET /users]
-[GET /users/:id]
-[POST /users]
-[PATCH /users/:id]
-[DELETE /users/:id]
+## Error format
+
+All errors follow this structure:
+```json
+{ "error": "error_code", "message": "Human-readable description" }
+```
+
+## Common error codes
+
+| Code | HTTP | Meaning |
+|---|---|---|
+| `unauthorized` | 401 | Missing or invalid auth |
+| `forbidden` | 403 | Authenticated but not allowed |
+| `not_found` | 404 | Resource doesn't exist |
+| `validation_failed` | 400 | Request body or params invalid |
+| `rate_limited` | 429 | Too many requests |
+| `internal_error` | 500 | Server error |
 ```
 
 ---
 
 ## Rules
-- Always include at least the most common error codes (400, 401, 403, 404, 500)
-- Request/response examples must be valid JSON — no ellipsis or placeholder that breaks JSON
-- If auth is unknown, note it as "Authentication: See your API token configuration"
-- Save to `outputs/docs/api-reference-{YYYY-MM-DD}.md` or the `wiki/Resources/` folder
+
+- Never document fields that don't exist in the code — mark assumptions as `[TO VERIFY]`
+- curl examples must be copy-pasteable: use `{placeholder}` syntax for values to replace
+- Authentication notes go on EVERY endpoint, not just the overview
+- Response examples must use realistic, non-sensitive example data (not `"string"` or `"value"`)
+- Error codes: document every HTTP status code the endpoint can return
+- Save to `outputs/docs/api-reference-{YYYY-MM-DD}.md`

@@ -2,14 +2,15 @@
 name: report-builder
 category: data
 description: >
-  Creates a KPI report from raw numbers. Executive summary, metric breakdown,
-  trend commentary, and recommendations. Turns a paste of numbers into a
-  stakeholder-ready document.
+  Creates KPI reports from raw numbers. Audience-aware (internal/client/investor).
+  Executive summary written last — after seeing the data. Metric deep dives with
+  trend explanation. Recommendations must follow from the data, not be generic advice.
 triggers:
   - "build a report"
   - "kpi report"
   - "metrics report"
-  - "create a report from these numbers"
+  - "performance report"
+  - "create a report"
   - "/report-builder"
 workflow_signals:
   - kpi
@@ -23,9 +24,9 @@ languages:
   - pt-br
 ---
 
-# /report-builder
+# /report-builder — KPI Report from Raw Numbers
 
-Turns raw metrics into stakeholder-ready reports with narrative and recommendations.
+Executive summary written last. Audience determines depth and language.
 
 ## Before writing, read:
 - `_memory/company.md` — business model, what metrics matter
@@ -33,116 +34,119 @@ Turns raw metrics into stakeholder-ready reports with narrative and recommendati
 
 ---
 
-## Step 1 — Gather data
+## Phase 1 — Data Gathering
 
 If metrics aren't provided, ask:
 
-> "Paste the numbers you want in the report — revenue, traffic, leads, conversions, whatever you track. Include the comparison period if you have it."
+> "Paste the numbers — revenue, traffic, leads, conversions, whatever you track. Include comparison period if you have it."
+
+Also ask (once): **"Who's reading this — internal team, a client, or an investor?"**
 
 ---
 
-## Step 2 — Clarify the audience
+## Phase 2 — Audience Calibration
 
-If not stated, ask:
-
-> "Who's reading this — internal team, a client, an investor, or yourself?"
-
-The audience determines tone and depth.
+| Audience | Tone | Depth | Language |
+|---|---|---|---|
+| Internal team | Direct, honest | Full data, root causes | Team language, operational terms |
+| Client | Results-focused | Their KPIs, next steps | Business outcomes, minimal jargon |
+| Investor | Business health | MRR, CAC, churn, LTV, trends | GAAP-adjacent, forward guidance |
 
 ---
 
-## Step 3 — Write the report
+## Phase 3 — Metrics Table
+
+Build the table before writing any narrative:
 
 ```markdown
-# {Company / Product} Performance Report
-
-**Period:** {Month YYYY / Q{N} YYYY / Week of YYYY-MM-DD}
-**Prepared:** {YYYY-MM-DD}
-**Audience:** {Internal / Client / Investor}
-
----
-
-## Executive Summary
-
-{3-5 sentences: The headline result, the most important driver, and what it means for the next period. Should be readable standalone.}
-
----
-
 ## Performance Dashboard
 
+**Period:** [Month YYYY / Q{N} YYYY / Week of YYYY-MM-DD]
+**Prepared:** [YYYY-MM-DD]
+**Audience:** [Internal / Client / Investor]
+
 | Metric | This Period | Last Period | Change | Target | Status |
-|--------|-------------|-------------|--------|--------|--------|
-| {Revenue / MRR} | {$X} | {$X} | {+/-X%} | {$X} | {✅ / ❌} |
-| {Users / Customers} | {N} | {N} | {+/-X%} | {N} | {✅ / ❌} |
-| {Conversion rate} | {X%} | {X%} | {+/-X pp} | {X%} | {✅ / ❌} |
-| {CAC} | {$X} | {$X} | {+/-X%} | {$X} | {✅ / ❌} |
-| {Churn} | {X%} | {X%} | {+/-X pp} | {X%} | {✅ / ❌} |
-| {NPS / CSAT} | {N} | {N} | {+/-N} | {N} | {✅ / ❌} |
+|---|---|---|---|---|---|
+| [Revenue / MRR] | [$X] | [$X] | [+/-X%] | [$X] | ✅/❌/— |
+| [Users / Customers] | [N] | [N] | [+/-X%] | [N] | ✅/❌/— |
+| [Conversion rate] | [X%] | [X%] | [+/-X pp] | [X%] | ✅/❌/— |
+| [CAC] | [$X] | [$X] | [+/-X%] | [$X] | ✅/❌/— |
+| [Churn] | [X%] | [X%] | [+/-X pp] | [X%] | ✅/❌/— |
+| [NPS / CSAT] | [N] | [N] | [+/-N] | [N] | ✅/❌/— |
 
-**Legend:** ✅ Met or exceeded target | ❌ Below target | — No target set
+**Legend:** ✅ Met or exceeded | ❌ Below target | — No target set
+```
 
 ---
 
-## Metric Deep Dives
+## Phase 4 — Metric Deep Dives
 
-### {Metric 1 — focus on the most important or most changed}
+For 2–3 most important or most changed metrics:
 
-**Result:** {value} ({+/-X%} vs. last period)
+```markdown
+### [Metric Name] — [Result] ([+/-X%] vs. last period)
 
-{2-3 sentences explaining the trend. What drove this change? Is it structural or one-time?}
+[2–3 sentences: What drove this change? Is it structural or one-time?
+Don't describe the number — explain the movement.]
 
-**Breakdown by segment / channel (if available):**
-
+**Breakdown by segment (if available):**
 | Segment | Value | Share |
-|---------|-------|-------|
-| {Segment A} | {value} | {X%} |
-| {Segment B} | {value} | {X%} |
-
-### {Metric 2}
-
-[Same structure]
+|---|---|---|
+| [Segment A] | [value] | [X%] |
+```
 
 ---
 
+## Phase 5 — Highlights
+
+```markdown
 ## Highlights
 
 **What exceeded expectations:**
-- {Specific result with context}
-- {Another highlight}
+- [Specific result with context — not just "revenue grew"]
 
 **What fell short:**
-- {Specific shortfall with honest explanation}
-- {Another}
+- [Specific shortfall with honest explanation]
+```
 
 ---
 
-## Trend Analysis
+## Phase 6 — Recommendations
 
-{1-2 paragraphs on the overall direction of the business. Is momentum building or slowing? Are improvements being driven by one channel or broad-based?}
-
----
-
+```markdown
 ## Recommendations
 
 | Priority | Action | Expected impact |
-|----------|--------|-----------------|
-| High | {Specific action} | {Expected result} |
-| Medium | {Action} | {Expected result} |
-| Low | {Action} | {Expected result} |
+|---|---|---|
+| High | [Specific action] | [Expected result] |
+| Medium | [Action] | [Expected result] |
+| Low | [Action] | [Expected result] |
+```
+
+Recommendations must follow from the data. "Improve your marketing" is not a recommendation.
 
 ---
 
-## Appendix: Raw Data
+## Phase 7 — Executive Summary (Write Last)
 
-{Paste the original numbers here for reference}
+After all sections are complete:
+
+```markdown
+## Executive Summary
+
+[3–5 sentences: The headline result. The most important driver. What it means for next period.
+Written after seeing all the data — not before.
+Should be readable standalone.]
 ```
 
 ---
 
 ## Rules
-- Executive Summary must be written last — it summarizes what the data actually shows, not what was expected
-- Every metric must have a comparison period — a number without context is meaningless
-- Recommendations must follow from the data — no generic advice ("improve your marketing")
-- If a target isn't set for a metric, note it rather than leaving the Status column blank
-- Audience matters: investor report uses GAAP-adjacent language; client report uses their KPIs; internal uses team language
-- Save to `outputs/reports/{company}-report-{period}-{YYYY-MM-DD}.md`
+
+- Executive summary is always last — it's a synthesis, not an introduction
+- Every metric must have a comparison period — a single number has no meaning
+- Recommendations: specific and data-driven — generic advice invalidates the entire report
+- If a target isn't set: note `—` rather than leaving it blank
+- Never invent numbers — mark missing data as `[data not available]`
+- Audience: investor report uses GAAP language; client report uses their KPIs; internal uses team shorthand
+- Save to `outputs/reports/{company-slug}-report-{period}-{YYYY-MM-DD}.md`

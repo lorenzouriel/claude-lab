@@ -2,183 +2,165 @@
 name: campaign-brief
 category: marketing
 description: >
-  Creates a marketing campaign strategy brief. Goal, audience, message, channels,
-  budget guidance, timeline, and KPIs. Used before campaign execution to align
-  creative and media decisions.
+  Creates marketing campaign strategy briefs. Phase-driven: goal → audience → message
+  → channels → timeline → KPIs → budget → approvals. Prevents campaigns from launching
+  without a clear hypothesis and measurable success criteria.
 triggers:
   - "campaign brief"
-  - "marketing campaign"
+  - "marketing brief"
   - "campaign strategy"
   - "plan a campaign"
+  - "marketing plan"
   - "/campaign-brief"
 workflow_signals:
   - campaign
-  - campaign brief
-  - marketing campaign
-  - launch campaign
+  - marketing brief
+  - campaign strategy
+  - launch plan
+  - marketing plan
 languages:
   - en
   - pt-br
 ---
 
-# /campaign-brief
+# /campaign-brief — Marketing Campaign Strategy Brief
 
-Creates a marketing campaign brief that aligns team and creative decisions before execution.
+Prevents campaigns from launching without a clear hypothesis. Brief-first, execution-second.
 
 ## Before writing, read:
-- `_memory/company.md` — product, audience, positioning
-- `_memory/strategy.md` — current focus, priorities, goals
+- `_memory/company.md` — business, ICP, revenue model
+- `_memory/strategy.md` — current priorities, KPIs, goals
+- `_memory/preferences.md` — brand voice
 
 ---
 
-## Step 1 — Clarify if not stated
+## Phase 1 — Campaign Context
 
-Ask in one question:
+If not provided, ask:
 
-> "What's the campaign for — product launch, lead gen, seasonal promotion, or brand awareness? And what's the rough timeline?"
+> "What's the campaign goal and what's the trigger — a launch, a seasonal push, a new audience segment?"
+
+Confirm:
+- Product/service being promoted
+- Timeline (start date, end date, or campaign type)
+- Budget range (even a rough order of magnitude)
 
 ---
 
-## Step 2 — Write the brief
+## Phase 2 — Generate Brief
 
 ```markdown
-# Campaign Brief: {Campaign Name}
+# Campaign Brief: [Campaign Name]
 
-**Date:** {YYYY-MM-DD}
-**Owner:** {name}
+**Date:** [YYYY-MM-DD]
+**Owner:** [Name or team]
 **Status:** Draft
-
----
-
-## Campaign Overview
-
-| Field | Value |
-|-------|-------|
-| Campaign type | {Product launch / Lead gen / Seasonal promo / Brand awareness} |
-| Product/Service | {what's being promoted} |
-| Campaign period | {start date} → {end date} |
-| Budget range | {if known, or "TBD"} |
 
 ---
 
 ## Goal
 
-**Primary goal:** {One specific, measurable outcome}
-Example: "Generate 200 qualified leads in 30 days" or "Sell 500 units of [product] by [date]"
+**Primary objective:** [One sentence: what this campaign achieves]
 
-**Secondary goals (optional):**
-- {Brand awareness metric}
-- {Email list growth}
+**Campaign type:**
+- [ ] Awareness — introduce to new audiences
+- [ ] Consideration — move warm audience toward decision
+- [ ] Conversion — drive specific purchase / signup / action
+- [ ] Retention — re-engage or upsell existing customers
+
+**Hypothesis:** If we [do X], then [audience Y] will [take action Z], because [reason].
 
 ---
 
-## Target Audience
+## Audience
 
-**Primary audience:**
-{1-2 sentence description. Real people, not personas. Who specifically is this for?}
+**Primary segment:** [Who this is for — specific, not broad]
+- Pain point: [What keeps them up at night]
+- Current behavior: [What they do now instead of using our product]
+- Where we reach them: [Platforms, communities, events]
 
-**What they care about:**
-- {Pain point or desire #1}
-- {Pain point or desire #2}
+**Secondary segment (if applicable):** [Lookalike, adjacent audience]
 
-**Where they are:**
-{Channels where this audience spends time}
-
-**What they've seen from us before:**
-{Cold audience / warm (visited site) / existing customers / email subscribers}
+**Exclusions:** [Who this campaign is NOT for]
 
 ---
 
 ## Message
 
-**Core message (one sentence):**
-{The single idea this campaign communicates. Not a tagline — a clear statement.}
+**Core message:** [One sentence — the single thing we want them to remember]
 
-**Proof / reason to believe:**
-{What supports the core message — data, testimonials, demonstrations}
+**Value proposition:** [Why this product/offer, why now, why us]
 
-**Tone:**
-{Reference _memory/preferences.md or describe: urgent / educational / conversational / bold}
+**Proof point:** [Stat, testimonial, or evidence that makes the message credible]
+
+**CTA:** [One specific action — "Start your free trial", "Book a call", "Shop now"]
 
 ---
 
 ## Channels & Tactics
 
-| Channel | Role | Format |
-|---------|------|--------|
-| {Instagram} | {Awareness} | {Reels + Stories} |
-| {Google Search} | {Conversion} | {RSA} |
-| {Email} | {Nurture} | {3-email sequence} |
-| {Retargeting} | {Re-engagement} | {Static image + video} |
-
----
-
-## Content Requirements
-
-| Asset | Format | Quantity | Owner |
-|-------|--------|----------|-------|
-| {Ad creative} | {1080x1350 + 1080x1920} | {6 variants} | {designer} |
-| {Copy} | {Headlines + body} | {3 sets} | {copywriter} |
-| {Landing page} | {Desktop + mobile} | {1} | {dev} |
+| Channel | Tactic | Format | Responsibility |
+|---|---|---|---|
+| [Paid Social] | [Meta retargeting] | [Static + video] | [Name] |
+| [Email] | [3-email sequence] | [Newsletter style] | [Name] |
+| [Organic] | [LinkedIn + IG posts] | [Carousel + text] | [Name] |
 
 ---
 
 ## Timeline
 
-| Milestone | Date |
-|-----------|------|
-| Brief approved | {date} |
-| Creative delivered | {date} |
-| Copy delivered | {date} |
-| Campaign live | {date} |
-| Mid-campaign review | {date} |
-| Campaign ends | {date} |
-| Results report | {date} |
+| Date | Milestone |
+|---|---|
+| [MM-DD] | Brief approved |
+| [MM-DD] | Creative ready for review |
+| [MM-DD] | Campaign live |
+| [MM-DD] | Mid-campaign review |
+| [MM-DD] | Campaign ends |
+| [MM-DD] | Performance report |
 
 ---
 
-## KPIs
+## KPIs & Success Criteria
 
-| Metric | Target | How Measured |
-|--------|--------|-------------|
-| {Leads / sales} | {N} | {CRM / analytics} |
-| {CTR} | {X%} | {ad platform} |
-| {CPA} | {$X} | {ad platform} |
-| {ROAS} | {Xx} | {ad platform + revenue data} |
+| Metric | Target | Minimum acceptable |
+|---|---|---|
+| [Impressions] | [X] | [Y] |
+| [CTR] | [X%] | [Y%] |
+| [Conversions] | [X] | [Y] |
+| [CAC] | [$X] | [$Y] |
+| [ROI] | [X%] | [Y%] |
 
----
-
-## Budget Allocation (if known)
-
-| Channel | Budget | % |
-|---------|--------|---|
-| {Paid social} | {$X} | {X%} |
-| {Google Ads} | {$X} | {X%} |
-| {Creative production} | {$X} | {X%} |
-| **Total** | **{$X}** | **100%** |
+**Success definition:** [What "win" looks like for this specific campaign]
 
 ---
 
-## Risks & Assumptions
+## Budget
 
-| Risk | Mitigation |
-|------|------------|
-| {Delayed creative} | {Buffer 3 days in timeline} |
-| {Low CTR on first week} | {Pause underperformers at Day 5, rotate new variants} |
+| Line item | Allocated | Notes |
+|---|---|---|
+| Paid media | $[X] | |
+| Creative production | $[X] | |
+| Tools / software | $[X] | |
+| **Total** | **$[X]** | |
 
 ---
 
-## Approvals
+## Approvals Required
 
-- [ ] Marketing team
-- [ ] Finance / budget
-- [ ] Legal / compliance (if needed)
+| Decision | Owner | By when |
+|---|---|---|
+| Brief approval | [Name] | [Date] |
+| Creative approval | [Name] | [Date] |
+| Budget approval | [Name] | [Date] |
+| Legal review | [Name / N/A] | [Date] |
 ```
 
 ---
 
 ## Rules
-- Primary goal must be one thing and measurable — not "grow brand awareness and generate leads"
-- Budget section: if unknown, leave as TBD rather than guessing
-- Risks section requires at least 2 entries — campaigns always have risks
-- Save to `outputs/campaigns/{campaign-slug}-brief-{YYYY-MM-DD}.md`
+
+- Hypothesis is mandatory — campaigns without one are guesses
+- One CTA only — multiple CTAs split attention and reduce conversion
+- KPIs must have targets before the campaign launches — not set after seeing results
+- Exclusions section is not optional — it clarifies who NOT to spend on
+- Save to `outputs/marketing/briefs/{campaign-slug}-brief-{YYYY-MM-DD}.md`

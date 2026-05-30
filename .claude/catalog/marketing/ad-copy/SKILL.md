@@ -2,14 +2,16 @@
 name: ad-copy
 category: marketing
 description: >
-  Writes Google Search and Meta (Facebook/Instagram) ad copy. Headlines, descriptions,
-  primary text, and CTAs. Generates multiple variants for A/B testing.
+  Writes Google Search (RSA) and Meta (Facebook/Instagram) ad copy. Enforces platform
+  character limits precisely. Produces 10–15 headlines, 4 descriptions for Google RSA,
+  and 3 text variants for Meta. Runs compliance check at the end.
 triggers:
-  - "write ad copy"
-  - "google ads"
-  - "facebook ad"
-  - "meta ad"
   - "ad copy"
+  - "google ads"
+  - "meta ads"
+  - "facebook ads"
+  - "paid ads"
+  - "write ads"
   - "/ad-copy"
 workflow_signals:
   - ads
@@ -17,107 +19,133 @@ workflow_signals:
   - meta ads
   - paid traffic
   - facebook ads
-  - instagram ads
-  - ad copy
+  - advertising copy
+  - ppc
 languages:
   - en
   - pt-br
 ---
 
-# /ad-copy
+# /ad-copy — Google & Meta Ad Copy
 
-Writes performance ad copy for Google Search and Meta that converts.
+Enforces platform character limits precisely. Produces all required variants.
 
 ## Before writing, read:
-- `_memory/company.md` — product/service, ICP, key benefits
-- `_memory/preferences.md` — tone, forbidden phrases
+- `_memory/company.md` — product, ICP, value proposition, differentiators
+- `_memory/preferences.md` — voice, tone, forbidden phrases
+- `identity/design-guide.md` — brand positioning
 
 ---
 
-## Step 1 — Clarify if not stated
+## Phase 1 — Campaign Context
 
-Ask in one question:
+If not provided, ask:
 
-> "Which platform — Google Search, Meta (FB/IG), or both? And what's the offer or product you're promoting?"
+> "What's the product/service being advertised? And what's the main goal — drive signups, sales, calls, or something else?"
 
----
-
-## Step 2 — Write the ads
-
-### Google Search Ads
-
-**Responsive Search Ad**
-
-Write 10-15 headlines (max 30 chars each) and 4 descriptions (max 90 chars each):
-
-```
-HEADLINES (write at least 10):
-H1: [Keyword in headline] (30 chars)
-H2: [Benefit #1] (30 chars)
-H3: [Benefit #2] (30 chars)
-H4: [Social proof — "5000+ customers"] (30 chars)
-H5: [Urgency or offer] (30 chars)
-H6: [Brand name] (30 chars)
-...
-
-DESCRIPTIONS (write at least 4):
-D1: [Main benefit + CTA] (90 chars)
-D2: [Address objection + CTA] (90 chars)
-D3: [Feature-focused] (90 chars)
-D4: [Trust signal + CTA] (90 chars)
-```
-
-**Headline categories to cover:**
-- Include keyword (at least 3 headlines)
-- Benefit / outcome (what the user gets)
-- Social proof (reviews, users, years in business)
-- Differentiator (what makes this better)
-- Urgency / offer (free trial, limited time, discount)
-- CTA (Get Started, Try Free, Learn More, Shop Now)
-
-**Character counts are strict** — flag anything over the limit.
+Also confirm:
+- Target audience (already known from `_memory/company.md` or ask)
+- Landing page destination or topic
+- Any competitor context? (helps with differentiation angles)
 
 ---
 
-### Meta Ads (Facebook / Instagram)
+## Phase 2 — Google RSA (Responsive Search Ads)
 
-**Primary text** (3 variants):
+**Character limits (HARD — flagged if exceeded):**
+- Headlines: 30 characters each (including spaces)
+- Descriptions: 90 characters each (including spaces)
 
+**Write:**
+- **10–15 headlines** across these categories:
+  - Core benefit (3–4): What the product does for the user
+  - Differentiation (2–3): What makes it different from alternatives
+  - Social proof (1–2): Numbers, customers, results
+  - CTA (2–3): What to do now
+  - Keyword-rich (2–3): Include the search term naturally
+
+- **4 descriptions** across these angles:
+  - Feature + benefit pair
+  - Problem solved
+  - Social proof + CTA
+  - Offer or guarantee
+
+**Output format:**
 ```
-VARIANT A — Problem/Solution:
-[Hook that names the pain] + [Agitate it] + [Solution = your product] + [CTA]
-Target: 125 chars before "See more" break
+## Google RSA Headlines
 
-VARIANT B — Social proof:
-[Result or testimonial] + [Why this product produced it] + [CTA]
+[Category]
+• Headline (XX chars)
+• Headline (XX chars)
 
-VARIANT C — Direct offer:
-[Offer front-loaded] + [Key benefits] + [Urgency] + [CTA]
+[Next category...]
+
+## Google RSA Descriptions
+
+D1 (XX chars): [Description text]
+D2 (XX chars): [Description text]
+D3 (XX chars): [Description text]
+D4 (XX chars): [Description text]
 ```
 
-**Headline** (5 options, max 40 chars):
-Used as the link description. Short, benefit-focused.
-
-**Description** (3 options, max 30 chars):
-Below the headline. Often "Learn More" or a supporting benefit.
-
-**CTA button:** Shop Now / Learn More / Sign Up / Get Quote / Book Now
+Count chars for each. Flag any over limit with ⚠️.
 
 ---
 
-## Step 3 — Compliance check
+## Phase 3 — Meta Ads (Facebook/Instagram)
 
-Before delivering, verify:
-- No superlatives without evidence ("best in the world") — flag these
-- No before/after claims for health products
-- No guaranteed results language
-- No "you" in Google ad headlines (policy violation)
-- Meta: no shocking content, no discrimination signals
+**Character limits (soft limits — longer shown with "See more"):**
+- Primary text: 125 chars shown, 500 chars total
+- Headline: 40 chars shown (ad headline below image)
+- Description: 30 chars (optional, below headline)
+
+**Write 3 variants:**
+
+| Variant | Angle | Format |
+|---|---|---|
+| A | Problem/pain agitation | Opens with the problem the ICP faces |
+| B | Benefit/outcome | Opens with the result the user gets |
+| C | Social proof / story | Opens with a testimonial or story |
+
+**Per-variant output:**
+```
+## Meta Variant [A/B/C] — [Angle]
+
+Primary text:
+[Full text — first 125 chars carry the weight]
+
+Headline: [40 chars max]
+Description: [30 chars, optional]
+
+CTA button: [Shop Now / Learn More / Sign Up / Get Offer]
+Audience note: [Who this variant works best for]
+```
+
+---
+
+## Phase 4 — Compliance Check
+
+Run through this list before delivering:
+
+```
+Compliance Check:
+[ ] No superlatives without proof ("best", "#1", "fastest") — or remove them
+[ ] No misleading claims
+[ ] "Free" is accurate (no hidden conditions implied)
+[ ] Interest-based targeting implications: no age/gender/race targeting implied in copy
+[ ] Brand mentions: only use competitor names if explicitly approved
+[ ] CTA is specific ("Get your free trial" better than "Click here")
+[ ] Forbidden phrases from _memory/preferences.md: none present
+```
+
+Flag any compliance concerns prominently.
 
 ---
 
 ## Rules
-- Character limits are hard limits — Google/Meta will reject ads over them
-- Never write only one variant — minimum 3 headlines/variants per placement
-- Tone from `_memory/preferences.md` applies, but ad copy can be more direct than regular content
-- Save to `outputs/ads/{campaign-name}-copy-{YYYY-MM-DD}.md`
+
+- Character limits are hard limits for Google — count every character including spaces
+- Never write "Click here" as the only CTA — be specific about what happens
+- At least one headline per RSA must include the primary search keyword
+- Meta variants: each must use a different opening angle — not three versions of the same message
+- If the product has a specific offer (discount, trial, guarantee), it must appear in at least one variant

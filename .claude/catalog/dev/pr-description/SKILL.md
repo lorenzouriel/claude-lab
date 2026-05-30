@@ -2,105 +2,132 @@
 name: pr-description
 category: dev
 description: >
-  Generates a pull request title and description from a diff, commit list, or
-  plain description. Includes summary, motivation, test plan, and checklist.
+  Generates a pull request title and description from a diff, commit list, or change
+  summary. Detects PR type (feat/fix/refactor/chore/docs/test), applies the right
+  template, flags large PRs, and produces a full test plan checklist.
 triggers:
-  - "write PR description"
-  - "PR description"
-  - "pull request description"
-  - "write PR"
+  - "pr description"
+  - "pull request"
+  - "write a PR"
+  - "PR template"
+  - "describe this change"
   - "/pr-description"
 workflow_signals:
   - pull request
-  - github
-  - gitlab
   - pr description
+  - github pr
+  - change description
   - merge request
 languages:
   - en
   - pt-br
 ---
 
-# /pr-description
+# /pr-description — Pull Request Title & Description
 
-Generates clear, useful PR descriptions that give reviewers everything they need.
-
----
-
-## Step 1 — Gather input
-
-If not already provided, ask:
-
-> "Paste the diff, commit messages, or describe what this PR does — I'll write the description."
+Analyzes the change, picks the right PR type, and produces a complete description with test plan.
 
 ---
 
-## Step 2 — Generate the PR
+## Phase 1 — Analyze the Change
 
-### Title Format
+Read the diff, commit list, or change description provided. Determine:
 
+1. **PR type** (one only):
+   - `feat` — new feature or behavior
+   - `fix` — bug fix
+   - `refactor` — code restructuring without behavior change
+   - `chore` — dependencies, config, build changes
+   - `docs` — documentation only
+   - `test` — adding or updating tests
+   - `perf` — performance improvement
+
+2. **Scope** — what area of the codebase? (e.g., `auth`, `api`, `ui`, `db`)
+
+3. **Size check:**
+   - Small: <200 lines changed → proceed
+   - Medium: 200–500 lines → note it and proceed
+   - Large: >500 lines → flag with a warning before proceeding
+
+4. **Breaking change?** — does this change an API, interface, or behavior that consumers depend on?
+
+---
+
+## Phase 2 — Generate PR
+
+**Title format:**
 ```
-{type}: {short description of what changed}
+{type}({scope}): {concise description in imperative mood, max 72 chars}
 ```
-
-Types: `feat` `fix` `refactor` `chore` `docs` `test` `perf` `style`
 
 Examples:
-- `feat: add OAuth2 login with Google`
-- `fix: prevent null pointer in cart checkout`
-- `refactor: extract payment service from checkout controller`
+```
+feat(auth): add OAuth2 login with Google
+fix(api): handle null response from payment gateway
+refactor(db): replace raw SQL with query builder
+```
 
-Title rules:
-- Max 72 characters
-- Imperative mood: "add", "fix", "remove" (not "added", "fixed")
-- No period at the end
-
----
-
-### Body Template
+**Description template:**
 
 ```markdown
 ## What
 
-[2-4 sentences: what this PR does and why it was needed. Be specific — not "bug fix" but "fixes null pointer when cart is empty on checkout".]
+[1–3 sentences. What changed? What is the system doing now that it wasn't before?
+Be specific about the change, not the motivation.]
 
 ## Why
 
-[The motivation. What problem does this solve? Link to the issue if one exists: Closes #123]
+[1–3 sentences. What problem does this solve, or what goal does it advance?
+Link to the issue/ticket if one exists: Closes #123]
 
 ## How
 
-[How the approach works. Only include this if the implementation isn't obvious from reading the diff. Skip if simple.]
+[Optional — include only if the implementation approach is non-obvious.
+For simple changes, skip this section.]
 
 ## Test Plan
 
-- [ ] {Manual test step — e.g., "Log out and back in to verify session persists"}
-- [ ] {Another test step}
-- [ ] Unit tests added/updated
-- [ ] Integration tests pass
+- [ ] [Unit tests written / updated for: specific function or behavior]
+- [ ] [Integration test covering: specific path]
+- [ ] [Manual test: specific scenario to verify]
+- [ ] [Edge case verified: empty input, null, boundary condition]
 
-## Screenshots (if applicable)
+## Screenshots / Recordings
 
-<!-- Before/after screenshots for UI changes -->
+[Delete if not applicable — UI changes should always have screenshots]
 
-## Notes for Reviewers
+## Notes
 
-[Optional: anything the reviewer should pay special attention to, known limitations, or context that helps review.]
+[Breaking changes, deprecations, migration instructions, or anything reviewers should know.]
 ```
 
 ---
 
-## Step 3 — Flag if anything is missing
+## Phase 3 — Flags
 
-After generating, note:
-- If the PR appears very large: "This looks like a big PR — worth splitting into [X] + [Y]?"
-- If there are no tests: "I didn't see test changes — is this covered by existing tests?"
+After generating, check and report:
+
+```
+PR Size: Small / Medium / Large ⚠️
+Breaking change: Yes ⚠️ / No
+Test coverage: Tests included / No tests — reason: [...]
+Screenshots: Required / Included / Not applicable
+```
+
+**Large PR warning (>500 lines):**
+```
+⚠️ This PR is large (>500 lines). Consider splitting into:
+- [Suggestion 1: specific logical separation]
+- [Suggestion 2: specific logical separation]
+Reviewers will have a harder time with this. Confirm to proceed.
+```
 
 ---
 
 ## Rules
-- Title is the most important line — every reviewer reads it first
-- "What" explains change; "Why" explains decision — don't conflate
-- Test plan should be runnable by a human who didn't write the code
-- Never mention filenames in the title — they belong in the diff
-- If the commit messages are already descriptive, synthesize them; don't just list them
+
+- Title: imperative mood ("add", "fix", "remove") — not "added", "fixes", "removing"
+- Title: max 72 chars — flag if longer
+- One PR type only — if it's multiple types, the PR should probably be split
+- Test plan is not optional — if there are no tests, explain why in the test plan section
+- Breaking changes must be noted prominently — never buried in "Notes"

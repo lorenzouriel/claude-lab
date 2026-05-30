@@ -2,103 +2,138 @@
 name: social-media-post
 category: content
 description: >
-  Creates platform-optimized social media posts reading the company's brand voice,
-  tone, and identity. Supports Instagram, LinkedIn, X (Twitter), and TikTok.
-  Adapts format, length, and hook style per platform.
+  Creates platform-optimized social media posts. Decision-tree driven: picks format,
+  hook formula, character limits, and hashtag strategy based on platform (Instagram,
+  LinkedIn, X, TikTok). Reads brand voice and identity before writing. Offers 3 variations.
 triggers:
-  - "write a post"
+  - "social media post"
   - "instagram post"
   - "linkedin post"
-  - "social media post"
-  - "post for instagram"
-  - "post for linkedin"
-  - "create a post"
+  - "twitter post"
+  - "x post"
+  - "tiktok caption"
+  - "write a post"
   - "/social-media-post"
 workflow_signals:
   - social media
   - instagram
   - linkedin
   - tiktok
-  - twitter
-  - posts
   - content creation
+  - posts
+  - feed content
 languages:
   - en
   - pt-br
 ---
 
-# /social-media-post
+# /social-media-post — Platform-Optimized Social Posts
 
-Creates platform-optimized social media posts that match the company's brand voice and goals.
+Always reads brand context first. Offers 3 variations for every post.
 
 ## Before writing, read:
-- `_memory/company.md` — company context, audience, what we sell
-- `_memory/preferences.md` — tone of voice, what to avoid
-- `identity/design-guide.md` — visual style (for image prompts if needed)
+- `_memory/company.md` — business, ICP, what not to say
+- `_memory/preferences.md` — voice, tone, what to avoid
+- `identity/design-guide.md` — brand context
 
 ---
 
-## Step 1 — Clarify if not stated
+## Phase 1 — Clarify
 
-If the user didn't specify, ask in one question:
+If not already provided, ask ONE question:
 
-> "Which platform — Instagram, LinkedIn, X, or TikTok? And what's the topic or goal of the post?"
+> "What platform (Instagram, LinkedIn, X/Twitter, TikTok)? And what's the topic or goal of the post?"
 
----
-
-## Step 2 — Write the post
-
-### Instagram
-- **Hook (line 1):** Stop-the-scroll. Bold statement, question, or surprising fact. Max 125 chars before "more."
-- **Body:** 3-7 short paragraphs or punchy lines. One idea per paragraph. No filler.
-- **CTA:** One clear action. Save, comment, share, link in bio, DM.
-- **Hashtags:** 5-10 targeted. Niche + audience + topic mix. After the CTA with a line break.
-- **Length:** 150-300 words for educational content. 50-100 for punchy/inspirational.
-
-### LinkedIn
-- **Hook (line 1):** Professional but human. Story opener, counterintuitive take, or strong opinion.
-- **Body:** 3-5 short paragraphs. Each separated by a blank line. No walls of text.
-- **CTA:** Invite discussion ("What's your take?") or soft pitch. Not hard sell.
-- **Hashtags:** 3-5 max. Professional + industry + topic.
-- **Emojis:** Use sparingly if the brand allows — check `_memory/preferences.md`.
-
-### X (Twitter)
-- **Single tweet:** Max 280 chars. Hook + insight + optional CTA.
-- **Thread:** Hook tweet (compelling teaser) → 3-7 substance tweets → closer with CTA or summary.
-- No hashtags unless trending topic.
-
-### TikTok caption
-- Short: 100-150 words max.
-- Hook in the first line (mirrors the video hook).
-- 3-5 hashtags: trending + niche.
-- CTA: follow, comment, duet.
+If both are clear from context, skip straight to Phase 2.
 
 ---
 
-## Step 3 — Image prompt (optional)
+## Phase 2 — Platform Decision Tree
 
-If the user needs a visual concept, generate one image prompt in English following this format:
+Apply platform-specific constraints before writing:
 
+**Instagram:**
+- Caption: 2,200 char max; first 125 chars show before "more" — lead with the hook
+- Hashtags: 3–10 relevant; add at end separated by blank line or in first comment
+- Format: Line breaks for visual breathing room; 1–3 sentences per paragraph
+- Tone: Conversational, visual-first, story-driven
+
+**LinkedIn:**
+- Caption: 3,000 char; first 210 chars show — strong opening line is essential
+- Hashtags: 3–5 at end; professional terms only
+- Format: Short paragraphs (1–2 sentences); line breaks between every paragraph
+- Tone: Professional but human; insight or data before opinion
+- Hook types: Bold claim, contrarian take, surprising statistic, personal failure
+
+**X (Twitter):**
+- Single tweet: 280 chars
+- Thread: 1–25 tweets; tweet 1 is the hook, tweet 2 is the promise, final is the CTA
+- No hashtags in body; 1–2 max at end if used
+- Tone: Direct, opinionated, punchy
+
+**TikTok caption:**
+- 2,200 char; shown below video — supplements, doesn't repeat
+- 3–5 hashtags including 1 trending
+- Tone: Casual, native, matches the energy of the video
+
+---
+
+## Phase 3 — Hook Formula Selection
+
+Pick the formula that fits the topic:
+
+| Formula | Pattern | Best for |
+|---|---|---|
+| Problem-Agitate | Name the pain → amplify it | Selling a solution |
+| Bold claim | "Most people are wrong about X" | Building authority |
+| Story open | "Two years ago I [failed/learned/did]..." | Engagement, relatability |
+| Data hook | "73% of [audience] [surprising fact]" | Credibility, LinkedIn |
+| Question | "What if you could [desirable outcome]?" | Conversational |
+| List promise | "5 things I wish I knew before [X]" | Educational content |
+
+---
+
+## Phase 4 — Write 3 Variations
+
+Write three complete posts. Each variation should use a different hook formula and/or different angle on the same topic.
+
+**Format for each variation:**
 ```
-Professional [TYPE] photography of [SUBJECT],
-[DETAILS], [ENVIRONMENT],
-[LIGHTING] lighting, [PERSPECTIVE],
-editorial quality, brand colors: [COLOR from design-guide]
+Variation A — [Hook type used]
+---
+[Full post text]
+
+[Hashtags]
+```
+
+After the three variations, note:
+```
+Platform limits: ✓ (or flag any that exceed limits)
 ```
 
 ---
 
-## Step 4 — Offer variations
+## Phase 5 — Checkpoint
 
-After the main post, offer:
-> "Want 2 alternative angles on this — different hook or format?"
+Present all 3 variations. Ask:
+
+> "Which direction resonates? I can develop any of these further or blend elements."
+
+If the user picks one: ask if they want any tweaks before finalizing.
+If they want changes: apply and re-present just the modified version (not all 3 again).
+
+---
+
+## Output
+
+Save final approved post to `outputs/content/posts/{platform}-{topic-slug}-{YYYY-MM-DD}.md` with the post text, platform, and hashtag block clearly separated.
 
 ---
 
 ## Rules
-- Write in the company's language (check `_memory/preferences.md`)
-- Follow the tone exactly — if the example in preferences is casual, don't write formally
-- Never use banned words or phrases from `_memory/preferences.md`
-- Hashtags go at the end, never inline in the copy
-- One CTA per post — never two
-- Don't ask if the user wants variations upfront — offer after delivery
+
+- Never exceed platform character limits — count before delivering
+- First line is always the hook — never start with "I" or the company name
+- Hashtags never go in the middle of text — only at end or first comment
+- Read `_memory/preferences.md` — if there are forbidden phrases or words, avoid them in every variation
+- Never ask which platform twice if the user already said it

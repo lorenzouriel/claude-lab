@@ -2,152 +2,148 @@
 name: competitor-analysis
 category: marketing
 description: >
-  Creates a competitor research report. Overview, positioning, strengths/weaknesses,
-  product comparison, messaging analysis, and strategic gaps. Works from URLs,
-  descriptions, or pasted content.
+  Creates competitor research reports. Per-competitor profiles, side-by-side comparison
+  table, messaging analysis, pricing positioning, and strategic gap identification.
+  Decision-driven: identifies what to do differently, not just what competitors do.
 triggers:
   - "competitor analysis"
-  - "analyze competitors"
+  - "competitive analysis"
   - "competitive research"
-  - "compare with competitor"
+  - "analyze competitors"
+  - "market research"
   - "/competitor-analysis"
 workflow_signals:
   - competitors
   - market research
   - competitive analysis
-  - competitive intelligence
+  - competitive landscape
+  - positioning
 languages:
   - en
   - pt-br
 ---
 
-# /competitor-analysis
+# /competitor-analysis — Competitive Research Report
 
-Creates structured competitor research reports that surface actionable strategic gaps.
+Produces profiles, comparison, messaging gaps, and strategic recommendations.
 
 ## Before writing, read:
-- `_memory/company.md` — our product, positioning, audience
-- `_memory/strategy.md` — current focus and strategic priorities
+- `_memory/company.md` — our product, ICP, positioning, revenue model
+- `_memory/strategy.md` — current focus and goals
 
 ---
 
-## Step 1 — Clarify scope
+## Phase 1 — Scope
 
-Ask in one question if not specified:
+If not provided, ask:
 
-> "Which competitors are we analyzing? List them, or describe the market segment and I'll work with what you know."
+> "Which competitors should I analyze? And is the focus on product, pricing, messaging, or market positioning?"
+
+Confirm:
+- List of competitors (if not known, ask for the ones they compete with most)
+- Focus area: product features / pricing / messaging / all three
+- Audience: internal strategy / investor / team / sales team
 
 ---
 
-## Step 2 — Write the analysis
+## Phase 2 — Per-Competitor Profiles
+
+For each competitor, produce:
 
 ```markdown
-# Competitor Analysis: {Market / Category}
+### [Competitor Name]
 
-**Date:** {YYYY-MM-DD}
-**Prepared by:** {name}
-**Scope:** {which competitors / which market segment}
+**Website:** [URL]
+**Founded:** [Year if known]
+**Funding / Revenue:** [Stage or known figures]
+**Team size:** [Range if known]
 
----
+**What they do:**
+[2–3 sentences on their core product and positioning]
 
-## Market Overview
+**Target customer:**
+[Specific segment they target — not "small businesses," but something more precise]
 
-{2-3 sentences on the competitive landscape. How crowded is this market? What's the dominant model? Where are customers switching from?}
+**Pricing:**
+[Tiers, range, model (per seat / usage / flat) — note if pricing is hidden]
 
----
+**Key features:**
+- [Feature 1 — note if this is a differentiator]
+- [Feature 2]
+- [Feature 3]
 
-## Competitor Profiles
+**Messaging:**
+- Headline: "[Their actual headline from homepage]"
+- Value prop: [Their stated value proposition]
+- Tone: [Direct / Technical / Friendly / Enterprise]
 
-### {Competitor 1 Name}
+**Where they're strong:**
+- [Specific strength with evidence]
 
-| Field | Detail |
-|-------|--------|
-| Website | {URL} |
-| Founded | {year or "unknown"} |
-| Pricing | {Free / Freemium / $X/mo / Custom / Unknown} |
-| Target audience | {who they serve} |
-| Primary value prop | {their core "why us" in one sentence} |
+**Where they're weak:**
+- [Specific weakness based on product, reviews, or public info]
 
-**Product / Offering**
-{What they sell. Key features, notable capabilities, limitations.}
-
-**Messaging & Positioning**
-{What emotion or outcome does their marketing lead with? What language do they use? What do they emphasize?}
-
-**Strengths**
-- {Specific advantage — e.g., "Large integration library (300+ native integrations)"}
-- {Another strength}
-
-**Weaknesses**
-- {Specific gap — e.g., "No mobile app as of Q1 2026"}
-- {Another weakness}
-
-**Customer sentiment** (if data available)
-{What customers say on G2, Capterra, Reddit, Twitter — positive and negative patterns}
+**Recent moves:**
+- [New feature, fundraise, partnership, or market move — if known]
+```
 
 ---
 
-### {Competitor 2 Name}
+## Phase 3 — Side-by-Side Comparison
 
-[Repeat profile structure]
+```markdown
+## Comparison Table
 
----
+| Dimension | Us | [Competitor A] | [Competitor B] | [Competitor C] |
+|---|---|---|---|---|
+| Core positioning | [ours] | | | |
+| Target customer | [ours] | | | |
+| Pricing model | [ours] | | | |
+| Starting price | [ours] | | | |
+| [Key feature 1] | ✓/✗/⚡ | | | |
+| [Key feature 2] | ✓/✗/⚡ | | | |
+| [Key feature 3] | ✓/✗/⚡ | | | |
+| Integration ecosystem | | | | |
+| Customer reviews (G2/Capterra) | | | | |
 
-## Side-by-Side Comparison
-
-| Feature / Criterion | Us | {Competitor 1} | {Competitor 2} |
-|---------------------|----|----------------|----------------|
-| {Key feature} | ✅ | ✅ | ❌ |
-| {Pricing tier} | {$X} | {$X} | {$X} |
-| {Integration} | ✅ | ❌ | ✅ |
-| {Support} | {email} | {24/7 chat} | {community} |
-
----
-
-## Messaging Comparison
-
-| Company | Core claim | Emotional angle | Main CTA |
-|---------|-----------|-----------------|----------|
-| Us | {our claim} | {our angle} | {our CTA} |
-| {Comp 1} | {their claim} | {their angle} | {their CTA} |
-| {Comp 2} | {their claim} | {their angle} | {their CTA} |
+Legend: ✓ Has it | ✗ Doesn't have it | ⚡ Partial or limited
+```
 
 ---
 
-## Strategic Gaps & Opportunities
+## Phase 4 — Strategic Gaps
 
-{What are competitors failing to do well? Where is there unmet demand? What audience segment is underserved?}
+```markdown
+## Messaging Gaps
 
-| Gap | Who's affected | Our opportunity |
-|-----|---------------|-----------------|
-| {Gap #1} | {audience} | {how we can win here} |
-| {Gap #2} | {audience} | {how we can win here} |
+[What are competitors saying that resonates that we're not saying?]
+[What are we saying that no competitor is saying — a genuine differentiator?]
+[What's being over-said by everyone — a table stake to de-emphasize?]
 
----
+## Product Gaps
 
-## Recommendations
+[What do customers wish the competitors had? (Pull from reviews if possible)]
+[What can we do that no one else can — genuine product differentiation?]
 
-1. **{Recommendation #1}** — {Specific action to take based on findings}
-2. **{Recommendation #2}** — {Specific action}
-3. **{Recommendation #3}** — {Specific action}
+## Positioning Opportunity
 
----
+[The segment no one is clearly serving]
+[The message no one is clearly owning]
+[The price point not being covered]
 
-## Sources & Limitations
+## Strategic Recommendations
 
-| Source | Type | Date |
-|--------|------|------|
-| {Company website} | Primary | {YYYY-MM} |
-| {G2 reviews} | User reviews | {YYYY-MM} |
-| {LinkedIn / job posts} | Inferred signals | {YYYY-MM} |
-
-**Limitations:** {What we couldn't verify. Pricing not publicly listed. No access to internal data.}
+1. [Specific action based on what the research showed]
+2. [Specific action]
+3. [Specific action]
 ```
 
 ---
 
 ## Rules
-- Strengths and weaknesses must be specific — not "good UX" but "mobile app with offline mode"
-- If information isn't available, say "Not publicly available" — don't guess
-- Recommendations section must follow from the findings — don't add generic advice
-- Save to `wiki/Resources/competitor-analysis-{YYYY-MM-DD}.md` for ongoing reference
+
+- Never write "X is the market leader" without evidence — say what the evidence shows
+- Quote actual competitor headlines and messaging — don't paraphrase them
+- Weaknesses: only state what's supported by product facts, public reviews, or known gaps — not speculation
+- Recommendations must be specific enough to act on — not "improve messaging"
+- Save to `outputs/marketing/research/competitive-analysis-{YYYY-MM-DD}.md`

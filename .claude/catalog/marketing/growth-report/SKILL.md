@@ -2,137 +2,152 @@
 name: growth-report
 category: marketing
 description: >
-  Creates a weekly or monthly growth summary. Key metrics, what worked, what didn't,
-  next period priorities. Reads company context and strategy before writing.
+  Creates weekly or monthly growth summary reports. Executive summary written last
+  (after data). Metrics table with targets and status. What worked / what didn't /
+  next priorities. Audience-aware: adjusts depth for internal vs. investor vs. client.
 triggers:
   - "growth report"
-  - "monthly report"
   - "weekly report"
+  - "monthly report"
+  - "marketing report"
   - "performance report"
   - "/growth-report"
 workflow_signals:
-  - growth
+  - growth report
   - monthly report
-  - weekly report
   - metrics report
   - performance report
   - business report
+  - weekly review report
 languages:
   - en
   - pt-br
 ---
 
-# /growth-report
+# /growth-report — Growth & Performance Summary
 
-Creates growth summaries that make the numbers tell a story and drive decisions.
+Executive summary written last. Metrics before narrative. Honest analysis required.
 
 ## Before writing, read:
-- `_memory/company.md` — what we track, business model
-- `_memory/strategy.md` — current goals and KPIs
+- `_memory/company.md` — business model, what metrics matter
+- `_memory/strategy.md` — current goals, targets, priorities
 
 ---
 
-## Step 1 — Gather data
+## Phase 1 — Data Gathering
 
-Ask in one question if data isn't provided:
+If metrics aren't provided, ask:
 
-> "Paste the key numbers for this period — revenue, traffic, leads, conversions, or whatever you track. I'll turn them into the report."
+> "Paste the numbers for this period — revenue, traffic, leads, conversions, whatever you track. Include last period's numbers for comparison if you have them."
+
+Also ask: **"Who's reading this — internal team, a client, or an investor?"**
+
+The audience determines depth, tone, and what gets emphasized.
 
 ---
 
-## Step 2 — Write the report
+## Phase 2 — Metrics Table
+
+Build the metrics table before writing any narrative:
 
 ```markdown
-# Growth Report: {Period}
+## Performance Dashboard
 
-**Period:** {Week of YYYY-MM-DD / Month of MMMM YYYY}
-**Prepared:** {date}
+**Period:** [Month YYYY / Week of YYYY-MM-DD]
+**Comparison:** vs. [Previous period]
 
----
+| Metric | This Period | Last Period | Change | Target | Status |
+|---|---|---|---|---|---|
+| [Revenue / MRR] | [$X] | [$X] | [+/-X%] | [$X] | ✅/❌/— |
+| [New Customers] | [N] | [N] | [+/-X%] | [N] | ✅/❌/— |
+| [Conversion rate] | [X%] | [X%] | [+/-X pp] | [X%] | ✅/❌/— |
+| [CAC] | [$X] | [$X] | [+/-X%] | [$X] | ✅/❌/— |
+| [Churn] | [X%] | [X%] | [+/-X pp] | [X%] | ✅/❌/— |
+| [Leads / MQLs] | [N] | [N] | [+/-X%] | [N] | ✅/❌/— |
+| [Traffic] | [N] | [N] | [+/-X%] | [N] | ✅/❌/— |
 
-## Executive Summary
-
-{3-4 sentences: Was this a good period or not? What moved the needle? What's the single most important thing to know? What's the implication for next period?}
-
----
-
-## Key Metrics
-
-| Metric | This Period | Last Period | Change | vs Goal |
-|--------|-------------|-------------|--------|---------|
-| {Revenue / MRR} | {$X} | {$X} | {+/-X%} | {✅ / ❌ / —} |
-| {New customers} | {N} | {N} | {+/-X%} | {✅ / ❌ / —} |
-| {Website traffic} | {N} | {N} | {+/-X%} | {✅ / ❌ / —} |
-| {Conversion rate} | {X%} | {X%} | {+/-X pp} | {✅ / ❌ / —} |
-| {Churn rate} | {X%} | {X%} | {+/-X pp} | {✅ / ❌ / —} |
-| {CAC} | {$X} | {$X} | {+/-X%} | {✅ / ❌ / —} |
-| {LTV} | {$X} | {$X} | {+/-X%} | {✅ / ❌ / —} |
-
-**Legend:** ✅ On/above target | ❌ Below target | — No target set
-
----
-
-## What Worked
-
-1. **{Initiative or channel}** — {Result + why it worked}
-2. **{Initiative or channel}** — {Result + why it worked}
-3. **{Initiative or channel}** — {Result + why it worked}
-
----
-
-## What Didn't Work
-
-1. **{Initiative or channel}** — {Result + likely cause}
-2. **{Initiative or channel}** — {Result + likely cause}
-
----
-
-## Key Events This Period
-
-| Date | Event | Impact |
-|------|-------|--------|
-| {date} | {Product launch / campaign / pricing change} | {+X leads / -X% churn / etc.} |
-
----
-
-## Channel Breakdown
-
-| Channel | Sessions/Leads | vs Last Period | Notes |
-|---------|---------------|----------------|-------|
-| Organic search | {N} | {+/-X%} | {notable change} |
-| Paid social | {N} | {+/-X%} | {ROAS: Xx} |
-| Email | {N opens / N clicks} | {+/-X%} | {CTR: X%} |
-| Direct / branded | {N} | {+/-X%} | |
-| Referral | {N} | {+/-X%} | |
-
----
-
-## Next Period Priorities
-
-1. **{Priority #1}** — {What, why, and what success looks like}
-2. **{Priority #2}** — {What, why, and what success looks like}
-3. **{Priority #3}** — {What, why, and what success looks like}
-
----
-
-## Risks to Watch
-
-| Risk | Likelihood | Mitigation |
-|------|-----------|------------|
-| {e.g., Ad CPM rising ahead of peak season} | Medium | {Shift budget to organic, test email reactivation} |
-
----
-
-## Open Questions
-
-- {Question that needs data or decision before next report}
+**Legend:** ✅ Met or exceeded target | ❌ Below target | — No target set
 ```
 
 ---
 
+## Phase 3 — Metric Deep Dives
+
+For the 2–3 most important or most changed metrics:
+
+```markdown
+### [Metric] — [Result] ([+/-X%] vs. last period)
+
+[2–3 sentences: what drove this change? Is this structural or one-time?]
+
+**Breakdown (if available):**
+| Segment | This period | Change |
+|---|---|---|
+| [Segment A] | [value] | [+/-X%] |
+```
+
+---
+
+## Phase 4 — What Worked / What Didn't
+
+```markdown
+## Analysis
+
+### What exceeded expectations
+- [Specific result with context — not just "organic traffic grew"]
+- [Another highlight]
+
+### What fell short
+- [Specific shortfall with honest explanation — not excuse]
+- [Another miss]
+
+### Root cause (if patterns are clear)
+[1 paragraph on underlying trend — is something structurally improving or declining?]
+```
+
+---
+
+## Phase 5 — Executive Summary (Write Last)
+
+After all data and analysis is complete, write the executive summary:
+
+```markdown
+## Executive Summary
+
+[3–5 sentences: The headline result, the most important driver, what it means for next period.
+Written after seeing all the data, so it accurately reflects what happened.
+Should be readable standalone — someone who only reads this section understands the state of the business.]
+```
+
+---
+
+## Phase 6 — Recommendations
+
+```markdown
+## Next Period Priorities
+
+| Priority | Action | Expected impact | Owner |
+|---|---|---|---|
+| High | [Specific action] | [Expected result] | [Name] |
+| Medium | [Action] | [Expected result] | [Name] |
+| Low | [Action] | [Expected result] | [Name] |
+```
+
+---
+
+## Audience Calibration
+
+**Internal team:** Full data, honest analysis, direct language, root cause discussion
+**Client:** Lead with results, focus on their KPIs, recommendations framed as next steps
+**Investor:** Business model health (MRR, CAC, churn), trend over time, forward guidance
+
+---
+
 ## Rules
-- Executive Summary comes first and must be readable standalone — stakeholders often read only this
-- "What Worked" and "What Didn't" must be specific — not "email performed well" but "the subject line test with [FIRST NAME] drove 12% higher open rate"
-- If data wasn't provided for a metric row, write "Not tracked" — not "N/A" or "—"
-- Numbers must be verified by the user — don't invent or estimate metrics
-- Save to `outputs/reports/growth-report-{period}-{YYYY-MM-DD}.md`
+
+- Executive summary is always written last — it summarizes what the data shows, not what was hoped
+- Every metric must have a comparison period — a number without context is meaningless
+- Recommendations must follow from the data — no generic advice ("improve your marketing")
+- If a target isn't set for a metric, note `—` rather than leaving it blank
+- Never invent numbers — if data is missing, mark as `[data not available]`
+- Save to `outputs/reports/{company-slug}-growth-{period}-{YYYY-MM-DD}.md`

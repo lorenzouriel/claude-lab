@@ -2,116 +2,153 @@
 name: code-review
 category: dev
 description: >
-  Structured code review with severity-labeled findings (critical/major/minor/nit).
-  Reviews correctness, security, performance, and maintainability. Works with any diff,
-  file, or pasted code.
+  Structured 4-phase code review: context gathering, high-level review, line-by-line
+  analysis, and summary with a SHIP/REVISE/DISCUSS decision. Classifies every finding
+  by severity (BLOCKING / IMPORTANT / MINOR / NIT / PRAISE) with concrete suggestions.
+  Use when reviewing a pull request, diff, or code before merging.
 triggers:
-  - "review this code"
   - "code review"
+  - "review this code"
+  - "review the diff"
   - "review my PR"
   - "check this code"
   - "/code-review"
 workflow_signals:
   - code review
   - pull request
-  - github
-  - gitlab
+  - diff review
   - code quality
+  - review code
+  - github review
 languages:
   - en
   - pt-br
 ---
 
-# /code-review
+# /code-review — 4-Phase Code Review
 
-Structured code review focused on what matters: correctness, security, and maintainability.
+Runs four phases in sequence. Each phase produces a named artifact before advancing.
 
----
-
-## Step 1 — Gather context
-
-If not provided, ask in one question:
-
-> "What language/framework is this, and is there anything specific you want me to focus on — correctness, security, performance, or all of it?"
+## Before starting, read:
+- `_memory/company.md` — tech stack, coding standards
+- `_memory/preferences.md` — any style conventions
 
 ---
 
-## Step 2 — Review the code
+## Severity Scale
 
-Scan for issues in this priority order:
+Every finding gets exactly one label. No unlabeled observations.
 
-### Severity Levels
+| Label | Meaning | Action |
+|---|---|---|
+| **BLOCKING** | Correctness bug, security vulnerability, data loss risk | Must fix before merge |
+| **IMPORTANT** | Design problem, missing error handling, real performance issue | Fix before merge, or justify |
+| **MINOR** | Inconsistency, unclear naming, missing edge case test | Fix when convenient |
+| **NIT** | Style, whitespace, personal preference | Optional |
+| **PRAISE** | Genuinely well-done — clever, clean, well-tested | Call it out |
 
-| Severity | Label | Meaning |
-|----------|-------|---------|
-| 🔴 Critical | `[CRITICAL]` | Bug that will cause data loss, security breach, or crash in production. Must fix before merging. |
-| 🟠 Major | `[MAJOR]` | Logic error, wrong behavior, or significant performance problem. Should fix. |
-| 🟡 Minor | `[MINOR]` | Code smell, poor naming, missing error handling for edge cases. Recommended fix. |
-| 🔵 Nit | `[NIT]` | Style, formatting, personal preference. Take it or leave it. |
+---
 
-### What to Check
+## Phase 1 — Context Gathering
 
-**Correctness**
-- Off-by-one errors, null/undefined handling
-- Race conditions, incorrect assumptions about data types
-- Edge cases not handled (empty arrays, zero values, negative inputs)
+Before reading code, answer:
 
-**Security**
-- SQL injection, XSS, CSRF risks
-- Secrets or credentials in code
-- Unvalidated user input reaching sensitive operations
-- Over-permissive access controls
+1. **What is this change trying to do?** (PR description, commit message, or ask the user)
+2. **What's the risk surface?** (Auth? Payment? Data migration? Public API? Internal tool?)
+3. **What are the constraints?** (Performance, backwards compatibility, platform)
+4. **How big is the diff?** (>500 lines → section-by-section, not full line-by-line)
 
-**Performance**
-- N+1 queries
-- Unnecessary loops inside loops
-- Missing indexes (inferred from query patterns)
-- Large objects passed by value when reference suffices
+**Artifact:** One paragraph answering these four questions. State it before reviewing.
 
-**Maintainability**
+---
+
+## Phase 2 — High-Level Review
+
+Read the full diff at a high level:
+
+1. **Does the architecture make sense?** Right solution to the right problem?
+2. **Are there missing pieces?** Tests? Error handling? Documentation?
+3. **Red flags?** Anything requiring careful line-by-line attention?
+4. **Scope correct?** Too much or too little in one change?
+
+**Artifact:** 3–5 bullets on the high-level assessment. Flag areas for close line-by-line review.
+
+---
+
+## Phase 3 — Line-by-Line Analysis
+
+Review flagged areas and all high-risk code. Check these systematically:
+
+**Correctness:**
+- Off-by-one errors, null/undefined dereferences
+- Race conditions, improper state management
+- Wrong assumptions about input (empty arrays, zero, negative)
+- Missing edge cases not covered by tests
+
+**Security:**
+- SQL injection, XSS, command injection, path traversal
+- Exposed secrets or credentials
+- Auth checks missing or bypassable
+- Input validation gaps
+
+**Performance:**
+- N+1 queries inside loops
+- Unbounded memory growth
+- Synchronous operations that should be async
+- Missing database indexes for new query patterns
+
+**Maintainability:**
 - Functions doing more than one thing
-- Magic numbers without constants
-- Missing or misleading variable names
-- Dead code
+- Magic numbers without named constants
+- Duplicated logic that should be extracted
+- Naming that obscures intent
+
+**Format each finding:**
+```
+[SEVERITY] file.py:line_number
+Problem: What's wrong and why it matters.
+Suggestion: Concrete fix or direction.
+```
 
 ---
 
-## Step 3 — Format findings
+## Phase 4 — Summary & Decision
 
+**Decision:**
 ```
+SHIP    — No blocking or important issues. Ready to merge.
+REVISE  — Blocking or important issues. Must address before merge.
+DISCUSS — Architectural question needs a conversation first.
+```
+
+**Output format:**
+```markdown
 ## Code Review
 
-### Summary
-[2-3 sentences: overall quality, main concerns, whether it's safe to merge]
-
-### Findings
-
-#### [CRITICAL] {Short title}
-**File:** `{filename}` | **Line:** {N}
-**Issue:** {What's wrong and why it matters}
-**Fix:**
-```{language}
-// suggested fix code
-```
-
-#### [MAJOR] {Short title}
-...
-
-#### [MINOR] {Short title}
-...
-
-#### [NIT] {Short title}
-...
+Decision: REVISE
 
 ### What's Good
-[Acknowledge what's done well — 2-3 specific things]
+- [PRAISE] ...
+
+### Must Fix (blocks merge)
+- [BLOCKING] `file.py:42` — Problem description. Suggestion.
+- [IMPORTANT] `file.py:87` — Problem description. Suggestion.
+
+### Fix When Convenient
+- [MINOR] `file.py:12` — Description.
+- [NIT] `config.py:5` — Description.
+
+### Notes
+Any additional context, open questions, or architectural thoughts.
 ```
 
 ---
 
 ## Rules
-- Always start with Summary — reviewer and author need the bottom line first
-- If no issues found, say so explicitly — don't invent nits to seem thorough
-- "What's Good" section is not optional — code review is not only about problems
-- Don't rewrite the whole function in a suggestion — show the minimal targeted fix
-- Focus findings on code in the diff/selection, not the entire codebase
+
+- Every finding must have a severity label — no unlabeled observations
+- Every BLOCKING and IMPORTANT must have a concrete suggestion, not just a problem
+- Call out what's genuinely good (PRAISE) — reviews without praise read as hostile
+- Large diffs (>500 lines): high-level review first, then ask which sections to focus on
+- If a potential bug requires running the code to confirm, say so explicitly
+- Never comment on style without a clear existing convention to cite

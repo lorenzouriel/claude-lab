@@ -2,14 +2,16 @@
 name: video-script
 category: content
 description: >
-  Writes YouTube or short-form video scripts (Reels, Shorts, TikTok) with hook, body,
-  and CTA. Includes thumbnail concept and description/caption.
+  Writes video scripts for YouTube (long-form) and short-form (Reels, Shorts, TikTok).
+  Decision-tree driven by format and goal. Hook first — always. Includes thumbnail concept,
+  video description, and tags. Reads brand voice before writing.
 triggers:
   - "video script"
   - "youtube script"
   - "reel script"
   - "tiktok script"
-  - "script for video"
+  - "shorts script"
+  - "write a script"
   - "/video-script"
 workflow_signals:
   - youtube
@@ -18,100 +20,153 @@ workflow_signals:
   - shorts
   - script
   - tiktok video
+  - content script
 languages:
   - en
   - pt-br
 ---
 
-# /video-script
+# /video-script — YouTube & Short-Form Video Scripts
 
-Writes video scripts that hold attention from first second to last.
+Hook first. Always. Then structure. Then call to action.
 
 ## Before writing, read:
-- `_memory/company.md` — audience, product, positioning
-- `_memory/preferences.md` — tone, style, what to avoid
+- `_memory/company.md` — brand, audience, product
+- `_memory/preferences.md` — tone, voice, what to avoid
 
 ---
 
-## Step 1 — Clarify if not stated
+## Phase 1 — Format Decision
 
-Ask in one question:
+Identify the format before writing:
 
-> "What format — YouTube (long-form), YouTube Short, or Instagram/TikTok Reel? And what's the topic or goal?"
+| Format | Length | Platform | Pacing |
+|---|---|---|---|
+| YouTube long-form | 8–20 min (~1,200–3,000 words) | YouTube | Slower, educational, storytelling |
+| YouTube Shorts | <60 sec (~150 words) | YouTube Shorts | Rapid, one idea, direct |
+| Instagram Reels | 15–90 sec (~75–225 words) | Instagram | Fast, visual cues, musical pacing |
+| TikTok | 15–60 sec (~75–150 words) | TikTok | Native, casual, trending audio |
 
----
+If format is unclear, ask:
 
-## Step 2 — Write the script
-
-### YouTube (long-form: 5-15 minutes)
-
-**Hook (0-30 seconds)**
-- Open with the payoff, not the setup: "By the end of this video, you'll know exactly how to [outcome]"
-- Or pattern interrupt: bold claim, surprising stat, or direct question
-- No intro music, no logo, no "welcome back" — this kills retention
-
-**Outline reveal (30-60 seconds)**
-- Tell them what's coming: "We're going to cover X, Y, and Z"
-- Sets expectations and reduces drop-off
-
-**Body sections**
-- One idea per section with a clear header (say it aloud: "First, let's talk about...")
-- End each section with a soft hook to the next: "But here's where it gets interesting..."
-- Use B-roll cues in [brackets] for editing: [screen recording of dashboard]
-
-**CTA (final 60 seconds)**
-- Subscribe ask with a reason: "If you want more of [specific topic], subscribe — I post every [cadence]"
-- One additional CTA: playlist, free resource, or product link
-- End card mention: "Watch this next" pointing to related video
+> "Is this for YouTube long-form, or short-form (Reels/Shorts/TikTok)? And roughly how long?"
 
 ---
 
-### YouTube Short / Instagram Reel / TikTok (under 90 seconds)
+## Phase 2 — Hook Options
 
-**Hook (0-3 seconds)**
-- On-screen text AND spoken hook simultaneously
-- Must make the viewer curious or create FOMO: "Most people get this completely wrong"
+The first 3–7 seconds determine if the viewer stays. Write 3 hook options before the full script:
 
-**Body (3-75 seconds)**
-- One insight, tutorial, or story. No tangents.
-- Speak fast, cut dead air
-- Use captions (85% watch without sound)
-- Pattern interrupts every 10-15 seconds: zoom cut, text pop, angle change
+| Hook type | Formula | Example |
+|---|---|---|
+| Pattern interrupt | Say something unexpected | "Stop saving money." |
+| Bold claim | Promise a specific outcome | "This one habit doubled my revenue." |
+| Question | Create immediate curiosity | "Why are successful people always exhausted?" |
+| Story open | Drop into the middle | "Last Tuesday, a client called me furious..." |
+| Problem agitation | Name the exact pain | "You've been writing your content backwards." |
 
-**CTA (last 5 seconds)**
-- Single action: follow for more, comment your answer, check link in bio
-- On-screen text reinforces spoken CTA
+**CHECKPOINT:** Present 3 hook options. Get approval before writing the full script.
 
 ---
 
-## Step 3 — Thumbnail concept (YouTube only)
+## Phase 3 — Script Structure
 
-After the script, provide:
+**YouTube Long-Form:**
 
 ```
-Thumbnail concept:
-- Background: [color or image description]
-- Facial expression: [emotion that sells curiosity]
-- Text overlay: [5 words max, bold, high contrast]
-- Visual element: [arrow, circle, etc. pointing to something]
+[HOOK] — 0:00–0:30
+3 sentences maximum. The reason to watch. Promise a specific outcome.
+
+[INTRO] — 0:30–1:30
+Context: why you (the creator) are qualified to discuss this.
+Preview: what the video will cover.
+CTA preview: "Subscribe if you want [benefit]."
+
+[SECTION 1: Point or Step 1] — timestamp
+[Content]
+Transition sentence to Section 2.
+
+[SECTION 2: Point or Step 2] — timestamp
+[Content]
+Transition.
+
+[SECTION 3] — timestamp (add more as needed)
+
+[RECAP] — 30 sec
+Summarize the 3–5 key takeaways in one sentence each.
+
+[CTA] — final 60 sec
+Primary: Subscribe / Like
+Secondary: [Resource, next video, offer]
+Personal close: sign-off in your brand voice
+```
+
+**Short-Form (Reels / Shorts / TikTok):**
+
+```
+[HOOK] — 0:00–0:03
+One sentence. Spoken as you appear on screen. 
+
+[SETUP] — 0:03–0:10
+Context in 1–2 sentences maximum.
+
+[PAYOFF] — 0:10–0:45
+The actual content. One idea. No tangents.
+
+[CTA] — last 3–5 sec
+Simple: "Follow for more" / "Comment [word]" / "Share if..."
+```
+
+**Formatting conventions in the script:**
+- `[VISUAL: description]` — note suggested cuts, B-roll, text overlays
+- `[PAUSE]` — for comedic timing or emphasis
+- `[TITLE CARD: text]` — text to show on screen
+- Speaker lines: written in natural speech (contractions, short sentences)
+
+---
+
+## Phase 4 — Supporting Assets
+
+After the script, produce:
+
+**Thumbnail concept:**
+```
+Thumbnail: [Describe the visual — expression, text overlay, colors, composition]
+Text on thumbnail: [Max 5 words, high contrast]
+Emotional hook: [What emotion should the thumbnail trigger?]
+```
+
+**Video description (YouTube):**
+```
+[First 200 chars — these show in search results, must hook independently]
+
+[Full description — 200–500 words]
+
+Timestamps:
+0:00 — Hook
+0:30 — Intro
+[...]
+
+Links:
+- [Resource 1]
+- [Subscribe link]
+- [Related video]
+
+#Tags (10–15)
 ```
 
 ---
 
-## Step 4 — Description + tags (YouTube only)
+## Output
 
-**Description (first 2-3 lines most important — these show before "more")**
-- Hook that matches the thumbnail promise
-- What the viewer will learn
-- Timestamps (generate after script is final)
-
-**Tags:** 5-10 keyword-rich tags, mix of broad and specific
+Save to `outputs/content/scripts/{platform}-{topic-slug}-{YYYY-MM-DD}.md`
 
 ---
 
 ## Rules
-- Hook is the most important part — spend the most time on it
-- Never start with "Hey guys, welcome back"
-- Script tone follows `_memory/preferences.md`
-- Short-form scripts: write word-for-word. Long-form: can use bullet outlines with key phrases
-- Save to `outputs/video/{slug}-script-{YYYY-MM-DD}.md`
+
+- Hook is always the first thing written — never start with the intro
+- Short-form scripts: one idea only, no sub-topics
+- All dialogue written in natural spoken language (contractions, short sentences)
+- Read `_memory/preferences.md` — forbidden phrases must be purged from the script
+- Thumbnail concept is not optional — it's half the click
