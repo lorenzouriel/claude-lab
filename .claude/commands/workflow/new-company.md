@@ -4,8 +4,9 @@ description: >
   8-phase wizard that bootstraps a fully configured standalone Claude workspace
   for any company, startup, or solo developer. Interviews the client across 8 phases
   (language, identity, goals, workflows, brand, assets, wiki) then generates everything
-  in a single batch: CLAUDE.md, memory files, brand identity, skills from catalog,
-  Obsidian PARA wiki, and a static dashboard.
+  in a single batch: CLAUDE.md, memory files, brand identity, skill placeholder stubs,
+  Obsidian PARA wiki, and a static dashboard. Skills are stubbed — the user pastes the
+  actual skill content after setup.
   Use when someone wants to set up a new company workspace from scratch.
 ---
 
@@ -164,46 +165,100 @@ Record as `{automation_target}`. This is the top candidate for a custom skill.
 
 Record as `{tech_domain}`. If "none" or "no", skip agent/KB matching. If yes, identify which domain(s).
 
+### Question 4.6
+
+> "Do you want a **knowledge wiki** to organize your notes, projects, and reference documents?
+> This creates a structured vault (Projects / Areas / Resources / Archives) you can open in Obsidian.
+> (a) Yes — add the wiki
+> (b) No — keep it simple"
+
+Record as `{wants_wiki}`. Default: **no**. Only generate the wiki structure in Step 8.4 if yes.
+
+### Question 4.7
+
+> "Do you build software, automations, or internal tools?
+> If yes, I'll add the **SDD workflow** (brainstorm → define → design → build → ship) for structured feature development inside Claude Code.
+> (a) Yes — add the development workflow
+> (b) No — I don't build software"
+
+Record as `{wants_sdd}`. If `{tech_domain}` was already set in 4.5, skip this question and record `{wants_sdd}` = yes automatically. Default otherwise: **no**.
+
+### Question 4.8
+
+> "Which of these roles apply to your day-to-day work? Pick all that match:
+> (a) Founder / CEO — strategic decisions, company direction, investor prep
+> (b) Product Manager — discovery, roadmaps, user stories, PRDs
+> (c) Project Manager — sprints, team coordination, stakeholder updates
+> (d) Data Analyst — analyzing datasets, building reports, data storytelling
+> (e) None of these"
+
+Record as `{roles}`. Multiple answers allowed. If `{tech_domain}` was "data pipelines" or similar in 4.5, auto-add (d) to `{roles}` without asking.
+
 ---
 
 ### Skill Matching (internal — run after Phase 4, before Phase 5)
 
-Scan `{weekly_workflows}`, `{tools}`, and `{channels}` for the keywords below. Add each matched skill to `{selected_skills}`. If a stated workflow matches nothing in the table, add it to `{gap_skills}` instead.
+**Step 1 — Role-based matching (from Question 4.8):**
 
-| If user mentions... | Add these catalog skills |
-|--------------------|--------------------------|
-| carousel, carrossel, slides, swipe post, visual post, reels design, instagram visual | `content/carousel-post` |
-| social media, instagram, tiktok, linkedin post, posts, feed | `content/social-media-post` |
-| newsletter, email list, substack, weekly email, subscribers | `content/newsletter` |
-| blog, seo, google traffic, articles, long-form content | `content/seo-article` |
-| research, content ideas, topic ideation, seo research, trending topics, find ideas, competitive research | `content/content-research` |
-| schedule posts, publish social media, blotato, post to instagram, post to linkedin, social publishing, autopost | `content/blotato` |
-| buffer, free scheduler, schedule 3 channels, free social media, buffer.com | `content/buffer` |
-| email campaign, drip, sequences, nurture, promotional email | `content/email-campaign` |
-| youtube, video, reels, shorts, script, tiktok video | `content/video-script` |
-| landing page, product page, sales page, one-pager, web presence | `dev/landing-page` |
-| code review, pull request, github, gitlab, code quality | `dev/code-review`, `dev/pr-description` |
-| documentation, api docs, readme, technical docs, swagger | `dev/api-documentation` |
-| bugs, bug reports, issue tracking, defects, github issues | `dev/bug-report` |
-| specs, technical writing, rfcs, architecture docs, design doc | `dev/technical-spec` |
-| ads, google ads, meta ads, paid traffic, facebook ads | `marketing/ad-copy`, `marketing/campaign-brief` |
-| competitors, market research, competitive analysis | `marketing/competitor-analysis` |
-| growth report, monthly report, metrics report, performance | `marketing/growth-report` |
-| meetings, standups, team calls, 1:1s, meeting notes | `ops/meeting-notes` |
-| projects, kickoff, scoping, project planning | `ops/project-brief` |
-| weekly review, retrospective, weekly sync, week in review | `ops/weekly-review` |
-| sop, processes, procedures, playbook, documentation | `ops/sop-writer` |
-| word, docx, document, contract, legal document, redline | `office/office-docx` |
-| pdf, pdf form, pdf extraction, pdf merge | `office/office-pdf` |
-| powerpoint, presentation, slides, pitch deck, pptx | `office/office-pptx` |
-| excel, spreadsheet, financial model, xlsx, csv | `office/office-xlsx` |
-| diagram, architecture diagram, flowchart, visualization, visual explainer | `visual/visual-explainer` |
-| excalidraw, draw diagram, workflow diagram | `visual/excalidraw-diagram` |
-| data, csv, analysis, data analysis | `data/data-analysis` |
-| kpi, dashboards, reports, numbers, metrics, visualization | `data/report-builder`, `data/kpi-dashboard` |
-| real talk, honest feedback, pressure test, challenge, critical | `mindset/sycophancy` |
+| Role selected | Add these skills |
+|---|---|
+| (a) Founder / CEO | `c-level/`, `finance/` |
+| (b) Product Manager | `product-manager/` |
+| (c) Project Manager | `project-manager/` |
+| (d) Data Analyst | `data/` |
 
-**Also add `{automation_target}` as a gap skill** unless it matches a catalog skill above.
+**Step 2 — Keyword matching** from `{weekly_workflows}`, `{tools}`, and `{channels}`. Add each matched skill to `{selected_skills}`. If a stated workflow matches nothing in the table, add it to `{gap_skills}` instead.
+
+| If user mentions... | Add these skills |
+|--------------------|-----------------|
+| instagram, carousel, carrossel, visual post, reels, instagram content | `content/instagram` |
+| linkedin, linkedin post, write on linkedin, linkedin content | `content/linkedin` |
+| x, twitter, tweet, thread, x content, twitter content, x strategy | `content/x` |
+| tiktok, tiktok content, short video, viral video, tiktok strategy | `content/tiktok` |
+| youtube, channel, video, subscribers, watch time, youtube strategy | `content/youtube` |
+| newsletter, email list, substack, weekly email, long-form content | `content/newsletters` |
+| content plan, weekly content, cross-platform, repurpose content, multi-platform | `content/content-planner` |
+| humanize, sounds AI, ai tone, ai tells, make this human, ai text | `content/humanizer` |
+| landing page, product page, sales page, one-pager, web presence | `marketing/landing-page` |
+| marketing copy, homepage copy, headline, website copy, cta copy | `marketing/copywriting` |
+| product launch, go-to-market, gtm, product hunt, launch strategy, feature release | `marketing/launch-strategy` |
+| cold email, cold outreach, sales email, prospecting email, B2B outreach | `marketing/cold-email` |
+| GA4, google tag manager, GTM, event tracking, analytics setup, UTM, analytics audit | `marketing/analytics-tracking` |
+| campaign analytics, attribution, ROAS, CPA, marketing ROI, ad performance | `marketing/campaign-analytics` |
+| code review, pull request, github, gitlab, code quality | `engineering-team/code-reviewer` |
+| architecture, system design, tech decisions, design docs, rfcs | `engineering-team/senior-architect` |
+| api, backend, database, REST, GraphQL, server-side | `engineering-team/senior-backend` |
+| frontend, react, nextjs, typescript, UI, tailwind | `engineering-team/senior-frontend` |
+| devops, ci/cd, kubernetes, docker, deployment, infrastructure | `engineering-team/senior-devops` |
+| security, penetration testing, vulnerability, threat modeling | `engineering-team/security-pen-testing` |
+| incident, on-call, postmortem, runbook, SRE | `engineering-team/incident-commander` |
+| aws, cloudformation, lambda, serverless, cloud | `engineering-team/aws-solution-architect` |
+| data, csv, analysis, data quality, EDA, exploratory analysis | `data/` |
+| cohort, funnel, A/B test, segmentation, time series, root cause, KPI | `data/` |
+| word, docx, document, contract, legal document, redline | `document/docx` |
+| pdf, pdf form, pdf extraction, pdf merge | `document/pdf` |
+| powerpoint, presentation, slide deck, pitch deck, pptx | `document/pptx` |
+| excel, spreadsheet, financial model, xlsx, csv | `document/xlsx` |
+| organize files, clean up folder, find duplicates, file structure | `document/file-organizer` |
+| diagram, architecture diagram, flowchart, visualization, html diagram | `visual/visual-explainer` |
+| excalidraw, draw diagram, workflow diagram, concept map | `visual/excalidraw-diagram` |
+| poster, canvas, art, branded visual, design a visual | `visual/canvas-design` |
+| enhance image, sharpen, upscale, screenshot quality | `visual/image-enhancer` |
+| ROI, IRR, NPV, payback period, build vs buy, capital allocation | `finance/business-investment-advisor` |
+| financial model, DCF, ratio analysis, budget variance, rolling forecast | `finance/finance-skills` |
+| financial analysis, financial statements, valuation, projections | `finance/financial-analyst` |
+| saas metrics, MRR, ARR, churn, LTV, CAC, NRR, saas health | `finance/saas-metrics-coach` |
+| founder mode, c-suite review, CFO review, CMO review, CTO review, boardroom | `c-level/` |
+| product discovery, customer interview, JTBD, PRD, user story, roadmap, epic | `product-manager/` |
+| meeting transcript, meeting analysis, speaking ratio, communication coaching | `project-manager/meeting-analyzer` |
+| sprint planning, velocity, retrospective, standup, scrum, backlog, burndown | `project-manager/scrum-master` |
+| project plan, risk assessment, resource allocation, milestone, portfolio | `project-manager/senior-pm` |
+| weekly update, 3P update, internal newsletter, status report, incident report | `project-manager/team-communications` |
+| jira, confluence, JQL, atlassian, jira automation | `project-manager/pm-skills` |
+
+**Step 3 — Always add:** `mindset-discovery/` to every generated workspace regardless of answers.
+
+**Also add `{automation_target}` as a gap skill** unless it already matches a skill above.
 
 ### Agent & KB Matching (internal — run when {tech_domain} is set)
 
@@ -221,8 +276,8 @@ If the user has a tech domain, copy the relevant agents and KB from `.claude/age
 
 Minimum agents: if `{tech_domain}` is set but no domain matches, copy `dev/codebase-explorer` and `python/code-reviewer` as general-purpose agents.
 
-Minimum skills: if `{selected_skills}` has fewer than 3 entries, tell the user which categories you matched and ask:
-> "I matched {N} skills based on your workflows. Want to add any other categories — content, dev, marketing, ops, data, office, or visual?"
+Minimum skills: if `{selected_skills}` has fewer than 3 entries (excluding mindset-discovery), tell the user which categories you matched and ask:
+> "I matched {N} skills based on your workflows. Want to add any other categories — content, dev, marketing, data, document, visual, finance, or project management?"
 
 ---
 
@@ -317,7 +372,12 @@ Create these placeholder files:
 ```
 {slug}/data/.gitkeep
 {slug}/outputs/.gitkeep
+{slug}/scripts/.gitkeep
 {slug}/identity/assets/.gitkeep
+```
+
+If `{wants_wiki}` = yes, also create:
+```
 {slug}/wiki/Projects/.gitkeep
 {slug}/wiki/Areas/.gitkeep
 {slug}/wiki/Resources/.gitkeep
@@ -467,6 +527,8 @@ Summary: {1-line voice descriptor derived from Phase 5}
 
 ### Step 8.4 — Wiki PARA structure
 
+**Only execute this step if `{wants_wiki}` = yes.** If no, skip entirely — do not create the wiki folder structure.
+
 **`{slug}/wiki/Resources/README.md`**
 
 ```markdown
@@ -544,18 +606,68 @@ Create `{slug}/wiki/Areas/{area-slug}.md`:
 
 ### Step 8.5 — Skills
 
+**For catalog-matched skills** (`{selected_skills}`), copy the full implementation folder from master-claude into the company workspace:
+
 For each skill in `{selected_skills}`:
+- Identify the source path in `.claude/skills/`:
+  - Full-category installs (e.g. `content/instagram`, `c-level/`, `data/`, `product-manager/`): copy the entire category folder
+  - Single sub-skill installs (e.g. `dev/code-review`, `document/pdf`): copy only that sub-skill folder
+- Copy recursively to `{slug}/.claude/skills/{same-relative-path}/`
+- This includes all sub-folders: references/, scripts/, sub-skills/, templates/
 
-1. Read the skill from `.claude/catalog/{category}/{skill}/SKILL.md`
-2. Adapt the content:
-   - Translate to `{language}` if PT-BR and skill is EN
-   - Replace generic references with company-specific context where obvious
-   - Keep the full skill instruction body intact
-3. Write to `{slug}/.claude/skills/{skill}/SKILL.md`
+`mindset-discovery/` is always copied in full — include it even if it was not in `{selected_skills}`.
 
-For each skill in `{gap_skills}`:
+**Skill copy reference:**
 
-Create a placeholder at `{slug}/.claude/skills/{slugified-name}/SKILL.md`:
+| Skill ID | Copy from | Copy to |
+|---|---|---|
+| `content/instagram` | `.claude/skills/content/instagram/` | `{slug}/.claude/skills/content/instagram/` |
+| `content/linkedin` | `.claude/skills/content/linkedin/` | `{slug}/.claude/skills/content/linkedin/` |
+| `content/x` | `.claude/skills/content/x/` | `{slug}/.claude/skills/content/x/` |
+| `content/tiktok` | `.claude/skills/content/tiktok/` | `{slug}/.claude/skills/content/tiktok/` |
+| `content/youtube` | `.claude/skills/content/youtube/` | `{slug}/.claude/skills/content/youtube/` |
+| `content/newsletters` | `.claude/skills/content/newsletters/` | `{slug}/.claude/skills/content/newsletters/` |
+| `content/content-planner` | `.claude/skills/content/content-planner/` | `{slug}/.claude/skills/content/content-planner/` |
+| `content/humanizer` | `.claude/skills/content/humanizer/` | `{slug}/.claude/skills/content/humanizer/` |
+| `engineering-team/code-reviewer` | `.claude/skills/engineering-team/code-reviewer/` | `{slug}/.claude/skills/engineering-team/code-reviewer/` |
+| `engineering-team/senior-architect` | `.claude/skills/engineering-team/senior-architect/` | `{slug}/.claude/skills/engineering-team/senior-architect/` |
+| `engineering-team/senior-backend` | `.claude/skills/engineering-team/senior-backend/` | `{slug}/.claude/skills/engineering-team/senior-backend/` |
+| `engineering-team/senior-frontend` | `.claude/skills/engineering-team/senior-frontend/` | `{slug}/.claude/skills/engineering-team/senior-frontend/` |
+| `engineering-team/senior-devops` | `.claude/skills/engineering-team/senior-devops/` | `{slug}/.claude/skills/engineering-team/senior-devops/` |
+| `engineering-team/security-pen-testing` | `.claude/skills/engineering-team/security-pen-testing/` | `{slug}/.claude/skills/engineering-team/security-pen-testing/` |
+| `engineering-team/incident-commander` | `.claude/skills/engineering-team/incident-commander/` | `{slug}/.claude/skills/engineering-team/incident-commander/` |
+| `engineering-team/aws-solution-architect` | `.claude/skills/engineering-team/aws-solution-architect/` | `{slug}/.claude/skills/engineering-team/aws-solution-architect/` |
+| `engineering-team/` | `.claude/skills/engineering-team/` | `{slug}/.claude/skills/engineering-team/` |
+| `marketing/landing-page` | `.claude/skills/marketing/landing-page/` | `{slug}/.claude/skills/marketing/landing-page/` |
+| `marketing/copywriting` | `.claude/skills/marketing/copywriting/` | `{slug}/.claude/skills/marketing/copywriting/` |
+| `marketing/launch-strategy` | `.claude/skills/marketing/launch-strategy/` | `{slug}/.claude/skills/marketing/launch-strategy/` |
+| `marketing/cold-email` | `.claude/skills/marketing/cold-email/` | `{slug}/.claude/skills/marketing/cold-email/` |
+| `marketing/analytics-tracking` | `.claude/skills/marketing/analytics-tracking/` | `{slug}/.claude/skills/marketing/analytics-tracking/` |
+| `marketing/campaign-analytics` | `.claude/skills/marketing/campaign-analytics/` | `{slug}/.claude/skills/marketing/campaign-analytics/` |
+| `data/` | `.claude/skills/data/` | `{slug}/.claude/skills/data/` |
+| `document/docx` | `.claude/skills/document/docx/` | `{slug}/.claude/skills/document/docx/` |
+| `document/pdf` | `.claude/skills/document/pdf/` | `{slug}/.claude/skills/document/pdf/` |
+| `document/pptx` | `.claude/skills/document/pptx/` | `{slug}/.claude/skills/document/pptx/` |
+| `document/xlsx` | `.claude/skills/document/xlsx/` | `{slug}/.claude/skills/document/xlsx/` |
+| `document/file-organizer` | `.claude/skills/document/file-organizer/` | `{slug}/.claude/skills/document/file-organizer/` |
+| `visual/visual-explainer` | `.claude/skills/visual/visual-explainer/` | `{slug}/.claude/skills/visual/visual-explainer/` |
+| `visual/excalidraw-diagram` | `.claude/skills/visual/excalidraw-diagram/` | `{slug}/.claude/skills/visual/excalidraw-diagram/` |
+| `visual/canvas-design` | `.claude/skills/visual/canvas-design/` | `{slug}/.claude/skills/visual/canvas-design/` |
+| `visual/image-enhancer` | `.claude/skills/visual/image-enhancer/` | `{slug}/.claude/skills/visual/image-enhancer/` |
+| `finance/business-investment-advisor` | `.claude/skills/finance/business-investment-advisor/` | `{slug}/.claude/skills/finance/business-investment-advisor/` |
+| `finance/finance-skills` | `.claude/skills/finance/finance-skills/` | `{slug}/.claude/skills/finance/finance-skills/` |
+| `finance/financial-analyst` | `.claude/skills/finance/financial-analyst/` | `{slug}/.claude/skills/finance/financial-analyst/` |
+| `finance/saas-metrics-coach` | `.claude/skills/finance/saas-metrics-coach/` | `{slug}/.claude/skills/finance/saas-metrics-coach/` |
+| `c-level/` | `.claude/skills/c-level/` | `{slug}/.claude/skills/c-level/` |
+| `product-manager/` | `.claude/skills/product-manager/` | `{slug}/.claude/skills/product-manager/` |
+| `project-manager/meeting-analyzer` | `.claude/skills/project-manager/meeting-analyzer/` | `{slug}/.claude/skills/project-manager/meeting-analyzer/` |
+| `project-manager/scrum-master` | `.claude/skills/project-manager/scrum-master/` | `{slug}/.claude/skills/project-manager/scrum-master/` |
+| `project-manager/senior-pm` | `.claude/skills/project-manager/senior-pm/` | `{slug}/.claude/skills/project-manager/senior-pm/` |
+| `project-manager/team-communications` | `.claude/skills/project-manager/team-communications/` | `{slug}/.claude/skills/project-manager/team-communications/` |
+| `project-manager/pm-skills` | `.claude/skills/project-manager/pm-skills/` | `{slug}/.claude/skills/project-manager/pm-skills/` |
+| `mindset-discovery/` | `.claude/skills/mindset-discovery/` | `{slug}/.claude/skills/mindset-discovery/` |
+
+**For custom gap skills** (`{gap_skills}`), create a placeholder stub at `{slug}/.claude/skills/custom/{slugified-name}/SKILL.md`:
 
 ```markdown
 ---
@@ -568,8 +680,7 @@ custom: true
 
 # /{skill-name}
 
-> This skill was flagged during setup as a custom workflow with no catalog match.
-> Fill in the steps below based on how you actually do this today.
+> Custom skill — no catalog match. Fill in the steps based on how you do this today.
 
 ## When to use
 {workflow description from user's Phase 4 answer}
@@ -591,7 +702,30 @@ custom: true
 
 ### Step 8.6 — CLAUDE.md
 
-Generate `{slug}/CLAUDE.md` dynamically (in `{language}`):
+Select the profile template from `.claude/skills/workspace/profiles/` based on `{profile_type}`:
+
+| Profile type | Template file |
+|---|---|
+| Solopreneur / creator solo | `solopreneur.md` |
+| Freelancer | `freelancer.md` |
+| Agency / consultancy | `agency.md` |
+| Startup or Established company | `company.md` |
+
+Read the matching template, then fill in all `{slots}` with real data from the interview. Translate the full file to `{language}` if PT-BR.
+
+Replace `{skill list}` with:
+```
+{For each skill in {selected_skills}: "- /{skill-name} — {skill description (1 line)}"}
+{For each skill in {gap_skills}: "- /{skill-name} — ⚠️ Placeholder, needs completion"}
+- /open — load memory and start the session
+- /update — reconcile stale memory files
+- /save — commit and push to GitHub
+- /map-routines — discover and create custom skills
+```
+
+Write the result to `{slug}/CLAUDE.md`.
+
+The template content (for reference — use the file, not this copy):
 
 ```markdown
 # {company_name} — Company OS
@@ -612,10 +746,23 @@ Use this context in every response. Don't list what you read — just use it.
 
 ---
 
+## Workspace commands
+
+These commands are available in every session:
+
+| Command | Purpose |
+|---------|---------|
+| `/open` | Load memory and start the session with a status summary |
+| `/update` | Scan the workspace and reconcile stale memory files |
+| `/save` | Commit and push to GitHub |
+| `/map-routines` | Map repetitive tasks and create custom skills for them |
+
+---
+
 ## Skills
 
-Installed skills are in `.claude/skills/`. Before starting any task, check if
-a relevant skill exists. If it does, follow its instructions.
+Before starting any task, check `.claude/skills/` for a relevant skill. If one exists, follow its instructions. If no skill exists but the task is something the user will repeat, ask:
+> "This could become a skill for next time. Want me to create one?"
 
 **Installed:**
 {For each skill in {selected_skills}: "- /{skill-name} — {skill description (1 line)}"}
@@ -651,6 +798,7 @@ Artifacts are saved to `.claude/sdd/` — brainstorms, requirements, designs, bu
 
 - New content → `outputs/{type}/{name}-{YYYY-MM-DD}/`
 - Data files to analyze → `data/`
+- Scripts and utilities → `scripts/`
 - Wiki notes → `wiki/{Projects|Areas|Resources|Archives}/`
 - Recurring tasks → `.claude/skills/`
 
@@ -658,12 +806,40 @@ Artifacts are saved to `.claude/sdd/` — brainstorms, requirements, designs, bu
 
 ## Learning from corrections
 
-When the user corrects something or gives a permanent instruction ("always",
-"never", "from now on", "prefer"), ask:
+When the user corrects something or gives a permanent instruction ("always", "never",
+"from now on", "prefer", "next time"), ask:
 
-> "Want me to save that so I don't forget?"
+> "Want me to save that so I don't have to be told again?"
 
-If yes, save to the appropriate memory file.
+If yes, route to the right file:
+- About the business (clients, services, market) → `_memory/company.md`
+- About voice and style (tone, format, what to avoid) → `_memory/preferences.md`
+- About priorities and focus (projects, goals, deadlines) → `_memory/strategy.md`
+- Behavior rule for this workspace → `CLAUDE.md`
+
+Save with a clean new line. Show the line added. Don't reformat the whole file.
+
+Don't ask if the correction is obviously temporary context. Only ask when the information has lasting value.
+
+---
+
+## Keeping context current
+
+When completing a task that changed something relevant (new client, new skill, shifted focus,
+new tool, changed process), ask:
+
+> "That changed something in your context. Want me to update the memory?"
+
+If yes, identify what to update:
+- Client, service, tool, team → `_memory/company.md`
+- Priority or focus shift → `_memory/strategy.md`
+- Tone or style change → `_memory/preferences.md`
+- New skill created or folder structure changed → `CLAUDE.md`
+- Visual identity change → `identity/design-guide.md`
+
+Show what will change before saving. Edit only the relevant line — don't reformat the file.
+
+Don't ask for: one-off tasks with no lasting impact, simple questions, or changes already saved by the corrections block above.
 
 ---
 
@@ -678,7 +854,12 @@ If yes, save to the appropriate memory file.
 
 ### Step 8.7 — Dashboard
 
-**`{slug}/dashboard/state.json`**
+Copy the dashboard template into the company workspace and generate its data file:
+
+1. **Copy** all files from `_dashboard-template/` → `{slug}/dashboard/`
+   (preserves structure: `src/`, `package.json`, `tsconfig.json`, `vite.config.ts`, `index.html`)
+
+2. **Generate** `{slug}/dashboard/state.json`:
 
 ```json
 {
@@ -686,10 +867,9 @@ If yes, save to the appropriate memory file.
   "company": {
     "name": "{company_name}",
     "slug": "{company_slug}",
-    "industry": "{derive from company_tagline or 'General'}",
+    "tagline": "{company_tagline}",
     "profile": "{profile_type}",
-    "language": "{language}",
-    "tagline": "{company_tagline}"
+    "language": "{language}"
   },
   "skills": [
     {For each skill in {selected_skills}:}
@@ -712,34 +892,20 @@ If yes, save to the appropriate memory file.
   "wiki": {
     "projects": [{active_projects as JSON array of strings}],
     "areas": [{areas as JSON array of strings}]
-  }
+  },
+  "kpis": [{kpis as JSON array of strings, from Phase 3.2}],
+  "goal_90d": "{goal_90d}",
+  "ws_url": "ws://localhost:3001"
 }
 ```
 
-**`{slug}/dashboard/index.html`**
-
-Copy from `.claude/templates/company-os/dashboard.html` and replace all `{{slots}}`:
-
-| Slot | Value |
-|------|-------|
-| `{{language}}` | `{language}` |
-| `{{company_name}}` | `{company_name}` |
-| `{{profile_type}}` | `{profile_type}` |
-| `{{industry}}` | Derived from context |
-| `{{language_label}}` | `EN` / `PT-BR` / etc. |
-| `{{tagline}}` | `{company_tagline}` |
-
-Also inject a fallback `<script>` block at the bottom (before `</body>`) with the state.json content inlined as a JS variable, so the dashboard works when opened directly from the file system (no server):
-
-```html
-<script>
-var __STATE__ = {/* state.json content inlined as a JS object */};
-</script>
-```
+The dashboard is a lightweight Vite + React app. Static company info is shown immediately; live squad activity appears when the squad runner is active.
 
 ---
 
 ### Step 8.8 — SDD Workflow Commands
+
+**Only execute this step if `{wants_sdd}` = yes.** If no, skip entirely — do not copy SDD commands or create the `.claude/sdd/` folder.
 
 Copy the full AgentSpec SDD methodology into the company workspace so the user can brainstorm, define, design, and build features independently without needing master-claude.
 
@@ -789,6 +955,26 @@ Knowledge bases are in `.claude/kb/` — agents reference these automatically.
 
 ---
 
+### Step 8.10 — Workspace meta-skills
+
+Copy the four workspace meta-skills into every generated workspace. These are always included regardless of the company profile or skill selection:
+
+| Source | Destination |
+|--------|-------------|
+| `.claude/skills/workspace/open/SKILL.md` | `{slug}/.claude/skills/workspace/open/SKILL.md` |
+| `.claude/skills/workspace/update/SKILL.md` | `{slug}/.claude/skills/workspace/update/SKILL.md` |
+| `.claude/skills/workspace/save/SKILL.md` | `{slug}/.claude/skills/workspace/save/SKILL.md` |
+| `.claude/skills/workspace/map-routines/SKILL.md` | `{slug}/.claude/skills/workspace/map-routines/SKILL.md` |
+| `.claude/skills/workspace/tools-catalog/CATALOG.md` | `{slug}/tools/CATALOG.md` |
+
+These give every workspace its operational core:
+- `/open` — load context at session start
+- `/update` — reconcile stale memory
+- `/save` — GitHub backup
+- `/map-routines` — discover and create custom skills
+
+---
+
 ### Post-generation summary
 
 After all files are created, show:
@@ -807,35 +993,32 @@ Files created:
   wiki/Areas/               ({N} areas pre-populated)
   wiki/Resources/README.md
   wiki/Archives/README.md
-  .claude/skills/           ({N} skills installed, {N} pending custom setup)
+  .claude/skills/           ({N} skill folders — fully installed and ready to use)
   .claude/commands/workflow/ (6 SDD commands — brainstorm/define/design/build/iterate/ship)
   .claude/sdd/              (empty — artifacts created as you build features)
   {If tech_domain set:}
   .claude/agents/           ({N} specialized agents for {tech_domain})
   .claude/kb/               ({N} knowledge bases for {tech_domain})
-  dashboard/index.html
-  dashboard/state.json
+  dashboard/                (Vite + React app — run npm install && npm run dev)
   .gitignore
 
 Skills installed ({N}):
-  {list each installed skill on its own line}
-
-{If gap_skills is not empty:}
-⚠️  Custom skills need setup ({N}):
-  {list each gap skill — open .claude/skills/{name}/SKILL.md to complete}
+  {list each skill with its folder path, one per line:}
+  → /{skill-name}   .claude/skills/{path}/
+  {For gap/custom skills:}
+  → /{skill-name}   .claude/skills/custom/{name}/SKILL.md — fill in custom steps
 
 Next steps:
   1. Open {slug}/ in a new Claude Code session — CLAUDE.md will load automatically
   2. Open wiki/ as an Obsidian vault (File → Open vault → select wiki/)
-  3. To view the dashboard: cd {slug}/dashboard && python -m http.server 8080
-     Then open http://localhost:8080 in your browser
+  3. Set up the dashboard: cd {slug}/dashboard && npm install && npm run dev
   4. Drop your logo into identity/assets/logo.png
   5. To build a new feature: run /workflow:brainstorm inside {slug}/
   {If assets were skipped:} 6. Add your existing files to wiki/Resources/ when ready
-  {If gap_skills exist:}   7. Complete the custom skill placeholders in .claude/skills/
+  {If gap/custom skills exist:} 7. Fill in custom skill steps at .claude/skills/custom/
 
 {If folder rename is needed (Phase 1 choice b):}
-  📁 Rename the folder:
+  Rename the folder:
      Close this window → rename '{slug}' to your preferred name → reopen
 ```
 
@@ -848,8 +1031,8 @@ Next steps:
 - **Language lock**: once `{language}` is set in Phase 1, every generated file must use that language. No mixing.
 - **Skip paths**: Phases 6 and 7 have explicit skip options. Skipping does not block generation.
 - **Existing folder**: if `{slug}/` already exists, either overwrite (after confirming) or ask for a new slug.
-- **Catalog skills**: read from `.claude/catalog/` — never invent skill content from memory.
-- **Minimum 3 skills**: if matching produces fewer than 3, prompt the user to select additional categories.
+- **Copy full skill folders**: copy the entire folder from `.claude/skills/` for every catalog-matched skill. Only create stubs for gap skills that have no catalog match.
+- **mindset-discovery/ always included**: add to every workspace regardless of what the user selected.
+- **Minimum 3 skills**: if matching produces fewer than 3 skills (excluding mindset-discovery), prompt the user to select additional categories.
 - **No placeholder text in memory files**: every field must contain real data from the interview. If a question was skipped, leave the field blank with a comment like `<!-- fill in later -->`, not a placeholder string.
-- **Gap skills**: create the placeholder SKILL.md but flag them clearly in the post-generation summary — they are not functional until completed.
 - **Post-generation**: after the summary, do not continue asking questions or offering to do more. The setup is complete. The user's next step is to open the new folder.

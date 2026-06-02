@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-06-02T10:00:00Z",
+  "company": {
+    "name": "Acme Corp",
+    "slug": "acme-corp",
+    "tagline": "We build great products for ambitious teams",
+    "profile": "startup",
+    "language": "EN"
+  },
+  "skills": [
+    { "id": "instagram", "category": "content", "label": "Instagram", "installed": true, "custom": false },
+    { "id": "linkedin", "category": "content", "label": "LinkedIn", "installed": true, "custom": false },
+    { "id": "weekly-report", "category": "custom", "label": "Weekly Report (custom)", "installed": false, "custom": true }
+  ],
+  "wiki": {
+    "projects": ["Launch v2", "Rebrand 2026"],
+    "areas": ["Marketing", "Engineering", "Finance"]
+  },
+  "kpis": ["MRR $12k", "150 active users", "8 new clients/month"],
+  "goal_90d": "Reach $20k MRR and ship the v2 product by end of Q3 2026",
+  "ws_url": "ws://localhost:3001"
+}

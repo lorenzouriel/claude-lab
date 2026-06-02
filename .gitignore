@@ -1,14 +1,11 @@
-# Squad privacy — user-owned data, never committed
-_squad/_memory/
-_squad/_browser_profile/
-
-# Squad output — generated content, not source
-squads/*/output/
-squads/*/_build/
-
-# Dashboard build artifacts
-dashboard/node_modules/
-dashboard/dist/
+# Dashboard template — build artifacts only
+_dashboard-template/node_modules/
+_dashboard-template/dist/
+_dashboard-template/.vite/
 
 # Playwright
 .playwright-mcp/
+
+# Misc
+uriel/
+temp/

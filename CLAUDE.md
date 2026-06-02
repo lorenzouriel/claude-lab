@@ -50,25 +50,19 @@ master-claude/
 │   ├── agents/        — 50+ Claude Code sub-agents (data engineering, cloud, workflow...)
 │   ├── commands/
 │   │   ├── workflow/  — SDD phases (brainstorm → define → design → build → ship)
-│   │   ├── squad/     — Squad orchestration (/squad, /squad:dashboard-design)
+│   │   ├── squad/     — Squad orchestration (/squad)
 │   │   ├── core/      — Memory, status, readme, meeting analysis
 │   │   ├── review/    — Code review commands
 │   │   └── ...
+│   ├── skills/        — All skills (content, dev, data, visual, marketing, ops...)
 │   ├── kb/            — Knowledge base (patterns, domain concepts)
 │   └── sdd/           — SDD workflow artifacts (features, reports, archive)
 │
-├── _squad/            — Squad runtime (do not edit manually)
-│   ├── core/          — Prompts, pipeline runner, skills engine, best-practices
-│   ├── _memory/       — Company profile + preferences (gitignored, private)
-│   ├── _browser_profile/ — Persistent browser sessions (gitignored, private)
-│   └── config/        — Playwright config
+├── _dashboard-template/ — Lightweight Vite + React dashboard (copied by new-company)
+├── identity/          — Brand assets
 │
-├── squads/            — Your created squads (each in its own directory)
-├── skills/            — Installable squad skills catalog
-├── dashboard/         — Live squad visualization (React + Phaser)
-│
-├── .mcp.json          — Playwright MCP (for Sherlock + dashboard design)
-└── .gitignore         — Protects _squad/_memory/ and squad outputs
+├── .mcp.json          — Playwright MCP
+└── .gitignore
 ```
 
 ---
@@ -89,31 +83,7 @@ They are independent but complementary:
 
 ---
 
-## Company Profile (Opensquad)
-
-On first `/squad` run, you'll be prompted to set up your company profile. This is saved to `_squad/_memory/company.md` and loaded for every squad run.
-
-To update: `/squad edit-company`
-To view: `/squad show-company`
-
----
-
-## Squad Dashboard
-
-The live visualization runs as a separate local server:
-
-```bash
-cd dashboard && npm run dev
-```
-
-Then use `/squad:dashboard-design` to customize the 2D office.
-
----
-
 ## Rules
 
 - Use `/workflow:*` for software engineering work
 - Use `/squad` for content creation and automation
-- Never manually edit files in `_squad/core/`
-- Company context (`_squad/_memory/`) is gitignored — it's private to you
-- Squad outputs (`squads/*/output/`) are gitignored — generated content stays local
