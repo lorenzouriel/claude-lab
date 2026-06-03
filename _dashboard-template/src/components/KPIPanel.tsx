@@ -1,22 +1,22 @@
 import { useStore } from "@/store/useStore";
 
 export function KPIPanel() {
-  const kpis = useStore((s) => s.companyState?.kpis ?? []);
-  const goal = useStore((s) => s.companyState?.goal_90d ?? "");
+  const kpis = useStore((s) => s.companyState?.kpis);
+  const goal = useStore((s) => s.companyState?.goal_90d);
 
-  if (!goal && kpis.length === 0) return null;
+  if (!goal && (!kpis || kpis.length === 0)) return null;
 
   return (
     <section style={sectionStyle}>
       {goal && (
-        <div style={{ marginBottom: kpis.length > 0 ? 20 : 0 }}>
+        <div style={{ marginBottom: kpis && kpis.length > 0 ? 20 : 0 }}>
           <h2 style={headingStyle}>90-day goal</h2>
           <p style={{ fontSize: 13, color: "var(--text-primary)", marginTop: 8, lineHeight: 1.6 }}>
             {goal}
           </p>
         </div>
       )}
-      {kpis.length > 0 && (
+      {kpis && kpis.length > 0 && (
         <div>
           <h2 style={headingStyle}>KPIs</h2>
           <ul style={{ marginTop: 8, listStyle: "none" }}>

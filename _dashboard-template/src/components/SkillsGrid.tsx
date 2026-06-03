@@ -2,9 +2,9 @@ import { useStore } from "@/store/useStore";
 import type { SkillEntry } from "@/types/state";
 
 export function SkillsGrid() {
-  const skills = useStore((s) => s.companyState?.skills ?? []);
+  const skills = useStore((s) => s.companyState?.skills);
 
-  if (skills.length === 0) return null;
+  if (!skills || skills.length === 0) return null;
 
   return (
     <section style={sectionStyle}>

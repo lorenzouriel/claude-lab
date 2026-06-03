@@ -16,16 +16,9 @@ export function useSquadSocket() {
   const pollTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const wsUrl = useStore((s) => s.companyState?.ws_url ?? "");
-  const setConnected = useStore((s) => s.setConnected);
-  const setSnapshot = useStore((s) => s.setSnapshot);
-  const updateSquadState = useStore((s) => s.updateSquadState);
-  const setSquadInactive = useStore((s) => s.setSquadInactive);
 
   useEffect(() => {
-    if (!wsUrl) {
-      setConnected(false);
-      return;
-    }
+    if (!wsUrl) return;
 
     let disposed = false;
     let reconnectTimer: ReturnType<typeof setTimeout> | undefined;
@@ -34,6 +27,7 @@ export function useSquadSocket() {
 
     function dispatch(msg: WsMessage) {
       if (disposed) return;
+      const { setSnapshot, updateSquadState, setSquadInactive } = useStore.getState();
       switch (msg.type) {
         case "SNAPSHOT":
           setSnapshot(msg.squads, msg.activeStates);
@@ -64,7 +58,7 @@ export function useSquadSocket() {
           if (!res.ok || disposed) return;
           const msg: WsMessage = await res.json();
           dispatch(msg);
-          setConnected(true);
+          useStore.getState().setConnected(true);
         } catch {
           // endpoint not available — retry on next interval
         }
@@ -85,7 +79,7 @@ export function useSquadSocket() {
 
       ws.onopen = () => {
         if (disposed) { ws.close(); return; }
-        setConnected(true);
+        useStore.getState().setConnected(true);
         reconnectDelay = RECONNECT_BASE_MS;
         wsFailCount = 0;
         stopPolling();
@@ -103,7 +97,7 @@ export function useSquadSocket() {
 
       ws.onclose = () => {
         if (disposed) return;
-        setConnected(false);
+        useStore.getState().setConnected(false);
         wsFailCount++;
         if (wsFailCount >= WS_FAIL_THRESHOLD) startPolling();
         reconnectTimer = setTimeout(() => {
@@ -126,5 +120,5 @@ export function useSquadSocket() {
       wsRef.current?.close();
       wsRef.current = null;
     };
-  }, [wsUrl, setConnected, setSnapshot, updateSquadState, setSquadInactive]);
+  }, [wsUrl]); // wsUrl is the only reactive dep — store actions are fetched via getState()
 }

@@ -3,9 +3,9 @@ name: new-company
 description: >
   8-phase wizard that bootstraps a fully configured standalone Claude workspace
   for any company, startup, or solo developer. Interviews the client across 8 phases
-  (language, identity, goals, workflows, brand, assets, wiki) then generates everything
+  (language, identity, goals, workflows, brand, assets) then generates everything
   in a single batch: CLAUDE.md, memory files, brand identity, skill placeholder stubs,
-  Obsidian PARA wiki, and a static dashboard. Skills are stubbed — the user pastes the
+  optional notes vault, and a static dashboard. Skills are stubbed — the user pastes the
   actual skill content after setup.
   Use when someone wants to set up a new company workspace from scratch.
 ---
@@ -20,7 +20,7 @@ Bootstraps a complete, standalone Claude workspace for a company. Runs 8 intervi
 ├── CLAUDE.md               ← business OS brain
 ├── _memory/                ← persistent context (company, preferences, strategy)
 ├── identity/               ← brand files + assets
-├── wiki/                   ← Obsidian PARA vault (Projects/Areas/Resources/Archives)
+├── vault/                  ← notes vault (optional, created only if requested)
 ├── .claude/
 │   ├── skills/             ← skills from catalog, adapted to this company
 │   ├── commands/workflow/  ← full SDD methodology (brainstorm/define/design/build/iterate/ship)
@@ -167,12 +167,18 @@ Record as `{tech_domain}`. If "none" or "no", skip agent/KB matching. If yes, id
 
 ### Question 4.6
 
-> "Do you want a **knowledge wiki** to organize your notes, projects, and reference documents?
-> This creates a structured vault (Projects / Areas / Resources / Archives) you can open in Obsidian.
-> (a) Yes — add the wiki
-> (b) No — keep it simple"
+> "Do you want a vault for your notes?
+> (a) Yes
+> (b) No"
 
-Record as `{wants_wiki}`. Default: **no**. Only generate the wiki structure in Step 8.4 if yes.
+Record as `{wants_vault}`. Default: **no**.
+
+If `{wants_vault}` = yes, ask one follow-up:
+
+> "What folders do you want inside the vault? (e.g. `notes/work`, `notes/personal`)
+> Press Enter to keep it empty — you can always add folders later."
+
+Record as `{vault_folders}` (list, may be empty). Only generate the vault in Step 8.4 if yes.
 
 ### Question 4.7
 
@@ -183,7 +189,10 @@ Record as `{wants_wiki}`. Default: **no**. Only generate the wiki structure in S
 
 Record as `{wants_sdd}`. If `{tech_domain}` was already set in 4.5, skip this question and record `{wants_sdd}` = yes automatically. Default otherwise: **no**.
 
+---
+
 ### Question 4.8
+
 
 > "Which of these roles apply to your day-to-day work? Pick all that match:
 > (a) Founder / CEO — strategic decisions, company direction, investor prep
@@ -321,38 +330,16 @@ Record as `{voice_avoid}`.
 **If the user provides a path:**
 - Move or copy the files to appropriate locations:
   - Logo files (`.png`, `.svg`, `.jpg`) → `{slug}/identity/assets/`
-  - Brand guides, style guides → `{slug}/wiki/Resources/brand/`
-  - SOPs, process docs → `{slug}/wiki/Resources/sops/`
+  - Brand guides, style guides → `{slug}/vault/` (if `{wants_vault}` = yes) or `{slug}/data/`
+  - SOPs, process docs → `{slug}/vault/` (if `{wants_vault}` = yes) or `{slug}/data/`
   - Data files (`.csv`, `.xlsx`) → `{slug}/data/`
-  - Other documents → `{slug}/wiki/Resources/`
-- List what was moved in `{slug}/wiki/Resources/README.md`
+  - Other documents → `{slug}/vault/` (if `{wants_vault}` = yes) or `{slug}/data/`
+- If files were moved to vault, note them in `{slug}/vault/README.md`
 
 **If the user says "skip":**
-- Note in the post-generation summary: "You can add files to `wiki/Resources/` anytime."
+- Note in the post-generation summary: "You can add files to `data/` anytime."
 
 Record as `{assets_imported}` (list of filenames, or "none").
-
----
-
-## Phase 7 — Wiki Kickstart
-
-### Question 7.1
-
-> "What are 2-3 active projects you're working on right now — things with a goal and a deadline?"
-
-Record as `{active_projects}` (list). If the user can't think of any, note "no active projects" and skip project note generation.
-
-### Question 7.2
-
-> "What are the ongoing areas of the business you're always responsible for — like Marketing, Engineering, Client Relations, Finance, Operations?"
-
-Record as `{areas}` (list).
-
-### Question 7.3
-
-> "Is there any key reference material, context, or external resources that should go into the wiki from the start? (Competitor links, useful frameworks, important context documents)"
-
-Record as `{resources_notes}`. This goes into `wiki/Resources/README.md`.
 
 ---
 
@@ -376,12 +363,9 @@ Create these placeholder files:
 {slug}/identity/assets/.gitkeep
 ```
 
-If `{wants_wiki}` = yes, also create:
+If `{wants_vault}` = yes, also create:
 ```
-{slug}/wiki/Projects/.gitkeep
-{slug}/wiki/Areas/.gitkeep
-{slug}/wiki/Resources/.gitkeep
-{slug}/wiki/Archives/.gitkeep
+{slug}/vault/.gitkeep
 ```
 
 Create `.gitignore`:
@@ -525,81 +509,26 @@ Summary: {1-line voice descriptor derived from Phase 5}
 
 ---
 
-### Step 8.4 — Wiki PARA structure
+### Step 8.4 — Vault
 
-**Only execute this step if `{wants_wiki}` = yes.** If no, skip entirely — do not create the wiki folder structure.
+**Only execute this step if `{wants_vault}` = yes.** If no, skip entirely.
 
-**`{slug}/wiki/Resources/README.md`**
+**`{slug}/vault/README.md`**
 
 ```markdown
-# Resources
+# Vault
 
-Reference material, tools, templates, and imported files.
+> Notes and references for {company_name}.
 
-{If {assets_imported} is not empty:}
+{If {assets_imported} is not empty and files were routed here:}
 ## Imported files
-{list of files moved in Phase 6, with their locations}
-
-{If {resources_notes} is not empty:}
-## Key references
-{resources_notes formatted as links or bullet points}
-
-## Structure
-- `brand/` — brand guides, style references
-- `sops/` — standard operating procedures
-- `templates/` — reusable templates
-- `tools/` — tool documentation and guides
+{list of files moved here in Phase 6, with their locations}
 ```
 
-**`{slug}/wiki/Archives/README.md`**
+If `{vault_folders}` is non-empty, create one `.gitkeep` per folder:
 
-```markdown
-# Archives
-
-Completed projects, past campaigns, and inactive initiatives.
-Move items here when they're done — keep Projects/ clean.
 ```
-
-**For each project in `{active_projects}`:**
-
-Create `{slug}/wiki/Projects/{project-slug}.md`:
-
-```markdown
-# {project name}
-
-> Status: Active | Started: {current date}
-
-## Goal
-{Brief goal derived from what the user said about this project in Phase 7}
-
-## Key dates
-- Started: {date}
-- Target: TBD
-
-## Notes
-<!-- Add notes as you work -->
-
-## Related
-<!-- Link to related wiki notes with [[note-name]] -->
-```
-
-**For each area in `{areas}`:**
-
-Create `{slug}/wiki/Areas/{area-slug}.md`:
-
-```markdown
-# {area name}
-
-> Ongoing responsibility — no end date.
-
-## What this covers
-{1-2 sentences describing what goes in this area}
-
-## Current focus
-{from strategy.md — fill in if relevant to this area}
-
-## Notes
-<!-- Running notes for this area -->
+{slug}/vault/{folder}/.gitkeep   ← one per entry in {vault_folders}
 ```
 
 ---
@@ -799,7 +728,8 @@ Artifacts are saved to `.claude/sdd/` — brainstorms, requirements, designs, bu
 - New content → `outputs/{type}/{name}-{YYYY-MM-DD}/`
 - Data files to analyze → `data/`
 - Scripts and utilities → `scripts/`
-- Wiki notes → `wiki/{Projects|Areas|Resources|Archives}/`
+{If wants_vault = yes:}
+- Notes and references → `vault/`
 - Recurring tasks → `.claude/skills/`
 
 ---
@@ -889,10 +819,7 @@ Copy the dashboard template into the company workspace and generate its data fil
       "custom": true
     }
   ],
-  "wiki": {
-    "projects": [{active_projects as JSON array of strings}],
-    "areas": [{areas as JSON array of strings}]
-  },
+  "vault": {wants_vault},
   "kpis": [{kpis as JSON array of strings, from Phase 3.2}],
   "goal_90d": "{goal_90d}",
   "ws_url": "ws://localhost:3001"
@@ -989,11 +916,10 @@ Files created:
   _memory/strategy.md
   identity/design-guide.md
   identity/assets/          (drop your logo here)
-  wiki/Projects/            ({N} projects pre-populated)
-  wiki/Areas/               ({N} areas pre-populated)
-  wiki/Resources/README.md
-  wiki/Archives/README.md
+  {If wants_vault = yes:}
+  vault/                    (your notes folder)
   .claude/skills/           ({N} skill folders — fully installed and ready to use)
+  {If wants_sdd = yes:}
   .claude/commands/workflow/ (6 SDD commands — brainstorm/define/design/build/iterate/ship)
   .claude/sdd/              (empty — artifacts created as you build features)
   {If tech_domain set:}
@@ -1010,11 +936,12 @@ Skills installed ({N}):
 
 Next steps:
   1. Open {slug}/ in a new Claude Code session — CLAUDE.md will load automatically
-  2. Open wiki/ as an Obsidian vault (File → Open vault → select wiki/)
+  {If wants_vault = yes:}
+  2. Open vault/ as an Obsidian vault (File → Open vault → select vault/)
   3. Set up the dashboard: cd {slug}/dashboard && npm install && npm run dev
   4. Drop your logo into identity/assets/logo.png
   5. To build a new feature: run /workflow:brainstorm inside {slug}/
-  {If assets were skipped:} 6. Add your existing files to wiki/Resources/ when ready
+  {If assets were skipped:} 6. Add your existing files to data/ when ready
   {If gap/custom skills exist:} 7. Fill in custom skill steps at .claude/skills/custom/
 
 {If folder rename is needed (Phase 1 choice b):}
