@@ -1,115 +1,115 @@
-# MazyOS — Sistema operacional do negócio
+﻿# CompanyOS - Business operating system
 
-Sua empresa roda em cima desse arquivo. Aqui ficam as regras de operação
-do MazyOS — como o Claude lê o contexto, aprende com correções, mantém
-tudo atualizado e cria skills novas conforme a operação evolui.
+Your company runs on top of this file. This is where the CompanyOS
+operating rules live - how Claude reads context, learns from corrections,
+keeps everything updated, and creates new skills as the operation evolves.
 
-Esse arquivo é editável. Quando o `/instalar` rodar, ele complementa o
-final dessa página com as regras específicas do seu negócio.
-
----
-
-## Contexto do negócio
-
-No início de toda conversa, ler os seguintes arquivos (quando existirem
-e estiverem preenchidos):
-
-1. `_memoria/empresa.md` — quem é o usuário, o que faz, como funciona o negócio
-2. `_memoria/preferencias.md` — tom de voz, estilo de escrita, o que evitar
-3. `_memoria/estrategia.md` — foco atual, prioridades, prazos
-
-Usar essas informações como base pra qualquer resposta ou decisão. Ao
-sugerir prioridades, formatos ou abordagens, considerar o foco atual
-descrito em `estrategia.md`.
-
-Pra qualquer tarefa visual (carrossel, post, landing page), consultar
-`identidade/design-guide.md` como referência de estilo.
-
-Não é necessário listar o que foi lido nem confirmar a leitura. Apenas
-usar o contexto naturalmente.
+This file is editable. When `/install` runs, it appends the specific
+rules for your business to the end of this page.
 
 ---
 
-## Fluxo de trabalho
+## Business context
 
-Antes de executar qualquer tarefa, verificar se existe skill relevante
-em `.claude/skills/`. Se encontrar, seguir as instruções da skill. Se
-não encontrar, executar a tarefa normalmente.
+At the start of every conversation, read the following files (when they
+exist and are filled in):
 
-Ao concluir uma tarefa que não tinha skill mas parece repetível (o
-usuário provavelmente vai pedir de novo no futuro), perguntar:
+1. `_memory/company.md` - who the user is, what they do, how the business works
+2. `_memory/preferences.md` - tone of voice, writing style, what to avoid
+3. `_memory/strategy.md` - current focus, priorities, deadlines
 
-> "Isso pode virar uma skill pra próxima vez. Quer que eu crie?"
+Use this information as the basis for any answer or decision. When
+suggesting priorities, formats, or approaches, consider the current focus
+described in `strategy.md`.
 
-Não perguntar pra tarefas pontuais ou perguntas simples. Só quando o
-padrão de repetição for claro.
+For any visual task (carousel, post, landing page), consult
+`identity/design-guide.md` as the style reference.
 
----
-
-## Aprender com correções
-
-Quando o usuário corrigir algo, melhorar uma resposta ou dar uma
-instrução que parece permanente (frases como "na verdade é assim", "não
-faça mais isso", "prefiro assim", "sempre que...", "evita...", "da
-próxima vez..."), perguntar:
-
-> "Quer que eu salve isso pra não precisar repetir?"
-
-Se sim, identificar onde faz mais sentido salvar:
-
-- **Sobre o negócio** (clientes, serviços, mercado) → `_memoria/empresa.md`
-- **Sobre preferências e estilo** (tom de voz, formato, o que evitar) → `_memoria/preferencias.md`
-- **Sobre prioridades e foco** (projetos, metas, prazos) → `_memoria/estrategia.md`
-- **Regra de comportamento nessa pasta** → próprio `CLAUDE.md`
-
-Salvar com uma linha nova clara, sem reformatar o arquivo inteiro.
-Confirmar mostrando a linha adicionada.
-
-Não perguntar se a correção for óbvia de contexto imediato (ex: "na
-verdade o arquivo se chama X"). Só perguntar quando a informação tiver
-valor duradouro.
+There is no need to list what was read or confirm the reading. Just use
+the context naturally.
 
 ---
 
-## Manter contexto atualizado
+## Workflow
 
-Ao terminar uma tarefa que mudou algo relevante (cliente novo, skill
-nova, mudança de foco, processo novo, ferramenta instalada, estrutura
-alterada), perguntar:
+Before executing any task, check whether a relevant skill exists in
+`.claude/skills/`. If you find one, follow the skill instructions. If
+you do not find one, execute the task normally.
 
-> "Isso mudou algo no teu contexto. Quer que eu atualize a memória?"
+When completing a task that did not have a skill but seems repeatable
+(the user will probably ask for it again in the future), ask:
 
-Se sim, identificar o que atualizar:
+> "This could become a skill for next time. Do you want me to create it?"
 
-- **Cliente, serviço, ferramenta, equipe** → `_memoria/empresa.md`
-- **Mudança de prioridade ou foco** → `_memoria/estrategia.md`
-- **Tom ou estilo** → `_memoria/preferencias.md`
-- **Pasta, regra de organização, skill criada** → `CLAUDE.md`
-- **Visual (cores, fontes, logo)** → `identidade/design-guide.md`
-
-Mostrar o que vai mudar antes de salvar. Não reformatar o arquivo
-inteiro, só adicionar ou editar a linha relevante.
-
-**Quando NÃO perguntar:**
-- Tarefas pontuais sem impacto no contexto (escrever um email avulso, criar um post)
-- Perguntas simples ou conversas sem ação
-- Mudanças já salvas pelo bloco "Aprender com correções"
-
-**Dica:** rode `/atualizar` pra uma varredura completa quando houver dúvida.
+Do not ask for one-off tasks or simple questions. Only ask when the
+repetition pattern is clear.
 
 ---
 
-## Criação de skills
+## Learn from corrections
 
-Quando o usuário pedir skill nova:
+When the user corrects something, improves an answer, or gives an
+instruction that seems permanent (phrases like "actually it is like
+this", "do not do this anymore", "I prefer it this way", "whenever...",
+"avoid...", "next time..."), ask:
 
-1. Verificar se existe template relevante em `templates/skills/`. Se
-   existir, usar como base e adaptar pro contexto
-2. Perguntar se é específica desse projeto ou útil em qualquer:
-   - Específica → `.claude/skills/nome-da-skill/SKILL.md` (local)
-   - Universal → `~/.claude/skills/nome-da-skill/SKILL.md` (global)
-3. Ler `_memoria/empresa.md` e `_memoria/preferencias.md` pra calibrar
-   o conteúdo da skill ao contexto do negócio
-4. Se a skill precisar de arquivos de apoio (templates, exemplos),
-   criar dentro da pasta da skill
-5. Seguir o fluxo da skill-creator nativa do Claude Code
+> "Do you want me to save this so you do not have to repeat it?"
+
+If yes, identify where it makes the most sense to save:
+
+- **About the business** (clients, services, market) -> `_memory/company.md`
+- **About preferences and style** (tone of voice, format, what to avoid) -> `_memory/preferences.md`
+- **About priorities and focus** (projects, goals, deadlines) -> `_memory/strategy.md`
+- **Behavior rule in this folder** -> this `CLAUDE.md`
+
+Save with one clear new line, without reformatting the whole file.
+Confirm by showing the added line.
+
+Do not ask if the correction is obvious from the immediate context (for
+example: "actually the file is called X"). Only ask when the information
+has lasting value.
+
+---
+
+## Keep context updated
+
+After finishing a task that changed something relevant (new client, new
+skill, change of focus, new process, installed tool, changed structure),
+ask:
+
+> "This changed something in your context. Do you want me to update the memory?"
+
+If yes, identify what to update:
+
+- **Client, service, tool, team** -> `_memory/company.md`
+- **Priority or focus change** -> `_memory/strategy.md`
+- **Tone or style** -> `_memory/preferences.md`
+- **Folder, organization rule, created skill** -> `CLAUDE.md`
+- **Visuals (colors, fonts, logo)** -> `identity/design-guide.md`
+
+Show what will change before saving. Do not reformat the whole file,
+only add or edit the relevant line.
+
+**When NOT to ask:**
+- One-off tasks with no context impact (writing a standalone email, creating a post)
+- Simple questions or conversations without action
+- Changes already saved by the "Learn from corrections" block
+
+**Tip:** run `/update` for a full scan when in doubt.
+
+---
+
+## Skill creation
+
+When the user asks for a new skill:
+
+1. Check whether a relevant template exists in `templates/skills/`. If
+   it does, use it as a base and adapt it to the context
+2. Ask whether it is specific to this project or useful anywhere:
+   - Specific -> `.claude/skills/skill-name/SKILL.md` (local)
+   - Universal -> `~/.claude/skills/skill-name/SKILL.md` (global)
+3. Read `_memory/company.md` and `_memory/preferences.md` to calibrate
+   the skill content to the business context
+4. If the skill needs support files (templates, examples), create them
+   inside the skill folder
+5. Follow Claude Code's native skill-creator flow

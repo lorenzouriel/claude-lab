@@ -1,12 +1,12 @@
-# Sistema operacional
+# Operating system
 .DS_Store
 Thumbs.db
 
-# Editores
+# Editors
 .vscode/
 .idea/
 
-# Claude Code (sessões locais, não devem ir pro repo)
+# Claude Code (local sessions, should not go into the repo)
 .claude/projects/
 .claude/sessions/
 .claude/shell-snapshots/
@@ -14,13 +14,13 @@ Thumbs.db
 .claude/file-history/
 .claude/backups/
 
-# Dependências
+# Dependencies
 node_modules/
 
-# Arquivos temporários
+# Temporary files
 *.log
 *.tmp
 
-# Drop zone do usuário (só o README vai versionado)
-dados/*
-!dados/README.md
+# User drop zone (only the README is versioned)
+data/*
+!data/README.md

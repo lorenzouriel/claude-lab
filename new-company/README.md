@@ -1,110 +1,111 @@
-# MazyOS
+﻿# CompanyOS
 
-> O sistema operacional do seu negócio dentro do Claude Code.
+> Your business operating system inside Claude Code.
 
-Você acaba de instalar o MazyOS. Em alguns minutos, sua empresa vai
-ter uma memória própria, uma identidade visual aplicada em tudo que
-o sistema gerar, e 15 skills prontas pra fazer marketing, SEO, ads
-e operação rodarem com você dirigindo.
+You have just installed CompanyOS. In a few minutes, your company will
+have its own memory, a visual identity applied to everything the system
+generates, and 15 ready-to-use skills to run marketing, SEO, ads, and
+operations with you in control.
 
-Bora voar.
+Let's fly.
 
 ---
 
-## Ligando o sistema
+## Turning on the system
 
-Dois caminhos. Escolhe o que combina contigo.
+Two paths. Choose the one that fits you.
 
-### Pelo Claude (mais rápido)
+### Through Claude (faster)
 
-Abre o Claude Code em qualquer pasta e cola:
-
-```
-Clona o https://github.com/mazzeoia/MazyOS.git na pasta atual,
-entra nela e roda o /instalar.
-```
-
-Ele clona, entra na pasta nova e dispara a entrevista de setup. Você
-só responde.
-
-### Pelo terminal (mais previsível)
+Open Claude Code in any folder and paste:
 
 ```
-git clone https://github.com/mazzeoia/MazyOS.git
-cd MazyOS
+Clone https://github.com/mazzeoia/CompanyOS.git into the current folder,
+enter it and run /install.
+```
+
+It clones, enters the new folder, and starts the setup interview. You
+only answer.
+
+### Through the terminal (more predictable)
+
+```
+git clone https://github.com/mazzeoia/CompanyOS.git
+cd CompanyOS
 code .
 ```
 
-Na janela do VS Code que abrir: terminal integrado → `claude` → `/instalar`.
+In the VS Code window that opens: integrated terminal -> `claude` -> `/install`.
 
 ---
 
-Quando o `/instalar` terminar, renomeia a pasta `MazyOS/` pro nome do teu
-negócio (fecha o VS Code, renomeia no Explorer/Finder, abre de novo). A
-pasta não fica como "MazyOS" — ela é o teu negócio agora.
+When `/install` finishes, rename the `CompanyOS/` folder to your
+business name (close VS Code, rename it in Explorer/Finder, open it again).
+The folder does not stay as "CompanyOS" - it is your business now.
 
-O `/instalar` roda uma vez só. Te entrevista sobre o negócio, monta a
-memória e configura o sistema. Depois disso, é só usar.
-
----
-
-## O sistema
-
-**Núcleo** — o jeito de operar o dia a dia
-`/abrir` carrega o contexto antes de cada sessão de trabalho · `/salvar`
-faz commit + push no GitHub · `/atualizar` varre o projeto e atualiza
-a memória · `/novo-projeto` cria pasta isolada pra cada cliente ou
-iniciativa · `/mapear-rotinas` descobre o que você repete e transforma
-em skill personalizada.
-
-**Conteúdo e SEO** — vitrine pública da empresa
-`/carrossel` cria carrosséis 1080×1350 com identidade da marca (com ou
-sem foto IA) · `/publicar-tema` pega um tema e entrega artigo de blog +
-carrossel + 3 legendas amarradas · `/seo` roda fluxo completo de 8 passos
-(demanda, concorrência, GMB, on-page, conteúdo, ads, monitoramento, GEO)
-· `/responder-avaliacoes` escreve respostas humanas pras reviews do
-Google · `/aprovar-post` publica blog + Instagram + Facebook num comando.
-
-**Anúncios pagos** — onde o dinheiro entra
-`/anuncio-google` monta a campanha inteira em CSV pronto pra importar
-no Google Ads Editor · `/relatorio-ads` lê os exports de Google + Meta
-e devolve relatório semanal com alertas e recomendações.
-
-**Produção** — ferramentas do dia a dia
-`/analisar-dados` lê CSV/XLSX/PDF e gera resumo executivo ·
-`/email-profissional` rascunha email a partir de contexto livre.
+`/install` runs only once. It interviews you about the business, builds
+the memory, and configures the system. After that, just use it.
 
 ---
 
-## A tese
+## The system
 
-IA não é uma ferramenta que sua empresa usa. É o sistema operacional em
-que ela roda.
+**Core** - the way to operate day to day
+`/open` loads the context before each work session · `/save`
+commits + pushes to GitHub · `/update` scans the project and updates
+the memory · `/new-project` creates an isolated folder for each client
+or initiative · `/map-routines` discovers what you repeat and turns it
+into a personalized skill.
 
-A diferença não é velocidade. É capacidade nova — uma pessoa com IA
-constrói o que antes exigia time inteiro. Cada processo crítico que hoje
-roda em open loop (decide → executa → não mede → repete cego) vira
-closed loop dentro do MazyOS (decide → executa → captura → realimenta →
-ajusta sozinho).
+**Content and SEO** - the company's public storefront
+`/carousel` creates 1080x1350 carousels with the brand identity (with or
+without AI photo) Â· `/publish-topic` takes a topic and delivers a blog
+article + carousel + 3 connected captions · `/seo` runs the full
+8-step flow (demand, competition, GMB, on-page, content, ads,
+monitoring, GEO) · `/reply-reviews` writes human responses to
+Google reviews · `/approve-post` publishes blog + Instagram + Facebook
+in one command.
 
-O sistema não substitui você. Vira parte da sua empresa.
+**Paid ads** - where the money comes in
+`/google-ad` builds the full campaign in CSV ready to import into
+Google Ads Editor · `/ads-report` reads Google + Meta exports and
+returns a weekly report with alerts and recommendations.
+
+**Production** - day-to-day tools
+`/analyze-data` reads CSV/XLSX/PDF and generates an executive summary ·
+`/professional-email` drafts an email from free-form context.
 
 ---
 
-## Como o MazyOS pensa
+## The thesis
 
-`_memoria/` é o cérebro. Tudo que importa do seu negócio mora aqui —
-quem é a empresa, como ela fala, o que tá em foco essa semana. O Claude
-lê isso antes de cada resposta. Quanto melhor a memória, melhor o sistema.
+AI is not a tool your company uses. It is the operating system it runs on.
 
-`identidade/` é o rosto. Cores, fontes, logo, padrão visual. Todo
-carrossel, slide, peça que o sistema gera respeita isso.
+The difference is not speed. It is new capacity - one person with AI
+builds what used to require an entire team. Every critical process that
+today runs in an open loop (decide -> execute -> do not measure -> repeat
+blindly) becomes a closed loop inside CompanyOS (decide -> execute ->
+capture -> feed back -> adjust by itself).
 
-`marketing/`, `saidas/` e `scripts/` são o resultado. O sistema produz,
-versiona no GitHub, fica tudo seu.
+The system does not replace you. It becomes part of your company.
 
 ---
 
-## Quando precisar
+## How CompanyOS thinks
+
+`_memory/` is the brain. Everything that matters about your business
+lives here - who the company is, how it speaks, what is in focus this
+week. Claude reads this before each answer. The better the memory, the
+better the system.
+
+`identity/` is the face. Colors, fonts, logo, visual pattern. Every
+carousel, slide, and piece the system generates respects this.
+
+`marketing/`, `outputs/`, and `scripts/` are the result. The system
+produces, versions on GitHub, and everything stays yours.
+
+---
+
+## When you need help
 
 [mazzeoia.com.br](https://mazzeoia.com.br)
