@@ -17,6 +17,11 @@ Thumbs.db
 # Dependencies
 node_modules/
 
+# Secrets
+.env
+*.env
+.mcp.json
+
 # Temporary files
 *.log
 *.tmp
@@ -24,3 +29,4 @@ node_modules/
 # User drop zone (only the README is versioned)
 data/*
 !data/README.md
+.obsidian/
