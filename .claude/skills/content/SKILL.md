@@ -9,7 +9,8 @@ description: >
   "newsletter", "substack", "reel", "carousel", "post", "script", "hook",
   "content strategy", "content plan", "content calendar", "write a post",
   "write a script", "social media", "humanize this", "sounds AI", "ai tells",
-  "repurpose content", "plan my week", "cross-platform".
+  "repurpose content", "plan my week", "cross-platform", "animated video",
+  "motion graphic", "motion design", "logo animation", "remotion", "make a video".
 tools:
   - Read
   - Write
@@ -39,6 +40,13 @@ tools:
 | `/content x` | `x/SKILL.md` | "x post", "tweet", "thread", "x strategy", "x content plan", "x hook", "grow on x", "twitter", "write a tweet" |
 | `/content youtube` | `youtube/SKILL.md` | "youtube", "channel", "video script", "youtube seo", "thumbnail", "youtube strategy", "shorts", "youtube audit", "video ideas", "youtube analytics", "monetize" |
 | `/content newsletter` | `newsletters/SKILL.md` | "newsletter", "write a newsletter", "newsletter draft", "substack", "article", "edition", "optimize for AI", "AEO", "thumbnail for article", "substack notes" |
+
+### Production Skills
+
+| Command | Sub-Skill | Trigger Phrases |
+|---------|-----------|----------------|
+| `/content video` | `video/motion-design/SKILL.md` | "animated video", "motion graphic", "logo animation", "animated intro", "animated outro", "kinetic text", "make a video from this", "remotion" |
+| `/content video approved` | `video/motion-approved/SKILL.md` | "motion approved", "video approved", "finalize the video", "clean the video folder", "keep only the mp4" |
 
 ### Cross-Platform Skills
 
