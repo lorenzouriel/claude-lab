@@ -26,7 +26,7 @@ description: >
 ## BRAND BLOCK (customize once — source of truth for all motion pieces)
 
 > Replace every `[FILL IN ...]` placeholder with your company's details.
-> Pre-fill colors and fonts from `identity/design-guide.md`. Once filled in, never change
+> Pre-fill colors and fonts from `brain/3-resources/identity/design-guide.md`. Once filled in, never change
 > per-video — only update when the brand identity changes.
 
 ### Identity
@@ -38,7 +38,7 @@ description: >
 `[FILL IN — e.g. FINANCIAL CONSULTING | INNOVATION]`
 
 **Logo path:**
-`[FILL IN — absolute path to logo file, e.g. /Users/you/identity/logo.png]`
+`[FILL IN — absolute path to logo file, e.g. /Users/you/company/brain/3-resources/identity/assets/logo.png]`
 
 ### Colors (hex)
 
@@ -84,7 +84,7 @@ description: >
 Everything lives in a **content working folder** (the same convention carousels use):
 
 ```
-outputs/content/<YYYY>/<MM>/WEEK <NN>/<platform>/<name>/
+output/marketing/content/<YYYY>/<MM>/WEEK <NN>/<platform>/<name>/
 ```
 
 `<platform>` = `instagram`, `youtube`, `tiktok`, or `video` if platform-agnostic. The full
@@ -101,7 +101,7 @@ delete the whole project and keep only the `.mp4`.
 Remotion needs **Node.js installed**. Confirm with `node --version` if unsure.
 
 1. **Resolve the content working folder** for this video:
-   `outputs/content/<YYYY>/<MM>/WEEK <NN>/<platform>/<name>/` (create it if missing).
+   `output/marketing/content/<YYYY>/<MM>/WEEK <NN>/<platform>/<name>/` (create it if missing).
    Confirm the path with the user before scaffolding.
 
 2. **Scaffold the Remotion project inside that folder:**
@@ -253,7 +253,7 @@ to just the `.mp4`.
 
 ## Deliverables per session
 
-Inside `outputs/content/<YYYY>/<MM>/WEEK <NN>/<platform>/<name>/`:
+Inside `output/marketing/content/<YYYY>/<MM>/WEEK <NN>/<platform>/<name>/`:
 
 | File | Description |
 |---|---|

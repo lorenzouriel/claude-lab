@@ -34,7 +34,7 @@ Net result: `<name>.mp4` (at the content folder root) and nothing else.
 ## Inputs
 
 - **Target folder** — the video's content working folder
-  (e.g. `outputs/content/<YYYY>/<MM>/WEEK <NN>/<platform>/<name>/`).
+  (e.g. `output/marketing/content/<YYYY>/<MM>/WEEK <NN>/<platform>/<name>/`).
   If the user doesn't name one, list candidate folders and ask, or offer the most recent.
 
 ---

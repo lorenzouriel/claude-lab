@@ -14,16 +14,16 @@ rules for your business to the end of this page.
 At the start of every conversation, read the following files (when they
 exist and are filled in):
 
-1. `_memory/company.md` - who the user is, what they do, how the business works
-2. `_memory/preferences.md` - tone of voice, writing style, what to avoid
-3. `_memory/strategy.md` - current focus, priorities, deadlines
+1. `memory/company.md` - who the user is, what they do, how the business works
+2. `memory/preferences.md` - tone of voice, writing style, what to avoid
+3. `memory/strategy.md` - current focus, priorities, deadlines
 
 Use this information as the basis for any answer or decision. When
 suggesting priorities, formats, or approaches, consider the current focus
 described in `strategy.md`.
 
 For any visual task (carousel, post, landing page), consult
-`identity/design-guide.md` as the style reference.
+`brain/3-resources/identity/design-guide.md` as the style reference.
 
 There is no need to list what was read or confirm the reading. Just use
 the context naturally.
@@ -57,9 +57,9 @@ this", "do not do this anymore", "I prefer it this way", "whenever...",
 
 If yes, identify where it makes the most sense to save:
 
-- **About the business** (clients, services, market) -> `_memory/company.md`
-- **About preferences and style** (tone of voice, format, what to avoid) -> `_memory/preferences.md`
-- **About priorities and focus** (projects, goals, deadlines) -> `_memory/strategy.md`
+- **About the business** (clients, services, market) -> `memory/company.md`
+- **About preferences and style** (tone of voice, format, what to avoid) -> `memory/preferences.md`
+- **About priorities and focus** (projects, goals, deadlines) -> `memory/strategy.md`
 - **Behavior rule in this folder** -> this `CLAUDE.md`
 
 Save with one clear new line, without reformatting the whole file.
@@ -81,11 +81,11 @@ ask:
 
 If yes, identify what to update:
 
-- **Client, service, tool, team** -> `_memory/company.md`
-- **Priority or focus change** -> `_memory/strategy.md`
-- **Tone or style** -> `_memory/preferences.md`
+- **Client, service, tool, team** -> `memory/company.md`
+- **Priority or focus change** -> `memory/strategy.md`
+- **Tone or style** -> `memory/preferences.md`
 - **Folder, organization rule, created skill** -> `CLAUDE.md`
-- **Visuals (colors, fonts, logo)** -> `identity/design-guide.md`
+- **Visuals (colors, fonts, logo)** -> `brain/3-resources/identity/design-guide.md`
 
 Show what will change before saving. Do not reformat the whole file,
 only add or edit the relevant line.
@@ -103,12 +103,12 @@ only add or edit the relevant line.
 
 When the user asks for a new skill:
 
-1. Check whether a relevant template exists in `templates/skills/`. If
+1. Check whether a relevant template exists in `brain/3-resources/templates/skills/`. If
    it does, use it as a base and adapt it to the context
 2. Ask whether it is specific to this project or useful anywhere:
    - Specific -> `.claude/skills/skill-name/SKILL.md` (local)
    - Universal -> `~/.claude/skills/skill-name/SKILL.md` (global)
-3. Read `_memory/company.md` and `_memory/preferences.md` to calibrate
+3. Read `memory/company.md` and `memory/preferences.md` to calibrate
    the skill content to the business context
 4. If the skill needs support files (templates, examples), create them
    inside the skill folder

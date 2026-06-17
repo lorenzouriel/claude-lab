@@ -20,7 +20,7 @@ Ask:
 
 ## Step 2 - Check catalog
 
-Read `templates/skills/catalog.md` to see whether any mentioned task is already covered by a native Claude Code skill or a CompanyOS-validated skill. If yes, suggest the existing skill instead of creating a new one.
+Read `brain/3-resources/templates/skills/catalog.md` to see whether any mentioned task is already covered by a native Claude Code skill or a CompanyOS-validated skill. If yes, suggest the existing skill instead of creating a new one.
 
 ## Step 3 - Skill proposals
 
@@ -45,7 +45,7 @@ For each approved skill:
 1. Create `.claude/skills/<name>/`
 2. Create `SKILL.md` with name, description, trigger rules, workflow, output format, and dependencies
 3. If templates or examples are needed, create them inside the skill folder
-4. Calibrate tone and rules using `_memory/preferences.md` and `_memory/company.md`
+4. Calibrate tone and rules using `memory/preferences.md` and `memory/company.md`
 
 ## Step 5 - Summary
 

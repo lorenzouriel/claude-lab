@@ -28,7 +28,7 @@ description: >
 `[FILL IN — e.g. FINANCIAL CONSULTING | INNOVATION]`
 
 **Logo path:**
-`[FILL IN — absolute path to logo file, e.g. /Users/you/identity/logo.png]`
+`[FILL IN — absolute path to logo file, e.g. /Users/you/company/brain/3-resources/identity/assets/logo.png]`
 
 ### Colors (hex)
 
@@ -77,7 +77,7 @@ description: >
 ### Output
 
 **Output directory:**
-`[FILL IN — absolute path, e.g. /Users/you/outputs/reels/]`
+`[FILL IN — absolute path, e.g. /Users/you/company/output/marketing/reels/]`
 
 ---
 

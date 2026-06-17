@@ -1,8 +1,8 @@
 ---
 name: update
 description: >
-  Scans the project and updates context files (`_memory/company.md`, `preferences.md`,
-  `strategy.md`, `CLAUDE.md`, `identity/design-guide.md`) when they are out of sync with
+  Scans the project and updates context files (`memory/company.md`, `preferences.md`,
+  `strategy.md`, `CLAUDE.md`, `brain/3-resources/identity/design-guide.md`) when they are out of sync with
   the real workspace. Use when the user says "update", "/update", "scan the project",
   or asks for a general reconciliation.
 ---
@@ -14,18 +14,18 @@ description: >
 Scan:
 
 - Recent files changed in the last 30 days
-- Subfolders in `clients/`, if any
+- Subfolders in `brain/1-projects/`, if any
 - New folders, tools, processes, skills, or deliverables
-- Recent files in folders such as `proposals/`, `content/`, `clients/<x>/`
+- Recent files in folders such as `proposals/`, `content/`, `brain/1-projects/<x>/`
 
 ## Step 2 - Compare
 
 Check:
 
-- **In `_memory/company.md`:** clients / services / tools match the workspace?
-- **In `_memory/strategy.md`:** current focus still makes sense?
-- **In `_memory/preferences.md`:** recent outputs follow the saved tone?
-- **In `identity/design-guide.md`:** still matches recent visuals?
+- **In `memory/company.md`:** clients / services / tools match the workspace?
+- **In `memory/strategy.md`:** current focus still makes sense?
+- **In `memory/preferences.md`:** recent outputs follow the saved tone?
+- **In `brain/3-resources/identity/design-guide.md`:** still matches recent visuals?
 - **In `CLAUDE.md`:** organization rules match the actual folder structure?
 
 ## Step 3 - Propose changes
@@ -35,9 +35,9 @@ Show a short list:
 ```
 I found 3 possible updates:
 
-1. _memory/company.md - missing client "Acme" (saw clients/Acme/ created on [date])
-2. CLAUDE.md - says proposals go in proposals/, but I see proposals in clients/<x>/proposals/
-3. _memory/strategy.md - says "close first client in February", but it is already April and there are 3 active clients
+1. memory/company.md - missing client "Acme" (saw brain/1-projects/Acme/ created on [date])
+2. CLAUDE.md - says proposals go in proposals/, but I see proposals in brain/1-projects/<x>/proposals/
+3. memory/strategy.md - says "close first client in February", but it is already April and there are 3 active clients
 
 Do you want me to apply these updates?
 ```

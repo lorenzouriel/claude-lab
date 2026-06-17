@@ -10,8 +10,8 @@ description: >
 
 ## Context to read
 
-- **Business context:** `_memory/company.md`
-- **Tone of voice:** `_memory/preferences.md`
+- **Business context:** `memory/company.md`
+- **Tone of voice:** `memory/preferences.md`
 
 ## Flow
 
@@ -46,7 +46,7 @@ Hi [Name],
 [body]
 
 [closing],
-[User name, from _memory/company.md]
+[User name, from memory/company.md]
 ```
 
 ### Step 3 - Present tone options when useful

@@ -10,8 +10,8 @@ description: >
 
 ## Context
 
-- **Tone of voice:** `_memory/preferences.md`
-- **Business context:** `_memory/company.md`
+- **Tone of voice:** `memory/preferences.md`
+- **Business context:** `memory/company.md`
 
 ## Reply pattern
 
@@ -23,7 +23,7 @@ Rules:
 2. Vary the thank-you. Do not repeat the same opening.
 3. Pull something specific from the review or business.
 4. Optional emoji only if it matches the brand tone.
-5. Follow `_memory/preferences.md`.
+5. Follow `memory/preferences.md`.
 
 Avoid generic phrases like "your feedback is very important to us" or "we are always available".
 
@@ -57,7 +57,7 @@ List each reply below its review, ready to paste into GMB:
 -> [reply]
 ```
 
-If the user asks to keep a record, save in `marketing/google-reviews/YYYY-MM-DD-replies.md` with review + published reply.
+If the user asks to keep a record, save in `output/marketing/google-reviews/YYYY-MM-DD-replies.md` with review + published reply.
 
 ## Rules
 

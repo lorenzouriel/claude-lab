@@ -12,17 +12,17 @@ Turns raw platform exports into an executive report the owner can understand wit
 
 ## Context
 
-- **Context:** `_memory/company.md`, `_memory/strategy.md`
-- **Tone of voice:** `_memory/preferences.md`
-- **History:** `marketing/campaigns/reports/` (create if missing)
+- **Context:** `memory/company.md`, `memory/strategy.md`
+- **Tone of voice:** `memory/preferences.md`
+- **History:** `output/marketing/campaigns/reports/` (create if missing)
 
 ## How to run
 
-Expected files can be in `data/`, for example:
+Expected files can be in `brain/0-inbox/`, for example:
 
 ```text
-data/google-ads-2026-05-12.csv
-data/meta-ads-2026-05-12.csv
+brain/0-inbox/google-ads-2026-05-12.csv
+brain/0-inbox/meta-ads-2026-05-12.csv
 ```
 
 Then run:
@@ -36,7 +36,7 @@ If files are missing, ask where the week's exports are.
 ## Flow
 
 1. Read exports and identify date range, platform, campaign/ad group names, spend, impressions, clicks, conversions, CPA, CTR, CPC, CPM, and revenue when available.
-2. Look for the previous report in `marketing/campaigns/reports/` and calculate week-over-week changes when possible.
+2. Look for the previous report in `output/marketing/campaigns/reports/` and calculate week-over-week changes when possible.
 3. Write an executive summary with what improved, what worsened, biggest risk, and next action.
 4. Detail performance by channel.
 5. Generate automatic alerts for high spend without conversions, rising CPA, low CTR, low conversion rate, fatigue, and winners worth scaling.
@@ -44,7 +44,7 @@ If files are missing, ask where the week's exports are.
 7. Save in:
 
 ```text
-marketing/campaigns/reports/<YYYY-MM-DD>-report.md
+output/marketing/campaigns/reports/<YYYY-MM-DD>-report.md
 ```
 
 8. Show the executive summary in chat and point to the full file.
@@ -54,5 +54,5 @@ marketing/campaigns/reports/<YYYY-MM-DD>-report.md
 - Never invent numbers.
 - If the export is truncated or unreadable, say "incomplete data" and proceed only with what is available.
 - Concrete recommendations: "Pause Group X" beats "optimize campaigns".
-- Follow `_memory/preferences.md` for language.
+- Follow `memory/preferences.md` for language.
 - When reporting loss, be direct.

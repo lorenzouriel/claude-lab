@@ -33,7 +33,7 @@ Net result: slide images (e.g. `instagram/slide-01.png …`) + `carousel.pdf`.
 ## Inputs
 
 - **Target folder** — the carousel output folder produced by `ig-carousel`
-  (e.g. `outputs/content/<type>-<theme>-<date>/`). If the user doesn't name one, list the
+  (e.g. `output/marketing/content/<type>-<theme>-<date>/`). If the user doesn't name one, list the
   carousel folders and ask, or offer the most recent.
 - **PDF source** — the `instagram/` slide PNGs in filename order. If there's no `instagram/`
   subfolder, fall back to slide PNGs at the folder root.

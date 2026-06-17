@@ -93,15 +93,21 @@ The system does not replace you. It becomes part of your company.
 
 ## How CompanyOS thinks
 
-`_memory/` is the brain. Everything that matters about your business
-lives here - who the company is, how it speaks, what is in focus this
-week. Claude reads this before each answer. The better the memory, the
-better the system.
+`memory/` is the working memory. The few things that matter about your
+business every single session - who the company is, how it speaks, what
+is in focus this week. Claude reads this before each answer. The better
+the memory, the better the system.
 
-`identity/` is the face. Colors, fonts, logo, visual pattern. Every
-carousel, slide, and piece the system generates respects this.
+`brain/` is the second brain, organized with the PARA method - the
+knowledge store Claude reads on demand. `0-inbox/` for raw drops,
+`1-projects/` for active work with a deadline, `2-areas/` for ongoing
+responsibilities, `3-resources/` for reusable reference (your brand
+identity lives in `3-resources/identity/`), `4-archive/` for what is done.
 
-`marketing/`, `outputs/`, and `scripts/` are the result. The system
+`brain/3-resources/identity/` is the face. Colors, fonts, logo, visual
+pattern. Every carousel, slide, and piece the system generates respects this.
+
+`output/marketing/`, `output/documents/`, and `scripts/` are the result. The system
 produces, versions on GitHub, and everything stays yours.
 
 ---

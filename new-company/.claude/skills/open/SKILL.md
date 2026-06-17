@@ -13,12 +13,12 @@ Short and direct. The goal is to load context and return a one-sentence synthesi
 ## Steps
 
 1. Read, if they exist:
-   - `_memory/company.md`
-   - `_memory/preferences.md`
-   - `_memory/strategy.md`
-   - `identity/design-guide.md` (only to know whether it is filled or blank)
+   - `memory/company.md`
+   - `memory/preferences.md`
+   - `memory/strategy.md`
+   - `brain/3-resources/identity/design-guide.md` (only to know whether it is filled or blank)
 2. If a required memory file is empty, say:
-   > "I saw that `_memory/<file>.md` has not been filled in yet. Do you want to run `/install` now?"
+   > "I saw that `memory/<file>.md` has not been filled in yet. Do you want to run `/install` now?"
 3. If the files have content, respond in this format:
 
 ```

@@ -10,8 +10,8 @@ description: >
 
 ## Context to read
 
-- **Business context:** `_memory/company.md` (to understand what the data represents)
-- **Tone of voice:** `_memory/preferences.md`
+- **Business context:** `memory/company.md` (to understand what the data represents)
+- **Tone of voice:** `memory/preferences.md`
 
 ## Flow
 
@@ -74,11 +74,11 @@ Write in clear executive language:
 [missing data, assumptions, caveats]
 ```
 
-Save in `outputs/analyses/analysis-[name]-[date].md` or the most appropriate folder for the user's profile.
+Save in `output/documents/analyses/analysis-[name]-[date].md` or the most appropriate folder for the user's profile.
 
 ## Rules
 
 - Never invent data that is not in the file.
 - If the data is incomplete or problematic, say that before analyzing.
-- Follow `_memory/preferences.md` for tone.
+- Follow `memory/preferences.md` for tone.
 - Prefer prose with tables only where they improve clarity.

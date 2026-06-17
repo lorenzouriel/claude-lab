@@ -21,11 +21,13 @@ Ask:
 
 ## Step 2 - Choose location
 
-Based on answer 2:
+Projects live under the PARA brain. Based on answer 2:
 
-- **New client:** create in `clients/<Name>/` (or the equivalent folder for the profile - read root `CLAUDE.md` to confirm)
-- **Internal project:** create in `projects/<name>/`
-- **Personal initiative:** ask where the user prefers
+- **New client:** create in `brain/1-projects/<Name>/`
+- **Internal project:** create in `brain/1-projects/<name>/`
+- **Personal initiative:** create in `brain/1-projects/<name>/` (or ask if the user prefers elsewhere)
+
+A project is an effort with a goal **and** an end. When it ships or stalls, move the folder to `brain/4-archive/`.
 
 ## Step 3 - Basic structure
 
@@ -64,7 +66,7 @@ Use:
 
 ## Inherited context
 
-This project automatically inherits tone of voice, brand, and business context from `_memory/` and `identity/` at the root. Do not duplicate that information here.
+This project automatically inherits tone of voice, brand, and business context from `memory/` and `brain/3-resources/identity/` at the root. Do not duplicate that information here.
 
 ## Specific to this project
 

@@ -13,10 +13,10 @@ Builds the whole campaign as import-ready CSVs for Google Ads Editor.
 
 ## Context
 
-- **Business context:** `_memory/company.md`
-- **Tone of voice:** `_memory/preferences.md`
-- **SEO research if available:** `marketing/seo/01-demand-research.md`, `06-google-ads.md`
-- **Outputs:** `marketing/campaigns/google-ads-<YYYY-MM-DD>/`
+- **Business context:** `memory/company.md`
+- **Tone of voice:** `memory/preferences.md`
+- **SEO research if available:** `output/marketing/seo/01-demand-research.md`, `06-google-ads.md`
+- **Outputs:** `output/marketing/campaigns/google-ads-<YYYY-MM-DD>/`
 
 ## Flow
 
@@ -29,7 +29,7 @@ Builds the whole campaign as import-ready CSVs for Google Ads Editor.
 7. **CSVs:** Save:
 
 ```text
-marketing/campaigns/google-ads-<YYYY-MM-DD>/
+output/marketing/campaigns/google-ads-<YYYY-MM-DD>/
   campaigns.csv
   ad-groups.csv
   keywords.csv
@@ -47,5 +47,5 @@ marketing/campaigns/google-ads-<YYYY-MM-DD>/
 - Never invent CPC data.
 - Do not advertise informational terms.
 - Start mostly with phrase match; use exact match for premium terms.
-- Copies strictly follow `_memory/preferences.md`.
+- Copies strictly follow `memory/preferences.md`.
 - Every CSV must be valid for spreadsheet editing/import review.

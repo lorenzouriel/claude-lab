@@ -26,7 +26,7 @@ node_modules/
 *.log
 *.tmp
 
-# User drop zone (only the README is versioned)
-data/*
-!data/README.md
+# PARA inbox (only the README is versioned)
+brain/0-inbox/*
+!brain/0-inbox/README.md
 .obsidian/

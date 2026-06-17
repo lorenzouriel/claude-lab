@@ -12,13 +12,13 @@ description: >
 
 ## Context
 
-- **Business context:** `_memory/company.md`
-- **Tone of voice:** `_memory/preferences.md`
-- **Current strategy:** `_memory/strategy.md`
+- **Business context:** `memory/company.md`
+- **Tone of voice:** `memory/preferences.md`
+- **Current strategy:** `memory/strategy.md`
 
 ## Step 1 - Demand: What People Search For
 
-Read `_memory/company.md` and extract products/services, region, audience, differentiators, and use cases.
+Read `memory/company.md` and extract products/services, region, audience, differentiators, and use cases.
 
 Research keyword groups:
 
@@ -30,7 +30,7 @@ Research keyword groups:
 
 For each term, record intent, relevance, funnel stage, and suggested use.
 
-**Output:** `marketing/seo/01-demand-research.md`
+**Output:** `output/marketing/seo/01-demand-research.md`
 
 ## Step 2 - Competition: Who Shows Up
 
@@ -42,7 +42,7 @@ Use the top 10 terms from Step 1. For each term, use WebSearch/WebFetch to inspe
 - Google Business Profile quality
 - Minimum benchmark the business must reach
 
-**Output:** `marketing/seo/02-competition-analysis.md`
+**Output:** `output/marketing/seo/02-competition-analysis.md`
 
 ## Step 3 - Google Business Profile
 
@@ -56,7 +56,7 @@ Research the current profile if it exists. Create a document with:
 - Review request strategy
 - Reply templates using `/reply-reviews`
 
-**Output:** `marketing/seo/03-google-business-profile.md`
+**Output:** `output/marketing/seo/03-google-business-profile.md`
 
 ## Step 4 - On-Page Optimization
 
@@ -69,7 +69,7 @@ For the existing site or planned pages, create:
 - Schema markup suggestions
 - Page-specific recommendations
 
-**Output:** `marketing/seo/04-on-page-optimization.md`
+**Output:** `output/marketing/seo/04-on-page-optimization.md`
 
 ## Step 5 - Content Strategy
 
@@ -80,7 +80,7 @@ Build an authority plan from informational and commercial terms:
 - Content clusters
 - Suggested titles, target keyword, heading structure, and size estimate
 
-**Output:** `marketing/seo/05-content-strategy.md`
+**Output:** `output/marketing/seo/05-content-strategy.md`
 
 This list feeds `/publish-topic`: each item can become a blog post + carousel + captions.
 
@@ -96,7 +96,7 @@ Structure campaign recommendations from the research:
 - Extensions
 - Landing page recommendations
 
-**Output:** `marketing/seo/06-google-ads.md`
+**Output:** `output/marketing/seo/06-google-ads.md`
 
 The `/google-ad` skill consumes this file and generates import-ready CSVs.
 
@@ -112,7 +112,7 @@ Create a monthly checklist:
 - Competitor refresh
 - Next actions
 
-**Output:** `marketing/seo/07-monitoring-checklist.md`
+**Output:** `output/marketing/seo/07-monitoring-checklist.md`
 
 ## Step 8 - GEO: Appear In AI Answers
 
@@ -124,7 +124,7 @@ Optimize presence so generative AIs cite the company when users ask about the ni
 - Include concrete verifiable facts
 - Track whether the company appears, who appears, and cited sources
 
-**Output:** `marketing/seo/08-ai-geo-optimization.md`
+**Output:** `output/marketing/seo/08-ai-geo-optimization.md`
 
 ## Execution
 
@@ -135,6 +135,6 @@ If the user wants only one step, allow `/seo step 3`, `/seo gmb`, or `/seo geo`.
 ## Rules
 
 - Research must be real. Use WebSearch/WebFetch; never invent volume or competition data.
-- Copy and text follow `_memory/preferences.md`.
+- Copy and text follow `memory/preferences.md`.
 - If data is uncertain, say so.
 - For local B2B/B2C, prioritize commercial/transactional intent.

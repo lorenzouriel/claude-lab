@@ -23,7 +23,7 @@ If something is missing, stop and point to setup.
 
 1. Locate files from the provided slug:
    - Blog markdown
-   - `marketing/content/<slug>-*/instagram/slide-XX.png`
+   - `output/marketing/content/<slug>-*/instagram/slide-XX.png`
    - `caption.md`
    - `caption-linkedin.md`
 2. Show summary and ask for final confirmation.

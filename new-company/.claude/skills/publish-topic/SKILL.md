@@ -10,13 +10,13 @@ description: >
 
 ## Context
 
-- **Content strategy:** `marketing/seo/05-content-strategy.md`
-- **Tone of voice:** `_memory/preferences.md`
-- **Context:** `_memory/company.md`, `identity/design-guide.md`
+- **Content strategy:** `output/marketing/seo/05-content-strategy.md`
+- **Tone of voice:** `memory/preferences.md`
+- **Context:** `memory/company.md`, `brain/3-resources/identity/design-guide.md`
 
 ## Flow
 
-1. **Choose topic:** Use the explicit topic, or read `marketing/seo/05-content-strategy.md` and ask which topic to use.
+1. **Choose topic:** Use the explicit topic, or read `output/marketing/seo/05-content-strategy.md` and ask which topic to use.
 2. **Write blog post:** Generate markdown with frontmatter, `draft: true`, optimized title, meta description, H2/H3 structure, practical examples, and a natural business connection.
 3. **Carousel summary:** Create the carousel directly by using the carousel/Instagram visual skill pattern.
 4. **Captions:** Save all captions in the content folder:
@@ -28,7 +28,7 @@ description: >
 ## Output folder
 
 ```text
-marketing/content/<blog-slug>-<YYYY-MM-DD>/
+output/marketing/content/<blog-slug>-<YYYY-MM-DD>/
 ```
 
 ## Rules
