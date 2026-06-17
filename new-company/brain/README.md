@@ -16,3 +16,14 @@ Open this folder directly as an Obsidian vault.
 **The flow:** files land in `0-inbox/` → become work in `1-projects/` or feed
 an `2-areas/` responsibility → reusable references settle in `3-resources/` →
 finished or dormant things move to `4-archive/`. Nothing is deleted; it moves.
+
+**The skills that run it:**
+
+- `/ingest` — feeds the brain. Drop a file/URL/note, it files atomic, linked
+  notes into the right PARA folder and updates what already exists.
+- `/synthesize` — compounds the brain. Surfaces patterns across recent notes
+  and writes them up as new ones.
+- `/research-deep` — researches the brain first, fills only the gaps, files the
+  answer back in.
+
+`index.md` is the catalog of every note, kept current by those skills.
