@@ -63,3 +63,25 @@ of the next creator in the same niche.]
 - [ ] Google Ads
 
 *(Check as MCPs are installed)*
+
+## Recommended skills
+
+**Core (always install):**
+- `/system` — open, update, save, map-routines, new-project
+- `/content` — content-planner, copywriting, humanizer, seo
+- `/business` — approve-post, publish-topic, buffer
+
+**Platform (pick your active channels):**
+- `/instagram` — if Instagram is a primary channel
+- `/linkedin` — if LinkedIn is a primary channel
+- `/youtube` — if video is a primary channel
+- `/tiktok` — if short video is a primary channel
+- `/newsletters` — if newsletter is a primary channel
+
+**Formats (install as needed):**
+- `/formats pdf` — for ebooks, lead magnets, guides
+- `/formats pptx` — for course slides, workshops
+
+**Research:**
+- `/research research-deep` — topic and niche research
+- `/research synthesize` — connecting notes and ideas

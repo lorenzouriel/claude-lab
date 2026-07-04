@@ -71,3 +71,31 @@ Avoid: [what feels off-brand]
 - [ ] Slack
 
 *(Check as MCPs are installed)*
+
+## Recommended skills
+
+**Core (always install):**
+- `/system` — open, update, save, map-routines, new-project
+- `/business` — analyze-data, professional-email, ads-report, google-ad, reply-reviews, publish-topic
+
+**Marketing department:**
+- `/content` — content-planner, copywriting, seo, humanizer
+- `/instagram` — if running Instagram
+- `/linkedin` — company page content
+- `/business approve-post` — content approval before publishing
+
+**Commercial / sales:**
+- `/business cold-email` — outbound prospecting
+- `/business professional-email` — client communication
+
+**Operations:**
+- `/formats docx` — internal documents, SOPs
+- `/formats pdf` — reports, contracts
+- `/formats pptx` — board presentations, all-hands decks
+- `/formats xlsx` — financial models, trackers
+
+**Research and intelligence:**
+- `/research research-deep` — market research, competitor analysis
+- `/research apify` — scraping competitor data, lead lists
+- `/research synthesize` — synthesizing research into strategy docs
+- `/visual excalidraw-diagram` — process maps, org charts

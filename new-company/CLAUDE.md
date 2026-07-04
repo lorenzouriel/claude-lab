@@ -28,6 +28,8 @@ For any visual task (carousel, post, landing page), consult
 There is no need to list what was read or confirm the reading. Just use
 the context naturally.
 
+Never reference memory files by name in your responses. Do not say "your company.md says..." or "based on strategy.md..." or "I can see in preferences.md...". Never announce that you are reading files. The context is invisible: it shapes your answers without appearing in them.
+
 ---
 
 ## Workflow
@@ -87,8 +89,7 @@ If yes, identify what to update:
 - **Folder, organization rule, created skill** -> `CLAUDE.md`
 - **Visuals (colors, fonts, logo)** -> `brain/3-resources/identity/design-guide.md`
 
-Show what will change before saving. Do not reformat the whole file,
-only add or edit the relevant line.
+Show the proposed change as a diff (the exact line being added or edited) before saving. Only then write it. Do not reformat the whole file, only add or edit the relevant line.
 
 **When NOT to ask:**
 - One-off tasks with no context impact (writing a standalone email, creating a post)

@@ -109,3 +109,10 @@ If a sub-skill output fails a quality gate:
 ## Output Format
 
 Default to markdown. Carousel output: numbered slides with headline + body + char count. Reel scripts: timing column + on-screen text column + spoken column. Strategy: structured report with surface-by-surface analysis. Always end with "Next Steps" pointing to the logical next sub-skill.
+
+## Pipeline position
+
+**Receives from:** `/content plan` — the weekly calendar defines which carousels and Reels to produce
+**Then:** `/content humanize` — run on caption drafts before approving
+**Outputs to:** `/business approve` — finished PNGs + caption.md → approve-post for publishing
+**Or:** `/content buffer` — schedule the post instead of publishing immediately

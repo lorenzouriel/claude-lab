@@ -66,3 +66,23 @@ Avoid: [what feels unlike you]
 - [ ] Stripe / billing
 
 *(Check as MCPs are installed)*
+
+## Recommended skills
+
+**Core (always install):**
+- `/system` — open, update, save, map-routines, new-project
+- `/business` — cold-email, professional-email, analyze-data
+
+**Formats (client deliverables):**
+- `/formats docx` — reports, contracts, briefs
+- `/formats pdf` — proposals, polished deliverables
+- `/formats pptx` — presentations, case studies
+- `/formats xlsx` — data deliverables, trackers
+
+**Content (personal brand — optional but recommended):**
+- `/linkedin` — inbound and positioning
+- `/content copywriting` — proposal copy, portfolio copy
+
+**Research:**
+- `/research research-deep` — client industry research before pitching
+- `/visual excalidraw-diagram` — architecture and process diagrams for deliverables

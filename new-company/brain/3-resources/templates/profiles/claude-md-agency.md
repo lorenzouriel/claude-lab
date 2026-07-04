@@ -68,3 +68,32 @@ Avoid: [what feels off]
 - [ ] Google Ads
 
 *(Check as MCPs are installed)*
+
+## Recommended skills
+
+**Core (always install):**
+- `/system` — open, update, save, map-routines, new-project
+- `/content` — content-planner, copywriting, humanizer, seo
+- `/business` — approve-post, publish-topic, ads-report, google-ad, cold-email, professional-email, reply-reviews
+
+**Platform (install for each client channel you manage):**
+- `/instagram` — full suite (strategy, carousel-writer, visual, publisher)
+- `/linkedin` — post-writer, content-planner, comment-drafter
+- `/tiktok` — if managing short-video clients
+- `/x` — if managing X accounts
+- `/youtube` — if managing YouTube channels
+
+**Formats (client reporting and proposals):**
+- `/formats pdf` — proposals, case studies, reports
+- `/formats pptx` — client presentations, results decks
+- `/formats docx` — contracts, briefs, copy documents
+- `/formats xlsx` — campaign trackers, media plans
+
+**Research:**
+- `/research apify` — competitor scraping, lead research
+- `/research research-deep` — market analysis for new client pitches
+- `/research synthesize` — patterns across client performance data
+
+**Visual:**
+- `/visual landing-page` — campaign landing pages
+- `/visual excalidraw-diagram` — strategy diagrams, funnel maps

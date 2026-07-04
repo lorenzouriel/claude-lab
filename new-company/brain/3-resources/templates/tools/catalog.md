@@ -37,6 +37,22 @@ npx playwright screenshot --viewport-size=1080,1350 --full-page "file:///path/sl
 
 ---
 
+## Schedule Social Media
+
+### Buffer API
+**What it does:** Queues posts to Instagram, LinkedIn, X, Facebook, TikTok with scheduled publish times
+**Requires an account:** Yes, Buffer (free up to 3 channels)
+**Configure:** Save `BUFFER_ACCESS_TOKEN` in `.env`
+**How to use in a skill:**
+```bash
+curl -X POST "https://api.bufferapp.com/1/updates/create.json" \
+  -d "access_token=$BUFFER_ACCESS_TOKEN&profile_ids[]=<id>&text=<text>"
+```
+**When to use:** When the user wants to schedule posts instead of publishing immediately
+**Connected to:** `/content buffer` skill
+
+---
+
 ## Publish On Social Media
 
 ### Post for Me API
@@ -48,6 +64,24 @@ npx playwright screenshot --viewport-size=1080,1350 --full-page "file:///path/sl
 node --env-file=.env scripts/publish-postforme.js
 ```
 **When to use:** Carousel, visual content, and automatic publishing skills
+
+---
+
+## Scrape The Web
+
+### Apify API
+**What it does:** Runs cloud scraping actors — LinkedIn profiles, Instagram data, Google results, e-commerce, maps
+**Requires an account:** Yes, Apify (free tier available — $5 free credit/month)
+**Configure:** Save `APIFY_TOKEN` in `.env`
+**How to use in a skill:**
+```bash
+curl -X POST "https://api.apify.com/v2/acts/{actor-id}/runs?token=$APIFY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"startUrls": [{"url": "https://..."}]}'
+```
+**Common actors:** `apify/instagram-scraper`, `apify/linkedin-profile-scraper`, `apify/google-search-scraper`
+**When to use:** `/research apify` skill — competitor research, lead scraping, market data
+**Connected to:** `/research apify` skill
 
 ---
 

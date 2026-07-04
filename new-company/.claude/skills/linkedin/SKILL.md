@@ -121,3 +121,10 @@ If a sub-skill output fails a quality gate:
 ## Output Format
 
 Default to markdown. For posts: formula used, full draft, char count, suggested posting window. For plans: markdown table. For strategy: structured report with pillar scores. Always end with "Next Steps" pointing to the logical next sub-skill.
+
+## Pipeline position
+
+**Receives from:** `/content plan` — the weekly calendar defines which posts to write
+**Then:** `/content humanize` — scrub AI tells and apply brand voice before publishing
+**Outputs to:** manual post (LinkedIn does not have a public scheduling API)
+**Or:** `/content buffer` — Buffer supports LinkedIn scheduling
