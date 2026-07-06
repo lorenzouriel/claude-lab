@@ -1,6 +1,6 @@
-# master-claude
+# CLAUDE.md
 
-A unified Claude Code workspace combining software engineering workflow (AgentSpec) with content squad orchestration (Opensquad). One tool, one mental model.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Response Style
 
@@ -8,82 +8,44 @@ Be terse. No filler words, no pleasantries, no hedging. Preserve full technical 
 Strip: "Sure, I'd be happy to...", "It might be worth considering...", "As mentioned above...".
 Keep: code blocks, error messages, technical terms, file paths, git output.
 
----
+## What This Repo Is
 
-## Quick Start
+claude-lab is a laboratory for Claude Code configurations. There is no application code — everything is markdown (skills, agents, commands, knowledge base). There are no build, lint, or test commands.
 
-### Software Engineering (AgentSpec)
+Two systems live here:
 
-| Command | Phase | Purpose |
-|---------|-------|---------|
-| `/workflow:brainstorm` | 0 | Explore ideas through dialogue |
-| `/workflow:define` | 1 | Capture and validate requirements |
-| `/workflow:design` | 2 | Create architecture and technical spec |
-| `/workflow:build` | 3 | Execute implementation |
-| `/workflow:ship` | 4 | Archive completed feature |
+1. **CompanyOS** (active) — a skill-driven business operating system. `.claude/skills/` at the repo root is the live config Claude Code loads.
+2. **master-claude / AgentSpec** (parked) — the former software-engineering config, stored in `.claude-tech/`. Claude Code only reads `.claude/`, so nothing in `.claude-tech/` is invocable until it is swapped back in.
 
-### Content Squads (Opensquad)
+## Architecture
 
-| Command | Purpose |
-|---------|---------|
-| `/squad` | Open the main squad menu |
-| `/squad create` | Create a new content squad (conversational) |
-| `/squad run <name>` | Execute a squad's pipeline |
-| `/squad edit <name>` | Modify an existing squad |
-| `/squad skills` | Browse and install squad skills |
-| `/squad:dashboard-design` | Design the 2D virtual office |
+### Active config: CompanyOS skills (`.claude/skills/`)
 
-### Other Commands
+17 hub skills: `business`, `content`, `formats`, `fundraising`, `growth`, `instagram`, `linkedin`, `market`, `metrics`, `newsletters`, `research`, `strategy`, `system`, `tiktok`, `visual`, `x`, `youtube`.
 
-- `/review` — Code review
-- `/visual-explainer:*` — Visual diagrams and explainers
-- `/data-engineering:*` — Data pipeline tools
-- `/core:memory` — Save session insights
+Each hub is a router: the hub's `SKILL.md` dispatches to sub-skill folders (e.g. `content/` → `buffer`, `content-planner`, `copywriting`, `humanizer`, `seo`). Invoke as `/hub sub-skill` (`/content plan`, `/business google-ad`, `/system install`) or via plain language — hubs route automatically.
 
----
+### Template: `new-company/`
 
-## Directory Structure
+A clean CompanyOS workspace template (based on mazzeoia/CompanyOS). To spin up a business workspace: copy this folder, rename it to the business name, open Claude Code inside it, run `/system install` (interview that fills `memory/` and appends business rules to its `CLAUDE.md`).
 
-```
-master-claude/
-├── .claude/
-│   ├── agents/        — 50+ Claude Code sub-agents (data engineering, cloud, workflow...)
-│   ├── commands/
-│   │   ├── workflow/  — SDD phases (brainstorm → define → design → build → ship)
-│   │   ├── squad/     — Squad orchestration (/squad)
-│   │   ├── core/      — Memory, status, readme, meeting analysis
-│   │   ├── review/    — Code review commands
-│   │   └── ...
-│   ├── skills/        — All skills (content, dev, data, visual, marketing, ops...)
-│   ├── kb/            — Knowledge base (patterns, domain concepts)
-│   └── sdd/           — SDD workflow artifacts (features, reports, archive)
-│
-├── _dashboard-template/ — Lightweight Vite + React dashboard (copied by new-company)
-├── identity/          — Brand assets
-│
-├── .mcp.json          — Playwright MCP
-└── .gitignore
-```
+Structure inside the template:
+- `.claude/skills/` — full skill set (identical copy of the repo-root skills)
+- `CLAUDE.md` — CompanyOS operating rules (memory reading, learn-from-corrections flow, skill creation flow)
+- `memory/` — `company.md`, `preferences.md`, `strategy.md`
+- `brain/` — PARA-method second brain (`0-inbox` … `4-archive`); brand identity lives at `brain/3-resources/identity/design-guide.md`
+- `output/` — `marketing/` and `documents/`; all generated deliverables land here
+- `scripts/` — starts empty; integration scripts (image generation, social publishing) are created on demand by skills and need a `.env` with API keys
 
----
+Instantiated company workspaces at the repo root (`uriel/`, `monkey/`, `master-claude/`, `obsidian-second-brain/`) are gitignored. Add new workspace folders to `.gitignore` when creating them.
 
-## How the Two Systems Work Together
+**Skills are duplicated**: `.claude/skills/` and `new-company/.claude/skills/` are identical trees. When editing or adding a skill, apply the change to both, or state explicitly that you changed only one.
 
-Both systems share the same phased workflow pattern:
+### Parked config: `.claude-tech/`
 
-```
-AgentSpec:  Brainstorm → Define → Design → Build → Ship   (software)
-Opensquad:  Discovery  → Investigate → Design → Build → Run (content)
-```
+- `agents/` — 58 sub-agents grouped by domain (architect, cloud, data-engineering, dev, platform/Fabric, python, test, workflow)
+- `commands/` — `/workflow:*` SDD phases (brainstorm → define → design → build → ship), `/review`, `/data-engineering:*`, `/visual-explainer:*`, `/core:*`, `/knowledge:*`
+- `kb/` — data-engineering knowledge base (spark, dbt, airflow, lakehouse, fabric, terraform, …)
+- `sdd/` — SDD workflow artifacts (features, reports, archive)
 
-They are independent but complementary:
-- Use **AgentSpec** when building software, data pipelines, or technical features
-- Use **Opensquad** when creating content, running marketing automation, or orchestrating multi-agent creative workflows
-- master-claude's **Claude Code agents** (`.claude/agents/`) can be referenced as available team members when creating squads
-
----
-
-## Rules
-
-- Use `/workflow:*` for software engineering work
-- Use `/squad` for content creation and automation
+To activate this config, swap it with `.claude/` (preserve `.claude/skills/` if CompanyOS should stay available). Do not document or invoke `.claude-tech/` commands as if they were active.
