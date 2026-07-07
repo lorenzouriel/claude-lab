@@ -12,40 +12,37 @@ Keep: code blocks, error messages, technical terms, file paths, git output.
 
 claude-lab is a laboratory for Claude Code configurations. There is no application code — everything is markdown (skills, agents, commands, knowledge base). There are no build, lint, or test commands.
 
-Two systems live here:
+The repo is organized as **self-contained domain folders**, each carrying its own `.claude/` config. You get a domain's skills by opening Claude Code inside that folder. The repo root has no active skills (`.claude/` at the root holds only local settings) — root sessions are for maintaining the lab itself.
 
-1. **CompanyOS** (active) — a skill-driven business operating system. `.claude/skills/` at the repo root is the live config Claude Code loads.
-2. **master-claude / AgentSpec** (parked) — the former software-engineering config, stored in `.claude-tech/`. Claude Code only reads `.claude/`, so nothing in `.claude-tech/` is invocable until it is swapped back in.
+1. **`company-os/`** — CompanyOS, a skill-driven business operating system. Also the template for new business workspaces.
+2. **`tech-os/`** — master-claude / AgentSpec, the software-engineering config (agents, SDD commands, data-engineering knowledge base).
+3. **`investments-os/`** — reserved for a future investments config; its `.claude/` is empty.
 
 ## Architecture
 
-### Active config: CompanyOS skills (`.claude/skills/`)
+### `company-os/` — CompanyOS
 
-17 hub skills: `business`, `content`, `formats`, `fundraising`, `growth`, `instagram`, `linkedin`, `market`, `metrics`, `newsletters`, `research`, `strategy`, `system`, `tiktok`, `visual`, `x`, `youtube`.
+18 hub skills in `company-os/.claude/skills/`: `business`, `content`, `ebook`, `formats`, `fundraising`, `growth`, `instagram`, `linkedin`, `market`, `metrics`, `newsletters`, `research`, `strategy`, `system`, `tiktok`, `visual`, `x`, `youtube`.
 
-Each hub is a router: the hub's `SKILL.md` dispatches to sub-skill folders (e.g. `content/` → `buffer`, `content-planner`, `copywriting`, `humanizer`, `seo`). Invoke as `/hub sub-skill` (`/content plan`, `/business google-ad`, `/system install`) or via plain language — hubs route automatically.
+Each hub is a router: the hub's `SKILL.md` dispatches to sub-skill folders (e.g. `content/` → `archive-content`, `buffer`, `content-planner`, `copywriting`, `humanizer`, `seo`). Invoke as `/hub sub-skill` (`/content plan`, `/business google-ad`, `/system install`) or via plain language — hubs route automatically.
 
-### Template: `new-company/`
+**Single source of truth**: `company-os/.claude/skills/` is the only copy of the skill set in this repo (the old `.claude/skills/` ↔ `new-company/` duplication is gone). When a useful skill is created inside an instantiated workspace, sync it back here so the template gains it.
 
-A clean CompanyOS workspace template (based on mazzeoia/CompanyOS). To spin up a business workspace: copy this folder, rename it to the business name, open Claude Code inside it, run `/system install` (interview that fills `memory/` and appends business rules to its `CLAUDE.md`).
-
-Structure inside the template:
-- `.claude/skills/` — full skill set (identical copy of the repo-root skills)
+Structure of `company-os/`:
+- `.claude/skills/` — the full skill set
 - `CLAUDE.md` — CompanyOS operating rules (memory reading, learn-from-corrections flow, skill creation flow)
 - `memory/` — `company.md`, `preferences.md`, `strategy.md`
 - `brain/` — PARA-method second brain (`0-inbox` … `4-archive`); brand identity lives at `brain/3-resources/identity/design-guide.md`
 - `output/` — `marketing/` and `documents/`; all generated deliverables land here
 - `scripts/` — starts empty; integration scripts (image generation, social publishing) are created on demand by skills and need a `.env` with API keys
 
-Instantiated company workspaces at the repo root (`uriel/`, `monkey/`, `master-claude/`, `obsidian-second-brain/`) are gitignored. Add new workspace folders to `.gitignore` when creating them.
+To spin up a business workspace: copy `company-os/`, rename it to the business name, open Claude Code inside it, run `/system install` (interview that fills `memory/` and appends business rules to its `CLAUDE.md`). Instantiated company workspaces (e.g. `uriel/`, `monkey/`) are gitignored — add new workspace folders to `.gitignore` when creating them inside the repo.
 
-**Skills are duplicated**: `.claude/skills/` and `new-company/.claude/skills/` are identical trees. When editing or adding a skill, apply the change to both, or state explicitly that you changed only one.
+### `tech-os/` — master-claude / AgentSpec
 
-### Parked config: `.claude-tech/`
+- `.claude/agents/` — 58 sub-agents grouped by domain (architect, cloud, data-engineering, dev, platform/Fabric, python, test, workflow)
+- `.claude/commands/` — `/workflow:*` SDD phases (brainstorm → define → design → build → ship), `/review`, `/data-engineering:*`, `/visual-explainer:*`, `/core:*`, `/knowledge:*`
+- `.claude/kb/` — data-engineering knowledge base (spark, dbt, airflow, lakehouse, fabric, terraform, …)
+- `.claude/sdd/` — SDD workflow artifacts (features, reports, archive)
 
-- `agents/` — 58 sub-agents grouped by domain (architect, cloud, data-engineering, dev, platform/Fabric, python, test, workflow)
-- `commands/` — `/workflow:*` SDD phases (brainstorm → define → design → build → ship), `/review`, `/data-engineering:*`, `/visual-explainer:*`, `/core:*`, `/knowledge:*`
-- `kb/` — data-engineering knowledge base (spark, dbt, airflow, lakehouse, fabric, terraform, …)
-- `sdd/` — SDD workflow artifacts (features, reports, archive)
-
-To activate this config, swap it with `.claude/` (preserve `.claude/skills/` if CompanyOS should stay available). Do not document or invoke `.claude-tech/` commands as if they were active.
+Its commands and agents are active only in sessions opened inside `tech-os/` (or in a project that copies `tech-os/.claude/`). Do not document or invoke them as if they were active at the repo root.
