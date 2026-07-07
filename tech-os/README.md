@@ -14,7 +14,7 @@ tech-os/.claude/
 ├── commands/     ← slash commands (SDD workflow, review, data-engineering, ...)
 ├── kb/           ← data-engineering knowledge base
 ├── sdd/          ← SDD workflow artifacts (features, reports, archive)
-├── skills/       ← agent-router, excalidraw-diagram, visual-explainer
+├── skills/       ← agent-router, excalidraw-diagram, pipeline-audit, visual-explainer
 └── settings.json
 ```
 
@@ -37,6 +37,7 @@ Grouped by domain:
 
 - **AgentSpec SDD workflow** — `/workflow:brainstorm` → `define` → `design` → `build` → `ship`, plus `iterate` and `create-pr`. Artifacts land in `.claude/sdd/`.
 - `/review` — code review
+- `/data-engineering:pipeline-audit [chapter] [--quick]` — score a pipeline against the 60+ design patterns from *Data Engineering Design Patterns* (Konieczny, O'Reilly 2025); HTML scorecard + terminal summary
 - `/data-engineering:*` — pipeline, modeling, and quality tasks
 - `/visual-explainer:*` — HTML visual explanations
 - `/core:*`, `/knowledge:*` — utilities and KB management
