@@ -1,4 +1,4 @@
-﻿---
+---
 name: ig-carousel
 description: >
   Creates carousels and visual posts for Instagram, TikTok, LinkedIn with the brand's visual identity.

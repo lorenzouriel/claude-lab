@@ -1,4 +1,4 @@
-﻿---
+---
 name: ig-content-strategy
 description: >
   Use when planning Instagram marketing campaigns, building a growth strategy, or optimizing

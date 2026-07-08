@@ -1,4 +1,4 @@
-﻿---
+---
 name: instagram-publisher
 description: >
   Publishes Instagram carousel posts from local images.

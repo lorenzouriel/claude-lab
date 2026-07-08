@@ -1,4 +1,4 @@
-﻿# Company
+# Company
 
 > Central business memory. Claude reads this file before each answer.
 > Filled by `/install` - you can edit it at any time.

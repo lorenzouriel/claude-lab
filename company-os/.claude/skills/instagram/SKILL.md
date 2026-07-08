@@ -1,4 +1,4 @@
-﻿---
+---
 name: instagram
 description: >
   The Instagram creator skill. Covers content strategy, carousel copy, Reel

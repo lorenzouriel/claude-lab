@@ -1,4 +1,4 @@
-﻿---
+---
 name: apify
 description: >
   Web scraping and automation platform. Extract data from any website,

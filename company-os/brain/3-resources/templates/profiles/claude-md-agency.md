@@ -1,4 +1,4 @@
-﻿# [Agency Name] - CompanyOS
+# [Agency Name] - CompanyOS
 
 > CLAUDE.md template applied to an **agency** - a small team delivering
 > for multiple clients at the same time. The system revolves around

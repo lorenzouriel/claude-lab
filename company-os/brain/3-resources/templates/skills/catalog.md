@@ -1,4 +1,4 @@
-﻿# Skills Catalog
+# Skills Catalog
 
 External skills ready to install. Use this as a reference when creating
 new skills with `/map-routines`, or install the ones that make sense

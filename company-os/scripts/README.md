@@ -1,4 +1,4 @@
-﻿# scripts/ - CompanyOS utilities
+# scripts/ - CompanyOS utilities
 
 Node.js and Python scripts that skills call when they need to do things
 outside pure AI's reach (generate an image, post to social media, render

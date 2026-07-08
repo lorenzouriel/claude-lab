@@ -1,4 +1,4 @@
-﻿# [Your Name] - CompanyOS
+# [Your Name] - CompanyOS
 
 > CLAUDE.md template applied to a **freelancer** - you sell time and
 > talent to third-party clients. The system revolves around capturing

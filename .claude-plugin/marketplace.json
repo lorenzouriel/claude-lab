@@ -1,0 +1,34 @@
+{
+  "name": "claude-lab",
+  "description": "Lorenzo Uriel's Claude Code configs: CompanyOS business skills, AgentSpec software engineering, and BR investments.",
+  "owner": {
+    "name": "Lorenzo Uriel",
+    "email": "lorenzouriel394@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "company-os",
+      "source": "./company-os/.claude",
+      "description": "CompanyOS — skill-driven business operating system: 18 hub skills (content, social platforms, strategy, growth, fundraising, metrics, formats, ...) with 112 sub-skills.",
+      "category": "business",
+      "tags": ["business", "content", "marketing", "social-media", "strategy"],
+      "repository": "https://github.com/lorenzouriel/claude-lab"
+    },
+    {
+      "name": "tech-os",
+      "source": "./tech-os/.claude",
+      "description": "master-claude / AgentSpec — software-engineering config: 58 domain sub-agents, 5-phase SDD workflow commands, data-engineering knowledge base, pipeline-audit skill.",
+      "category": "engineering",
+      "tags": ["data-engineering", "sdd", "spark", "dbt", "airflow", "agents"],
+      "repository": "https://github.com/lorenzouriel/claude-lab"
+    },
+    {
+      "name": "investments-os",
+      "source": "./investments-os/.claude",
+      "description": "BR investments config: 9 specialist agents (portfolio, renda fixa, ações, fundos, tributação), PT-BR knowledge base, portfolio/tax/analysis commands. Educational, not financial advice.",
+      "category": "finance",
+      "tags": ["investments", "brazil", "pt-br", "portfolio", "tax"],
+      "repository": "https://github.com/lorenzouriel/claude-lab"
+    }
+  ]
+}

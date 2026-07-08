@@ -1,4 +1,4 @@
-﻿# [Your Name] - CompanyOS
+# [Your Name] - CompanyOS
 
 > CLAUDE.md template applied to a **solo creator** - one person, one
 > brand, audience as the main asset. The system revolves around what you

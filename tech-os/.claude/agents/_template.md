@@ -1,6 +1,6 @@
 ---
 # ─── REQUIRED (all tiers) ────────────────────────────────────────────────────
-name: {agent-name}
+name: "{agent-name}"
 description: |
   {One-line description of what this agent does}.
   Use PROACTIVELY when {trigger conditions}.

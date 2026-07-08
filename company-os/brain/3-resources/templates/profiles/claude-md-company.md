@@ -1,4 +1,4 @@
-﻿# [Company Name] - CompanyOS
+# [Company Name] - CompanyOS
 
 > CLAUDE.md template applied to a **structured company** - departments,
 > processes, and several fronts running together. The system revolves

@@ -1,4 +1,4 @@
-﻿# CompanyOS - Business operating system
+# CompanyOS - Business operating system
 
 Your company runs on top of this file. This is where the CompanyOS
 operating rules live - how Claude reads context, learns from corrections,

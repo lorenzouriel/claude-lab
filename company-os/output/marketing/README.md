@@ -1,4 +1,4 @@
-﻿# output/marketing/ - CompanyOS outputs
+# output/marketing/ - CompanyOS outputs
 
 Everything marketing skills produce lands here. CompanyOS skills already
 know where to save - you rarely need to create folders manually.

@@ -1,0 +1,13 @@
+{
+  "name": "investments-os",
+  "displayName": "investments-os",
+  "version": "1.0.0",
+  "description": "BR investments config: 9 specialist agents (portfolio, renda fixa, ações, fundos, tributação), PT-BR knowledge base, and portfolio/tax/analysis commands. Educational analysis, not financial advice.",
+  "author": {
+    "name": "Lorenzo Uriel",
+    "email": "lorenzouriel394@gmail.com"
+  },
+  "repository": "https://github.com/lorenzouriel/claude-lab",
+  "license": "MIT",
+  "keywords": ["investments", "brazil", "pt-br", "portfolio", "tax"]
+}

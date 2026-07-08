@@ -1,4 +1,4 @@
-﻿# output/documents/ - general CompanyOS outputs
+# output/documents/ - general CompanyOS outputs
 
 Folder for any output that is not pure marketing (does not fit in
 `output/marketing/`).
