@@ -16,7 +16,7 @@ The repo is organized as **self-contained domain folders**, each carrying its ow
 
 1. **`company-os/`** — CompanyOS, a skill-driven business operating system. Also the template for new business workspaces.
 2. **`tech-os/`** — master-claude / AgentSpec, the software-engineering config (agents, SDD commands, data-engineering knowledge base).
-3. **`investments-os/`** — reserved for a future investments config; its `.claude/` is empty.
+3. **`investments-os/`** — the investments config for a Brazilian individual investor (agents, commands, PT-BR knowledge base distilled from the owner's study notes).
 
 ## Architecture
 
@@ -46,3 +46,15 @@ To spin up a business workspace: copy `company-os/`, rename it to the business n
 - `.claude/sdd/` — SDD workflow artifacts (features, reports, archive)
 
 Its commands and agents are active only in sessions opened inside `tech-os/` (or in a project that copies `tech-os/.claude/`). Do not document or invoke them as if they were active at the repo root.
+
+### `investments-os/` — investments
+
+Mirrors the tech-os architecture for Brazilian personal investing:
+
+- `.claude/agents/` — 9 sub-agents (architect, analyst ×3, tax, research, education ×2, knowledge)
+- `.claude/commands/` — `/portfolio:*`, `/analyze:*`, `/tax:*`, `/research:mercado`, `/learn:topico`, `/knowledge:ingest`
+- `.claude/kb/` — PT-BR KB in 7 domains (renda-fixa, renda-variavel, fundos, tributacao, carteira, analise, dados-mercado), registered in `kb/_index.yaml`; `dados-mercado` catalogs the free no-key APIs (BCB, Tesouro Transparente, Yahoo `.SA`, CVM, …) agents use for live data — account-gated MCPs are documented opt-ins only
+- `portfolio/` — local portfolio state (CSVs, gitignored; schemas in its README)
+- `.claude/skills/agent-router/` — session routing rules
+
+**Two layers**: the raw study notes at the folder root (`Renda Fixa/`, `Renda Variável/`, `Fundos de Investimento/`, `Tributação/`, root .md files) are the owner's Obsidian vault and are **read-only**; the KB is the distilled layer, synced via `/knowledge:ingest`. Operating rules in `investments-os/CLAUDE.md` (KB-first, dated market data, educational-not-advice).

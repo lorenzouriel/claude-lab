@@ -1,0 +1,231 @@
+# Knowledge Base Index — investments-os
+# Machine-readable registry for KB domains
+# Content language: PT-BR (distilled from the study notes at the investments-os root)
+
+version: "1.0"
+last_updated: "2026-07-07"
+
+# File Size Limits (SINGLE SOURCE OF TRUTH)
+limits:
+  quick_reference: 100
+  concept: 150
+  pattern: 200
+
+# Source material
+# Raw study notes live OUTSIDE .claude/, at the investments-os root:
+#   Renda Fixa/, Renda Variável/, Fundos de Investimento/, Tributação/,
+#   Glossário Inicial.md, Montando a Sua Carteira.md
+# The KB is the distilled, agent-ready layer. When notes change, run /knowledge:ingest.
+
+domains:
+
+  renda-fixa:
+    name: renda-fixa
+    description: "Renda fixa brasileira — Tesouro Direto, CDB/CDI, LCI/LCA, debêntures, poupança, COE, FGC, juro real"
+    path: renda-fixa/
+    source_notes: "../Renda Fixa/"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: pre-vs-pos-fixado
+        path: concepts/pre-vs-pos-fixado.md
+        confidence: 0.95
+      - name: inflacao-e-juro-real
+        path: concepts/inflacao-e-juro-real.md
+        confidence: 0.95
+      - name: tesouro-direto
+        path: concepts/tesouro-direto.md
+        confidence: 0.95
+      - name: fgc
+        path: concepts/fgc.md
+        confidence: 0.95
+    patterns:
+      - name: escolher-titulo
+        path: patterns/escolher-titulo.md
+        confidence: 0.90
+      - name: comparacao-liquida-gross-up
+        path: patterns/comparacao-liquida-gross-up.md
+        confidence: 0.95
+      - name: escada-de-vencimentos
+        path: patterns/escada-de-vencimentos.md
+        confidence: 0.85
+
+  renda-variavel:
+    name: renda-variavel
+    description: "Renda variável — ações (ON/PN/units), B3, IPO, derivativos, riscos, estratégias de investimento"
+    path: renda-variavel/
+    source_notes: "../Renda Variável/"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: acoes
+        path: concepts/acoes.md
+        confidence: 0.95
+      - name: derivativos
+        path: concepts/derivativos.md
+        confidence: 0.90
+      - name: riscos
+        path: concepts/riscos.md
+        confidence: 0.95
+      - name: ipo
+        path: concepts/ipo.md
+        confidence: 0.90
+    patterns:
+      - name: estrategias-de-investimento
+        path: patterns/estrategias-de-investimento.md
+        confidence: 0.90
+      - name: analise-fundamentalista
+        path: patterns/analise-fundamentalista.md
+        confidence: 0.90
+      - name: analise-tecnica
+        path: patterns/analise-tecnica.md
+        confidence: 0.85
+
+  fundos:
+    name: fundos
+    description: "Fundos de investimento — classes CVM, taxas, ETFs, FIIs, previdência PGBL/VGBL"
+    path: fundos/
+    source_notes: "../Fundos de Investimento/"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: fundos-basicos
+        path: concepts/fundos-basicos.md
+        confidence: 0.95
+      - name: taxas
+        path: concepts/taxas.md
+        confidence: 0.95
+      - name: etf
+        path: concepts/etf.md
+        confidence: 0.95
+      - name: previdencia
+        path: concepts/previdencia.md
+        confidence: 0.90
+    patterns:
+      - name: escolher-fundo
+        path: patterns/escolher-fundo.md
+        confidence: 0.85
+      - name: etf-vs-fundo-vs-acao
+        path: patterns/etf-vs-fundo-vs-acao.md
+        confidence: 0.90
+
+  tributacao:
+    name: tributacao
+    description: "Tributação de investimentos — IR regressivo, DARF, come-cotas, IOF, isenções, compensação de prejuízos"
+    path: tributacao/
+    source_notes: "../Tributação/"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: ir-renda-fixa
+        path: concepts/ir-renda-fixa.md
+        confidence: 0.95
+      - name: ir-renda-variavel
+        path: concepts/ir-renda-variavel.md
+        confidence: 0.95
+      - name: ir-fundos-come-cotas
+        path: concepts/ir-fundos-come-cotas.md
+        confidence: 0.95
+      - name: iof
+        path: concepts/iof.md
+        confidence: 0.95
+    patterns:
+      - name: apuracao-darf
+        path: patterns/apuracao-darf.md
+        confidence: 0.90
+      - name: compensacao-prejuizos
+        path: patterns/compensacao-prejuizos.md
+        confidence: 0.90
+      - name: otimizacao-fiscal
+        path: patterns/otimizacao-fiscal.md
+        confidence: 0.90
+
+  carteira:
+    name: carteira
+    description: "Construção de carteira — perfil de risco, três baldes por prazo, diversificação, rebalanceamento, oportunidades"
+    path: carteira/
+    source_notes: "../Montando a Sua Carteira.md"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: perfil-de-risco
+        path: concepts/perfil-de-risco.md
+        confidence: 0.95
+      - name: horizonte-e-objetivos
+        path: concepts/horizonte-e-objetivos.md
+        confidence: 0.95
+      - name: diversificacao
+        path: concepts/diversificacao.md
+        confidence: 0.95
+    patterns:
+      - name: alocacao-tres-baldes
+        path: patterns/alocacao-tres-baldes.md
+        confidence: 0.95
+      - name: rebalanceamento
+        path: patterns/rebalanceamento.md
+        confidence: 0.95
+      - name: aproveitando-oportunidades
+        path: patterns/aproveitando-oportunidades.md
+        confidence: 0.90
+
+  dados-mercado:
+    name: dados-mercado
+    description: "APIs gratuitas e sem chave para dados atuais — BCB SGS/Focus, Tesouro Transparente, Yahoo/Fundamentus, CVM, AwesomeAPI, CoinGecko; MCPs opcionais documentados"
+    path: dados-mercado/
+    source_notes: "verificado ao vivo em 2026-07-07 (não deriva das notas de estudo)"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    reference:
+      - name: bcb
+        path: reference/bcb.md
+        confidence: 0.95
+      - name: tesouro-transparente
+        path: reference/tesouro-transparente.md
+        confidence: 0.90
+      - name: b3-cotacoes
+        path: reference/b3-cotacoes.md
+        confidence: 0.85
+      - name: cvm-fundos
+        path: reference/cvm-fundos.md
+        confidence: 0.90
+      - name: cambio-cripto
+        path: reference/cambio-cripto.md
+        confidence: 0.90
+      - name: mcps-opcionais
+        path: reference/mcps-opcionais.md
+        confidence: 0.85
+
+  analise:
+    name: analise
+    description: "Análise e valuation — indicadores fundamentalistas, múltiplos, DCF simplificado, checklists de ação/FII, position sizing"
+    path: analise/
+    source_notes: "../Renda Variável/Ações.md, ../Glossário Inicial.md"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: indicadores-fundamentalistas
+        path: concepts/indicadores-fundamentalistas.md
+        confidence: 0.90
+      - name: valuation
+        path: concepts/valuation.md
+        confidence: 0.85
+      - name: indicadores-tecnicos
+        path: concepts/indicadores-tecnicos.md
+        confidence: 0.85
+    patterns:
+      - name: checklist-analise-acao
+        path: patterns/checklist-analise-acao.md
+        confidence: 0.90
+      - name: checklist-analise-fii
+        path: patterns/checklist-analise-fii.md
+        confidence: 0.85
+      - name: position-sizing
+        path: patterns/position-sizing.md
+        confidence: 0.90

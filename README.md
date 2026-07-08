@@ -19,8 +19,8 @@ claude-lab/
 │   └── SETUP.md           ← non-technical setup guide
 ├── tech-os/               ← master-claude / AgentSpec: software-engineering config
 │   └── .claude/           ← agents, commands, kb, sdd, skills
-├── investments-os/        ← reserved for a future investments config (empty for now)
-│   └── .claude/
+├── investments-os/        ← investments config (BR investor) + raw study notes
+│   └── .claude/           ← agents, commands, kb, skills
 ├── docs/                  ← repo assets
 ├── CLAUDE.md              ← lab operating rules (loaded when working on the lab itself)
 └── .mcp.json              ← Playwright MCP
@@ -65,9 +65,14 @@ The software-engineering config. Open Claude Code inside `tech-os/` (or copy `te
 - **`kb/`** — knowledge base: spark, dbt, airflow, lakehouse, medallion, fabric, terraform, streaming, sql-patterns, prompt-engineering, ...
 - **`sdd/`** — workflow artifacts (features, reports, archive of shipped features)
 
-### `investments-os/` — reserved
+### `investments-os/` — investments
 
-Placeholder for a future investments/finance config. Its `.claude/` is empty.
+The investments config for a Brazilian individual investor, mirroring the tech-os architecture. Open Claude Code inside `investments-os/` to use it.
+
+- **`agents/`** — 9 sub-agents: portfolio-architect, renda-fixa/acoes/fundos analysts, tributacao-specialist, market-researcher, investment-educator, risk-profiler, kb-curator
+- **`commands/`** — `/portfolio:*` (review, allocate, rebalance), `/analyze:*` (acao, fundo, renda-fixa), `/tax:*` (darf, otimizar), `/research:mercado`, `/learn:topico`, `/knowledge:ingest`
+- **`kb/`** — PT-BR knowledge base distilled from the owner's study notes: renda-fixa, renda-variavel, fundos, tributacao, carteira, analise
+- **Raw study notes** live at the folder root (Obsidian vault, read-only source layer); `/knowledge:ingest` distills them into the KB
 
 ---
 
