@@ -1,8 +1,3 @@
-# Dashboard template — build artifacts only
-_dashboard-template/node_modules/
-_dashboard-template/dist/
-_dashboard-template/.vite/
-
 # Playwright
 .playwright-mcp/
 
@@ -14,3 +9,8 @@ C:\Users\Uriel\workspace\labs\claude-lab\.claude\settings.local.json
 
 # investments-os — personal financial data (templates in portfolio/README.md are committed)
 investments-os/portfolio/*.csv
+
+# Instantiated company workspaces
+monkey/
+jbr-pericias/
+company-os-launch/
