@@ -10,7 +10,7 @@ description: >
 
 # Metrics — Retention & Measurement
 
-Orchestrator for retention and metrics tasks. Routes to the right sub-skill based on your request. All reports are saved to `output/strategy/retention-metrics/`.
+Orchestrator for retention and metrics tasks. Routes to the right sub-skill based on your request. All reports are saved to `resources/retention-metrics/`.
 
 ## Command Router
 
@@ -23,7 +23,7 @@ Orchestrator for retention and metrics tasks. Routes to the right sub-skill base
 
 ## Recommended Flow
 
-Skills chain their outputs (each detects prior reports in `output/strategy/`):
+Skills chain their outputs (each detects prior reports in `resources/retention-metrics/`):
 
 1. `metrics-dashboard` → define the north star and funnel metrics
 2. `onboarding-flow` → optimize activation

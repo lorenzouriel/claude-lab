@@ -53,7 +53,7 @@ Then immediately establish project directory:
 PROJECT DIRECTORY SETUP
 ════════════════════════════════════════════════════════════════════════════════
 
-StratArts saves analysis outputs to a dedicated 'output/strategy/' folder in your project.
+StratArts saves analysis outputs to a dedicated 'resources/foundation-strategy/' folder in your project.
 
 Current working directory: {CURRENT_WORKING_DIR}
 
@@ -69,10 +69,10 @@ Select option (a, b, or c): _
 **Implementation Logic:**
 
 **If user selects `a` (current directory)**:
-1. Check if `output/strategy/` folder exists
-2. If exists and contains StratArts files → Confirm: "✓ Using existing output/strategy/ folder"
+1. Check if `resources/foundation-strategy/` folder exists
+2. If exists and contains StratArts files → Confirm: "✓ Using existing resources/foundation-strategy/ folder"
 3. If exists but contains non-StratArts files → Show conflict warning (see below)
-4. If doesn't exist → Create `output/strategy/foundation-strategy/` and confirm
+4. If doesn't exist → Create `resources/foundation-strategy/` and confirm
 5. Store project directory path for use in context signature
 
 **If user selects `b` (different directory)**:
@@ -92,9 +92,9 @@ Please provide:
 Then create directory structure and confirm.
 
 **Folder Conflict Handling:**
-If `output/strategy/` exists with non-StratArts files:
+If `resources/foundation-strategy/` exists with non-StratArts files:
 ```
-⚠️  Found existing 'output/strategy' folder, but it contains non-StratArts files.
+⚠️  Found existing 'resources/foundation-strategy' folder, but it contains non-StratArts files.
 
 Options:
 a: Use anyway - StratArts will organize outputs in subfolders
@@ -723,17 +723,17 @@ Select option (1, 2, or 3): _
 
 **ALL options save the text report first to this location:**
 ```
-{PROJECT_DIRECTORY}/output/strategy/foundation-strategy/business-idea-validator-{YYYY-MM-DD-HHMMSS}.md
+{PROJECT_DIRECTORY}/resources/foundation-strategy/business-idea-validator-{YYYY-MM-DD-HHMMSS}.md
 ```
 
 #### If user selects Option 1:
 1. Save the markdown report
-2. Confirm: "✓ Report saved to: output/strategy/foundation-strategy/business-idea-validator-{timestamp}.md"
+2. Confirm: "✓ Report saved to: resources/foundation-strategy/business-idea-validator-{timestamp}.md"
 3. Proceed to Step 14 (Skill Chaining)
 
 #### If user selects Option 2:
 1. Save the markdown report
-2. Confirm: "✓ Text report saved to: output/strategy/foundation-strategy/business-idea-validator-{timestamp}.md"
+2. Confirm: "✓ Text report saved to: resources/foundation-strategy/business-idea-validator-{timestamp}.md"
 3. Regenerate report with terminal ASCII visualizations:
    - Validation Score Bars (5 dimensions)
    - Problem-Solution Fit Matrix
@@ -758,7 +758,7 @@ Select option (1 or 2): _
 
 **Regardless of selection (1 or 2), save visualized terminal output to:**
 ```
-{PROJECT_DIRECTORY}/output/strategy/foundation-strategy/business-idea-validator-{YYYY-MM-DD-HHMMSS}.txt
+{PROJECT_DIRECTORY}/resources/foundation-strategy/business-idea-validator-{YYYY-MM-DD-HHMMSS}.txt
 ```
 
 **If sub-option 1**: Proceed to Step 14 (Skill Chaining)
@@ -767,11 +767,11 @@ Select option (1 or 2): _
 
 #### If user selects Option 3:
 1. Save the markdown report
-2. Confirm: "✓ Text report saved to: output/strategy/foundation-strategy/business-idea-validator-{timestamp}.md"
+2. Confirm: "✓ Text report saved to: resources/foundation-strategy/business-idea-validator-{timestamp}.md"
 3. Generate interactive HTML report following the Editorial Template Specification below
 4. Save HTML to:
 ```
-{PROJECT_DIRECTORY}/output/strategy/foundation-strategy/business-idea-validator-{YYYY-MM-DD-HHMMSS}.html
+{PROJECT_DIRECTORY}/resources/foundation-strategy/business-idea-validator-{YYYY-MM-DD-HHMMSS}.html
 ```
 5. Confirm: "✓ Interactive HTML report generated"
 6. Display features:
@@ -781,7 +781,7 @@ Select option (1 or 2): _
    • All related charts update automatically
    • Reset button to restore original data
 
-   File path: {PROJECT_DIRECTORY}/output/strategy/foundation-strategy/business-idea-validator-{timestamp}.html
+   File path: {PROJECT_DIRECTORY}/resources/foundation-strategy/business-idea-validator-{timestamp}.html
 ```
 7. Proceed to Step 14 (Skill Chaining)
 
@@ -815,7 +815,7 @@ Select option (a or b): _
 STRATEGY SESSION COMPLETE
 ════════════════════════════════════════════════════════════════════════════════
 
-✓ All outputs saved to output/strategy/ directory
+✓ All outputs saved to resources/foundation-strategy/ directory
 
 Thank you for using StratArts!
 To resume later, run any skill from the recommended sequence.

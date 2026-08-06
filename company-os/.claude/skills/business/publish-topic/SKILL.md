@@ -13,12 +13,12 @@ Orchestrator skill. Takes a topic → delivers a blog post + carousel + 3 captio
 
 ## Dependencies
 
-- **Content strategy:** `output/marketing/seo/05-content-strategy.md` (master list of topics, created by `/content seo`)
-- **SEO research:** `output/marketing/seo/01-demand-research.md`, `02-competition-analysis.md`, `08-ai-geo-optimization.md`
+- **Content strategy:** `areas/marketing/seo/05-content-strategy.md` (master list of topics, created by `/content seo`)
+- **SEO research:** `areas/marketing/seo/01-demand-research.md`, `02-competition-analysis.md`, `08-ai-geo-optimization.md`
 - **Carousel skill:** `.claude/skills/instagram/ig-carousel/SKILL.md` — use for the carousel phase
 - **Site (blog):** `site/` — destination for articles. Common structure: Astro at `site/src/content/blog/`, or WordPress, or other. If no site exists yet, ask before proceeding.
 - **Tone of voice:** `memory/preferences.md`
-- **Context:** `memory/company.md`, `brain/3-resources/identity/design-guide.md`
+- **Context:** `memory/company.md`, `resources/identity/design-guide.md`
 
 ---
 
@@ -26,7 +26,7 @@ Orchestrator skill. Takes a topic → delivers a blog post + carousel + 3 captio
 
 If the user passed an explicit topic → use it.
 
-If nothing was passed → read `output/marketing/seo/05-content-strategy.md`, list the satellite articles + pillar page, and ask:
+If nothing was passed → read `areas/marketing/seo/05-content-strategy.md`, list the satellite articles + pillar page, and ask:
 
 > "Which topic from the strategy? (list of options)"
 
@@ -88,18 +88,18 @@ draft: true
 
 **Without asking, go straight to carousel creation** using the Instagram visual skill (ig-carousel) — text-only carousel type.
 
-**Folder:** `output/marketing/content/<blog-slug>-<YYYY-MM-DD>/`
+**Folder:** `areas/marketing/content/<blog-slug>-<YYYY-MM-DD>/`
 
 Slide structure:
 - **Slide 1 — Cover:** same title as the blog (or a shorter variation)
 - **Slides 2-6:** the key points of the blog (1 idea per slide, natural phrasing — not dry bullets)
 - **Last slide — CTA to the blog:** "Full article at our blog" + URL `<domain>/blog/<slug>`
 
-**Cover style:** follow feed alternation sequence (light → dark/photo → accent color → repeat) — check the most recent folder in `output/marketing/content/` to maintain consistency.
+**Cover style:** follow feed alternation sequence (light → dark/photo → accent color → repeat) — check the most recent folder in `areas/marketing/content/` to maintain consistency.
 
 ## Step 4 — Captions (3 versions)
 
-Save all in `output/marketing/content/<carousel-folder>/`:
+Save all in `areas/marketing/content/<carousel-folder>/`:
 
 **`caption.md`** (Instagram + Facebook — same text):
 - Hook on the first line (question, bold statement, or number)
@@ -126,7 +126,7 @@ At the end, show the user a clear list:
 
 ```
 ✓ Blog post: <path>/<slug>.md (draft)
-✓ Carousel: output/marketing/content/<folder>/
+✓ Carousel: areas/marketing/content/<folder>/
     carrossel.html + render.js
     PNGs in instagram/
 ✓ Captions:
@@ -137,7 +137,7 @@ At the end, show the user a clear list:
 To publish:
 1. Review the blog → flip draft: false when ready
 2. Rebuild the site (if Astro/Hugo/etc) or paste into CMS
-3. Render carousel PNGs: cd output/marketing/content/<folder> && node render.js
+3. Render carousel PNGs: cd areas/marketing/content/<folder> && node render.js
 4. Post carousel on Instagram + Facebook with caption.md (or use /business approve)
 5. Post text + link on LinkedIn with caption-linkedin.md
 ```

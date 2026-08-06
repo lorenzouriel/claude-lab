@@ -10,7 +10,7 @@ description: >
 
 # Strategy — Foundation
 
-Orchestrator for foundation strategy tasks. Routes to the right sub-skill based on your request. All reports are saved to `output/strategy/foundation-strategy/`.
+Orchestrator for foundation strategy tasks. Routes to the right sub-skill based on your request. All reports are saved to `resources/foundation-strategy/`.
 
 ## Command Router
 
@@ -26,7 +26,7 @@ Orchestrator for foundation strategy tasks. Routes to the right sub-skill based 
 
 ## Recommended Flow
 
-Skills chain their outputs (each detects prior reports in `output/strategy/`):
+Skills chain their outputs (each detects prior reports in `resources/foundation-strategy/`):
 
 1. `business-idea` → validate before investing time
 2. `market-opportunity` → size the market

@@ -75,7 +75,7 @@ Select option (a or b): _
 PROJECT DIRECTORY SETUP
 ════════════════════════════════════════════════════════════════════════════════
 
-StratArts saves analysis outputs to a dedicated 'output/strategy/' folder in your project.
+StratArts saves analysis outputs to a dedicated 'resources/foundation-strategy/' folder in your project.
 
 Current working directory: {CURRENT_WORKING_DIR}
 
@@ -90,7 +90,7 @@ Select option (a, b, or c): _
 
 **Handle each option per input template specification.**
 
-After establishing project directory, verify/create `output/strategy/foundation-strategy/` subfolder.
+After establishing project directory, verify/create `resources/foundation-strategy/` subfolder.
 
 ---
 
@@ -101,7 +101,7 @@ After establishing project directory, verify/create `output/strategy/foundation-
 ### Scan for business-idea-validator Output
 
 **Check two sources (priority order):**
-1. Project directory: `{PROJECT_DIR}/output/strategy/foundation-strategy/business-idea-validator-*.md`
+1. Project directory: `{PROJECT_DIR}/resources/foundation-strategy/business-idea-validator-*.md`
 2. Conversation history: Look for "Context Signature: business-idea-validator"
 
 ### Scenario A: ✅ IDEAL (business-idea-validator Detected)
@@ -888,10 +888,10 @@ Select option (1, 2, or 3): _
 
 ### Option 1: Save Text Output Only
 
-Save to: `{PROJECT_DIR}/output/strategy/foundation-strategy/market-opportunity-analyzer-{YYYY-MM-DD-HHMMSS}.md`
+Save to: `{PROJECT_DIR}/resources/foundation-strategy/market-opportunity-analyzer-{YYYY-MM-DD-HHMMSS}.md`
 
 ```
-✓ Report saved to: output/strategy/foundation-strategy/market-opportunity-analyzer-{timestamp}.md
+✓ Report saved to: resources/foundation-strategy/market-opportunity-analyzer-{timestamp}.md
 ```
 
 ### Option 2: Save and Generate Terminal Visualizations
@@ -905,7 +905,7 @@ Save text version first, then generate ASCII charts:
 4. Porter's Five Forces Radar (text-based radar)
 5. Risk/Opportunity Matrix (2x2 quadrant)
 
-Save visualization to: `{PROJECT_DIR}/output/strategy/foundation-strategy/market-opportunity-analyzer-{timestamp}.txt`
+Save visualization to: `{PROJECT_DIR}/resources/foundation-strategy/market-opportunity-analyzer-{timestamp}.txt`
 
 Then ask:
 ```
@@ -939,12 +939,12 @@ Save text version first, then generate HTML with Chart.js visualizations.
 - Containers: `#1a1a1a`
 - Text: `#f5f5f5`
 
-Save to: `{PROJECT_DIR}/output/strategy/foundation-strategy/market-opportunity-analyzer-{timestamp}.html`
+Save to: `{PROJECT_DIR}/resources/foundation-strategy/market-opportunity-analyzer-{timestamp}.html`
 
 ```
-✓ Text report saved: output/strategy/foundation-strategy/market-opportunity-analyzer-{timestamp}.md
+✓ Text report saved: resources/foundation-strategy/market-opportunity-analyzer-{timestamp}.md
 ✓ HTML report generated
-✓ Saved to: output/strategy/foundation-strategy/market-opportunity-analyzer-{timestamp}.html
+✓ Saved to: resources/foundation-strategy/market-opportunity-analyzer-{timestamp}.html
 
 💡 Features:
    • Professional editorial dark design
@@ -979,7 +979,7 @@ Select option (a or b): _
 STRATEGY SESSION COMPLETE
 ════════════════════════════════════════════════════════════════════════════════
 
-✓ All outputs saved to output/strategy/ directory
+✓ All outputs saved to resources/foundation-strategy/ directory
 
 Thank you for using StratArts!
 To resume later, run any skill from the recommended sequence.

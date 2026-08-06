@@ -60,7 +60,7 @@ Before delivering, check:
 ## Output
 
 Write the full manuscript to
-`brain/2-areas/products/ebook-<slug>/ebook-manuscript.md`. Report: total
+`areas/products/ebook-<slug>/ebook-manuscript.md`. Report: total
 word count, chapter count, and note this file is Pandoc/typst-ready for
 PDF/EPUB conversion (e.g. `pandoc ebook-manuscript.md -o ebook.epub`) —
 do not run the conversion yourself unless asked.

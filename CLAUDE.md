@@ -32,9 +32,8 @@ Structure of `company-os/`:
 - `.claude/skills/` — the full skill set
 - `CLAUDE.md` — CompanyOS operating rules (memory reading, learn-from-corrections flow, skill creation flow)
 - `memory/` — `company.md`, `preferences.md`, `strategy.md`
-- `brain/` — PARA-method second brain (`0-inbox` … `4-archive`); brand identity lives at `brain/3-resources/identity/design-guide.md`
-- `output/` — `marketing/` and `documents/`; all generated deliverables land here
-- `scripts/` — starts empty; integration scripts (image generation, social publishing) are created on demand by skills and need a `.env` with API keys
+- PARA-method second brain, as flat top-level folders: `inbox/`, `projects/`, `areas/` (also where recurring deliverables like marketing content land), `resources/` (reference + one-off documents; brand identity lives at `resources/identity/design-guide.md`), `archive/`
+- `resources/scripts/` — starts empty; integration scripts (image generation, social publishing) are created on demand by skills and need a `.env` with API keys
 
 To spin up a business workspace: copy `company-os/`, rename it to the business name, open Claude Code inside it, run `/system install` (interview that fills `memory/` and appends business rules to its `CLAUDE.md`). Instantiated company workspaces (e.g. `uriel/`, `monkey/`) are gitignored — add new workspace folders to `.gitignore` when creating them inside the repo.
 

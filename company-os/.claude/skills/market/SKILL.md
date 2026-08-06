@@ -9,7 +9,7 @@ description: >
 
 # Market — Product & Market Strategy
 
-Orchestrator for market and product strategy tasks. Routes to the right sub-skill based on your request. All reports are saved to `output/strategy/market-product-strategy/`.
+Orchestrator for market and product strategy tasks. Routes to the right sub-skill based on your request. All reports are saved to `resources/market-product-strategy/`.
 
 ## Command Router
 
@@ -22,7 +22,7 @@ Orchestrator for market and product strategy tasks. Routes to the right sub-skil
 
 ## Recommended Flow
 
-Skills chain their outputs (each detects prior reports in `output/strategy/`). Foundation work in `strategy/` feeds these:
+Skills chain their outputs (each detects prior reports in `resources/market-product-strategy/`). Foundation work in `strategy/` feeds these:
 
 1. `pricing-strategy` → set the model and tiers
 2. `feature-prioritization` → decide what to build

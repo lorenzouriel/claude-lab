@@ -1,7 +1,7 @@
 ---
 name: newsletter-archive
 description: >
-  Archives past Substack newsletters into output/marketing/content/YYYY/MM/WEEK XX/substack/.
+  Archives past Substack newsletters into areas/marketing/content/YYYY/MM/WEEK XX/substack/.
   Uses the Substack public API to collect post slugs, then WebFetch to retrieve
   full article text verbatim. Triggered by: 'archive substack', 'import newsletter history',
   'save my old newsletters', 'pull all my substack posts into the content archive'.
@@ -9,7 +9,7 @@ description: >
 
 # Newsletter Archive
 
-Archives all past Substack posts into `output/marketing/content/YYYY/MM/WEEK XX/substack/`.
+Archives all past Substack posts into `areas/marketing/content/YYYY/MM/WEEK XX/substack/`.
 
 ## Profile
 
@@ -22,7 +22,7 @@ Archives all past Substack posts into `output/marketing/content/YYYY/MM/WEEK XX/
 ## Content archive Path Convention
 
 ```
-output/marketing/content/
+areas/marketing/content/
   YYYY/
     MM/        ← zero-padded (01–12)
       WEEK 01/ ← days 1–7
@@ -108,7 +108,7 @@ Compute path from `post_date`:
 year  = date.strftime('%Y')
 month = date.strftime('%m')
 week  = f"WEEK {min((date.day - 1) // 7 + 1, 4):02d}"
-path  = f"output/marketing/content/{year}/{month}/{week}/substack/{slug}.md"
+path  = f"areas/marketing/content/{year}/{month}/{week}/substack/{slug}.md"
 ```
 
 Create all subfolders if they don't exist. Skip if the file already exists.
@@ -120,7 +120,7 @@ Create all subfolders if they don't exist. Skip if the file already exists.
 Before fetching, scan existing content archive files:
 ```python
 existing = set()
-for f in glob("output/marketing/content/*/*/WEEK */substack/*.md"):
+for f in glob("areas/marketing/content/*/*/WEEK */substack/*.md"):
     existing.add(os.path.basename(f).replace(".md", ""))
 ```
 

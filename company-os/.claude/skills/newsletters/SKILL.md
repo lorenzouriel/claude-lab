@@ -88,7 +88,7 @@ BRAND BLOCK in `newsletter-thumbnail/SKILL.md` filled in by the user. Claude Cod
 
 ### `thumbnail-prompt` — Thumbnail Prompt Generator (Midjourney / DALL·E / SD)
 Generates a paste-ready image-generation prompt in the brand's locked thumbnail style, read
-from `brain/3-resources/identity/design-guide.md` (falls back to a duotone engraving default
+from `resources/identity/design-guide.md` (falls back to a duotone engraving default
 when the guide is blank). No API calls, no image generation. Outputs: primary prompt + one
 alternative + thumbnail-survival tradeoff.
 

@@ -20,7 +20,7 @@ Ask:
 
 ## Step 2 - Check catalog
 
-Read `brain/3-resources/templates/skills/catalog.md` to see whether any mentioned task is already covered by a native Claude Code skill or a CompanyOS-validated skill. If yes, suggest the existing skill instead of creating a new one.
+Read `resources/templates/skills/catalog.md` to see whether any mentioned task is already covered by a native Claude Code skill or a CompanyOS-validated skill. If yes, suggest the existing skill instead of creating a new one.
 
 ## Step 3 - Skill proposals
 

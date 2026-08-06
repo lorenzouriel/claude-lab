@@ -12,7 +12,7 @@ description: >
 
 # Growth — Marketing & Growth Strategy
 
-Orchestrator for marketing and growth strategy tasks. Routes to the right sub-skill based on your request. All reports are saved to `output/strategy/marketing-growth/`.
+Orchestrator for marketing and growth strategy tasks. Routes to the right sub-skill based on your request. All reports are saved to `resources/marketing-growth/`.
 
 ## Command Router
 
@@ -34,7 +34,7 @@ Orchestrator for marketing and growth strategy tasks. Routes to the right sub-sk
 
 ## Recommended Flow
 
-Skills chain their outputs (each detects prior reports in `output/strategy/`):
+Skills chain their outputs (each detects prior reports in `resources/marketing-growth/`):
 
 1. `brand-identity` → define who you are
    - `brand-book` → package the identity as a shareable PDF once assets exist

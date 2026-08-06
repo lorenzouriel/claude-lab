@@ -51,7 +51,7 @@ Then immediately establish project directory:
 PROJECT DIRECTORY SETUP
 ════════════════════════════════════════════════════════════════════════════════
 
-StratArts saves analysis outputs to a dedicated 'output/strategy/' folder in your project.
+StratArts saves analysis outputs to a dedicated 'resources/foundation-strategy/' folder in your project.
 
 Current working directory: {CURRENT_WORKING_DIR}
 
@@ -67,10 +67,10 @@ Select option (a, b, or c): _
 **Implementation Logic:**
 
 **If user selects `a` (current directory)**:
-1. Check if `output/strategy/` folder exists
-2. If exists and contains StratArts files → Confirm: "✓ Using existing output/strategy/ folder"
+1. Check if `resources/foundation-strategy/` folder exists
+2. If exists and contains StratArts files → Confirm: "✓ Using existing resources/foundation-strategy/ folder"
 3. If exists but contains non-StratArts files → Show conflict warning (see below)
-4. If doesn't exist → Create `output/strategy/foundation-strategy/` and confirm
+4. If doesn't exist → Create `resources/foundation-strategy/` and confirm
 5. Store project directory path for use in context signature
 
 **If user selects `b` (different directory)**:
@@ -90,9 +90,9 @@ Please provide:
 Then create directory structure and confirm.
 
 **Folder Conflict Handling:**
-If `output/strategy/` exists with non-StratArts files:
+If `resources/foundation-strategy/` exists with non-StratArts files:
 ```
-⚠️  Found existing 'output/strategy' folder, but it contains non-StratArts files.
+⚠️  Found existing 'resources/foundation-strategy' folder, but it contains non-StratArts files.
 
 Options:
 a: Use anyway - StratArts will organize outputs in subfolders
@@ -110,7 +110,7 @@ Save the established project directory path for:
 
 ### Step 1: Intelligent Context Detection
 
-**Scan `output/strategy/foundation-strategy/` folder for previous skill outputs.**
+**Scan `resources/foundation-strategy/` folder for previous skill outputs.**
 
 Present context detection results:
 
@@ -126,7 +126,7 @@ INTELLIGENT CONTEXT DETECTION
 
 Found: Business Model Canvas analysis
 Date: {DATE}
-File: output/strategy/foundation-strategy/business-model-designer-{TIMESTAMP}.html
+File: resources/foundation-strategy/business-model-designer-{TIMESTAMP}.html
 
 Data I can reuse:
 • Customer segments (ICP)
@@ -149,7 +149,7 @@ Select option (a, b, or c): _
 
 Found: {Analysis type} analysis
 Date: {DATE}
-File: output/strategy/foundation-strategy/{skill-name}-{TIMESTAMP}.html
+File: resources/foundation-strategy/{skill-name}-{TIMESTAMP}.html
 
 Available data:
 • Target customer/ICP

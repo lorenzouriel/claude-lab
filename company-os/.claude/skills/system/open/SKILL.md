@@ -16,7 +16,7 @@ Short and direct. The goal is to load context and return a one-sentence synthesi
    - `memory/company.md`
    - `memory/preferences.md`
    - `memory/strategy.md`
-   - `brain/3-resources/identity/design-guide.md` (only to know whether it is filled or blank)
+   - `resources/identity/design-guide.md` (only to know whether it is filled or blank)
 2. If `memory/company.md` is blank or contains only template placeholder text, stop here. Do not generate the session card. Say:
    > "CompanyOS is not configured yet. Run `/system install` — it takes 5 minutes and the system will know your business."
    Do not list which files are missing. Do not offer to continue anyway.

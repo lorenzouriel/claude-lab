@@ -15,8 +15,8 @@ Builds the whole campaign as import-ready CSVs for Google Ads Editor. From brief
 
 - **Business context:** `memory/company.md` (product/service, audience, region, differentiators)
 - **Tone of voice:** `memory/preferences.md`
-- **SEO research if available:** `output/marketing/seo/01-demand-research.md`, `06-google-ads.md` — use as input
-- **Outputs:** `output/marketing/campaigns/google-ads-<YYYY-MM-DD>/`
+- **SEO research if available:** `areas/marketing/seo/01-demand-research.md`, `06-google-ads.md` — use as input
+- **Outputs:** `areas/marketing/campaigns/google-ads-<YYYY-MM-DD>/`
 
 ---
 
@@ -31,11 +31,11 @@ If no briefing was provided, ask these questions one at a time:
 5. **Goal:** calls / WhatsApp / form / in-person visit?
 6. **Does a site/landing page exist?** URL?
 
-If `output/marketing/seo/06-google-ads.md` already exists (created by `/content seo`), use it as the base — skip questions already answered there.
+If `areas/marketing/seo/06-google-ads.md` already exists (created by `/content seo`), use it as the base — skip questions already answered there.
 
 ## Step 2 — Keyword research
 
-If `output/marketing/seo/01-demand-research.md` exists, use the top 10-20 priority terms (transactional + commercial intent).
+If `areas/marketing/seo/01-demand-research.md` exists, use the top 10-20 priority terms (transactional + commercial intent).
 
 If it does not exist, generate:
 - 30-50 seed terms based on the briefing
@@ -117,7 +117,7 @@ Generate `settings.md` with:
 Final folder structure:
 
 ```
-output/marketing/campaigns/google-ads-<YYYY-MM-DD>/
+areas/marketing/campaigns/google-ads-<YYYY-MM-DD>/
   campaigns.csv           ← one row per campaign
   ad-groups.csv           ← one row per ad group
   keywords.csv            ← keywords + match type
@@ -138,7 +138,7 @@ output/marketing/campaigns/google-ads-<YYYY-MM-DD>/
 Show the user:
 
 ```
-✓ Campaign ready: output/marketing/campaigns/google-ads-<YYYY-MM-DD>/
+✓ Campaign ready: areas/marketing/campaigns/google-ads-<YYYY-MM-DD>/
 
 Structure:
   <N> campaigns

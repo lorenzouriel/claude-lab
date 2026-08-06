@@ -32,9 +32,9 @@ Also requires:
 - Site with automatic deploy from the `main` branch (Netlify, Vercel, etc.)
 - Instagram Business account connected to the Facebook Page
 - Facebook Page with correct permissions on the Meta App
-- `scripts/post-instagram.js` and `scripts/post-facebook.js` configured
+- `resources/scripts/post-instagram.js` and `resources/scripts/post-facebook.js` configured
 
-If anything is missing: stop and point to setup. Create `output/documents/meta-api-setup.md` if it does not exist.
+If anything is missing: stop and point to setup. Create `resources/documents/meta-api-setup.md` if it does not exist.
 
 ## Argument
 
@@ -49,7 +49,7 @@ If the user did not pass a slug, list all blogs with `draft: true` and ask which
 ## Step 1 — Locate and validate files
 
 - Blog: `site/.../blog/<slug>.md` (path depends on stack — Astro, Hugo, WordPress, etc.)
-- Carousel: find `output/marketing/content/<slug>-*` (folder has a date suffix)
+- Carousel: find `areas/marketing/content/<slug>-*` (folder has a date suffix)
 - Validate that PNGs exist at `<carousel-folder>/instagram/slide-XX.png` (2 to 10 slides)
 - Validate that `caption.md` and `caption-linkedin.md` exist
 
@@ -71,7 +71,7 @@ Edit the blog frontmatter: `draft: true` → `draft: false`.
 
 ## Step 4 — Copy PNGs to the site's public folder
 
-- Source: `output/marketing/content/<slug>-<date>/instagram/slide-*.png`
+- Source: `areas/marketing/content/<slug>-<date>/instagram/slide-*.png`
 - Destination: `site/.../public/img/posts/<slug>/slide-*.png`
 - Create destination folder if it does not exist
 - Overwrite if already exists (handles re-publishing)
@@ -107,7 +107,7 @@ If deploy does not come up in 5 minutes: report, ask the user whether to continu
 ## Step 7 — Post to Instagram
 
 ```bash
-node --env-file=.env scripts/post-instagram.js output/marketing/content/<slug>-<date>
+node --env-file=.env resources/scripts/post-instagram.js areas/marketing/content/<slug>-<date>
 ```
 
 Capture the returned post ID. If this fails: **stop. Do not proceed to Facebook.** Report the error. The site is already live — only the feed post failed.
@@ -115,7 +115,7 @@ Capture the returned post ID. If this fails: **stop. Do not proceed to Facebook.
 ## Step 8 — Post to Facebook
 
 ```bash
-node --env-file=.env scripts/post-facebook.js output/marketing/content/<slug>-<date>
+node --env-file=.env resources/scripts/post-facebook.js areas/marketing/content/<slug>-<date>
 ```
 
 Capture the returned post ID. If Facebook fails but Instagram succeeded: report the failure and suggest retrying only Facebook afterward.

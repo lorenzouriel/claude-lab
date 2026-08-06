@@ -3,7 +3,7 @@ name: install
 description: >
   Installs CompanyOS for the user's business. Interviews the user about the company,
   tone of voice, current focus, and visual identity, then fills `memory/company.md`,
-  `memory/preferences.md`, `memory/strategy.md`, `brain/3-resources/identity/design-guide.md`, and adapts
+  `memory/preferences.md`, `memory/strategy.md`, `resources/identity/design-guide.md`, and adapts
   `CLAUDE.md` according to the selected profile. Use when the user asks to run /install.
 ---
 
@@ -26,7 +26,7 @@ Check whether any memory file already has real content:
 - `memory/company.md`
 - `memory/preferences.md`
 - `memory/strategy.md`
-- `brain/3-resources/identity/design-guide.md`
+- `resources/identity/design-guide.md`
 
 If one already has real content, ask whether to update it or keep it.
 
@@ -39,7 +39,7 @@ Ask which profile best fits:
 3. **Agency / consultancy** - small team delivering for several clients
 4. **Company** - established company with departments
 
-This determines which template from `brain/3-resources/templates/profiles/` to apply.
+This determines which template from `resources/templates/profiles/` to apply.
 
 ## Phase 2 - Interview
 
@@ -77,13 +77,13 @@ Fill from questions 1-4. Keep it simple: name, what it does, client profile, tea
 - **Current bottleneck:** answer 7.
 - **To take off the user's plate:** answer 8, marked as a candidate for `/map-routines`.
 
-### `brain/3-resources/identity/design-guide.md`
+### `resources/identity/design-guide.md`
 If colors/fonts/logo were provided, fill the corresponding fields. If not, leave placeholders and say:
 
-> "I left `brain/3-resources/identity/design-guide.md` blank. When you define a visual identity, edit it there - carousel, proposal, and slide skills read it before creating visuals."
+> "I left `resources/identity/design-guide.md` blank. When you define a visual identity, edit it there - carousel, proposal, and slide skills read it before creating visuals."
 
 ### `CLAUDE.md`
-Take the matching template from `brain/3-resources/templates/profiles/claude-md-<profile>.md`, adapt it with the business name and folders mentioned in the answers, and overwrite the root `CLAUDE.md`.
+Take the matching template from `resources/templates/profiles/claude-md-<profile>.md`, adapt it with the business name and folders mentioned in the answers, and overwrite the root `CLAUDE.md`.
 
 ## Phase 4 - Summary
 
@@ -95,7 +95,7 @@ Done. CompanyOS now knows:
 ✓ Business context: memory/company.md
 ✓ Tone of voice: memory/preferences.md
 ✓ Current focus: memory/strategy.md
-✓ Brand: brain/3-resources/identity/design-guide.md [filled | blank - fill later]
+✓ Brand: resources/identity/design-guide.md [filled | blank - fill later]
 ✓ Workspace rules: CLAUDE.md
 ```
 

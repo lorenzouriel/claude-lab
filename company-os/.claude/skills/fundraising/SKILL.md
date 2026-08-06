@@ -10,7 +10,7 @@ description: >
 
 # Fundraising — Capital & Operations
 
-Orchestrator for fundraising and operations tasks. Routes to the right sub-skill based on your request. All reports are saved to `output/strategy/fundraising-operations/`.
+Orchestrator for fundraising and operations tasks. Routes to the right sub-skill based on your request. All reports are saved to `resources/fundraising-operations/`.
 
 ## Command Router
 
@@ -24,7 +24,7 @@ Orchestrator for fundraising and operations tasks. Routes to the right sub-skill
 
 ## Recommended Flow
 
-Skills chain their outputs (each detects prior reports in `output/strategy/`):
+Skills chain their outputs (each detects prior reports in `resources/fundraising-operations/`):
 
 1. `financial-model` → build the numbers
 2. `fundraising-strategy` → plan the raise

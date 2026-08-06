@@ -1,7 +1,7 @@
 ---
 name: scrape-medium
 description: >
-  Scrapes and archives Lorenzo Uriel's Medium articles into output/marketing/content.
+  Scrapes and archives Lorenzo Uriel's Medium articles into areas/marketing/content.
   Uses the Medium public API to collect slugs, then WebFetch to retrieve full
   article text verbatim. Saves to YYYY/MM/WEEK XX/medium/filename.md.
   Trigger on: 'archive medium', 'scrape medium posts', 'import medium articles'.
@@ -9,7 +9,7 @@ description: >
 
 # Medium Scraper
 
-Archives Medium articles into `output/marketing/content/YYYY/MM/WEEK XX/medium/`.
+Archives Medium articles into `areas/marketing/content/YYYY/MM/WEEK XX/medium/`.
 
 ## Profile
 
@@ -22,7 +22,7 @@ Archives Medium articles into `output/marketing/content/YYYY/MM/WEEK XX/medium/`
 ## Content archive Path Convention
 
 ```
-output/marketing/content/
+areas/marketing/content/
   YYYY/
     MM/        ← zero-padded (01–12)
       WEEK 01/ ← days 1–7
@@ -107,7 +107,7 @@ Compute path from the publish date:
 year  = date.strftime('%Y')
 month = date.strftime('%m')
 week  = f"WEEK {min((date.day - 1) // 7 + 1, 4):02d}"
-path  = f"output/marketing/content/{year}/{month}/{week}/medium/{filename}.md"
+path  = f"areas/marketing/content/{year}/{month}/{week}/medium/{filename}.md"
 ```
 
 Create all subfolders if they don't exist. Skip if the file already exists (incremental runs).
@@ -119,7 +119,7 @@ Create all subfolders if they don't exist. Skip if the file already exists (incr
 Before fetching, scan existing content archive files:
 ```python
 existing = set()
-for f in glob("output/marketing/content/*/*/WEEK */medium/*.md"):
+for f in glob("areas/marketing/content/*/*/WEEK */medium/*.md"):
     existing.add(os.path.basename(f))
 ```
 

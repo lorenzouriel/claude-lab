@@ -16,16 +16,16 @@ only inventories and clusters — it does not write or outline yet.
 ## Step 1: Establish scope
 
 Ask (skip any the user already gave you):
-1. **Source path(s)** — default to `output/marketing/content/` (the
+1. **Source path(s)** — default to `areas/marketing/content/` (the
    content archive filled by `/content archive`). The user may point to
-   other folders too, e.g. `brain/3-resources/study/` notes or a raw
+   other folders too, e.g. `resources/study/` notes or a raw
    export folder.
 2. **Working title / slug hint** — even a rough topic ("SQL Server book")
    is enough to derive `<slug>` (kebab-case, e.g. `sql-server-internals`).
 3. **Language** — English, Portuguese, or "keep the source language per
    piece." Default English per `ebook/SKILL.md`.
 
-Create `brain/2-areas/products/ebook-<slug>/` and write `00-scope.md`:
+Create `areas/products/ebook-<slug>/` and write `00-scope.md`:
 
 ```markdown
 # Scope — <working title hint>
@@ -35,7 +35,7 @@ Create `brain/2-areas/products/ebook-<slug>/` and write `00-scope.md`:
 - Started: <date>
 ```
 
-If `brain/2-areas/products/ebook-<slug>/01-inventory.md` already exists,
+If `areas/products/ebook-<slug>/01-inventory.md` already exists,
 this is a **resume**: show the existing inventory and ask whether to
 re-scan (pick up new files since last run) or move straight to Phase 2.
 

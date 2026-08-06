@@ -15,7 +15,7 @@ visual signature is what makes the feed recognizable as the author's.
 
 ## STEP 0: Load the brand style block
 
-Read `brain/3-resources/identity/design-guide.md` before composing anything:
+Read `resources/identity/design-guide.md` before composing anything:
 
 1. If it has a **"Thumbnail style"** (or similar illustration-style) section, use that as the
    STYLE BLOCK and its highlight color as the accent hue.

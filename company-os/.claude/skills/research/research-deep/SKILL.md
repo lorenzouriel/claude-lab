@@ -3,7 +3,7 @@ name: research-deep
 description: >
   Vault-first research. Before searching the web, scans the second brain for what is already
   known, then researches only the gaps, flags contradictions with existing notes, and files
-  the result back into `brain/`. Use when the user says "research-deep", "/research-deep",
+  the result back into `projects/`, `areas/`, or `resources/`. Use when the user says "research-deep", "/research-deep",
   "what do we already know about X", or wants research that builds on the brain instead of
   starting from zero.
 ---
@@ -19,14 +19,14 @@ this one when the topic is something the company has touched before.
 
 ## Context to read
 
-- **Existing knowledge:** search `brain/` and `brain/index.md` for the topic and related notes.
+- **Existing knowledge:** search `projects/`, `areas/`, `resources/`, and `index.md` for the topic and related notes.
 - **Business context:** `memory/company.md`, `memory/strategy.md`.
 
 ## Flow
 
 ### Step 1 - Scan the brain first
 
-Search `brain/` for the topic. Pull every related note. Summarize, internally:
+Search `projects/`, `areas/`, and `resources/` for the topic. Pull every related note. Summarize, internally:
 - **What we already know** (with the recency markers already on those claims).
 - **What is stale** (claims older than a few months that may have changed).
 - **What is missing** (the actual gaps to research).
@@ -49,7 +49,7 @@ Compare findings against the existing notes:
 ### Step 4 - File it back
 
 Hand the findings to the `/ingest` flow: write atomic notes in the AI-first format, route
-them into PARA, update existing notes instead of duplicating, and update `brain/index.md`.
+them into PARA, update existing notes instead of duplicating, and update `index.md`.
 
 ## Output
 

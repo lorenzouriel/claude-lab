@@ -1,11 +1,11 @@
 ---
 name: archive-content
-description: "Archives historical content from Medium and LinkedIn into the output/marketing/content folder structure. Use when the user wants to import past articles, posts, or content history into the content archive. Trigger on: 'archive my medium posts', 'import linkedin history', 'save my old content', 'fill content archive with my posts'."
+description: "Archives historical content from Medium and LinkedIn into the areas/marketing/content folder structure. Use when the user wants to import past articles, posts, or content history into the content archive. Trigger on: 'archive my medium posts', 'import linkedin history', 'save my old content', 'fill content archive with my posts'."
 ---
 
 # Archive Content
 
-Imports historical content from Medium and/or LinkedIn into `output/marketing/content/YYYY/MM/WEEK XX/<platform>/<filename>.md`.
+Imports historical content from Medium and/or LinkedIn into `areas/marketing/content/YYYY/MM/WEEK XX/<platform>/<filename>.md`.
 
 ## Invoking the skill
 
@@ -20,7 +20,7 @@ The user will specify a source:
 ## Content archive Structure
 
 ```
-output/marketing/content/
+areas/marketing/content/
   YYYY/
     MM/           ← zero-padded month (01, 02, ... 12)
       WEEK 01/    ← days 1–7
@@ -99,7 +99,7 @@ The regex pattern: remove the last `-[a-f0-9]{12}$` from the slug.
 
 ### Step 5: Write the file
 
-Path: `output/marketing/content/{YYYY}/{MM}/{WEEK_LABEL}/medium/{filename}.md`
+Path: `areas/marketing/content/{YYYY}/{MM}/{WEEK_LABEL}/medium/{filename}.md`
 
 Create all subfolders if they don't exist.
 

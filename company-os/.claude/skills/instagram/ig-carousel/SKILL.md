@@ -14,12 +14,12 @@ Central visual content creation skill. Takes a theme â†’ delivers styled HT
 
 ## Dependencies
 
-- **Visual identity:** `brain/3-resources/identity/design-guide.md` â€” READ BEFORE creating any visual
+- **Visual identity:** `resources/identity/design-guide.md` â€” READ BEFORE creating any visual
 - **Business context:** `memory/company.md`
 - **Voice and tone:** `memory/preferences.md`
 - **Playwright:** to render HTML to PNG (`npx playwright screenshot` or via `render.js`)
 - **OpenAI API (optional):** to generate realistic photos â€” only if the client has an API key configured
-- **Outputs go in:** `output/marketing/content/<type>-<theme>-<YYYY-MM-DD>/`
+- **Outputs go in:** `areas/marketing/content/<type>-<theme>-<YYYY-MM-DD>/`
 
 ---
 
@@ -50,7 +50,7 @@ If the type is not clear, ask:
 
 ## Base visual style
 
-The OS has its own style â€” editorial, calm, premium. No clip-art, no decorative emoji, no rainbow gradient, no generic AI template. `brain/3-resources/identity/design-guide.md` overrides these patterns; when the design guide is vague or blank, use what's here (don't stop to run `/install` â€” `/carousel` works fine with good defaults).
+The OS has its own style â€” editorial, calm, premium. No clip-art, no decorative emoji, no rainbow gradient, no generic AI template. `resources/identity/design-guide.md` overrides these patterns; when the design guide is vague or blank, use what's here (don't stop to run `/install` â€” `/carousel` works fine with good defaults).
 
 ### Default typography
 
@@ -105,7 +105,7 @@ Layout vocabulary â€” each slide has a name. Alternate between them to crea
 - **Inner slides:** use 2-3 different layouts from `SOLO` / `DUO` / `NUMBER` / `QUOTE`
 - **Final slide:** `FINAL CTA` layout
 
-Before creating HTML: read `brain/3-resources/identity/design-guide.md`. If blank, use the "Base visual style" above as default.
+Before creating HTML: read `resources/identity/design-guide.md`. If blank, use the "Base visual style" above as default.
 
 ### Cover sequence in the feed (grid planning)
 
@@ -138,7 +138,7 @@ When done rendering the PNGs, **automatically** generate the post caption and sa
 ### Step 1 â€” Understand and plan
 
 1. Read `memory/preferences.md` and `memory/company.md`
-2. Read `brain/3-resources/identity/design-guide.md` for colors, fonts, and logo
+2. Read `resources/identity/design-guide.md` for colors, fonts, and logo
 3. Identify the content type (1, 2, or 3)
 4. Define the theme and angle
 
@@ -173,9 +173,9 @@ shot from [ANGLE], [STYLE/AESTHETIC],
 editorial quality
 ```
 
-3. Generate via script (if `scripts/generate-image.js` exists):
+3. Generate via script (if `resources/scripts/generate-image.js` exists):
 ```bash
-node --env-file=.env scripts/generate-image.js "PROMPT" "output/marketing/content/<folder>/photo-<name>.png"
+node --env-file=.env resources/scripts/generate-image.js "PROMPT" "areas/marketing/content/<folder>/photo-<name>.png"
 ```
 
 If the script doesn't exist yet, instruct the user to configure `OPENAI_API_KEY` in `.env` and create the script (or use another image generation tool).
@@ -187,7 +187,7 @@ If the script doesn't exist yet, instruct the user to configure `OPENAI_API_KEY`
 ### Step 4 â€” Create visuals (HTML + PNG)
 
 1. Create **a single `carousel.html`** with ALL slides as `<div class="slide">` inside the same file. Inline CSS, Google Fonts as the only external dependency. Apply:
-   - Colors and typography from `brain/3-resources/identity/design-guide.md`
+   - Colors and typography from `resources/identity/design-guide.md`
    - Minimum 2 different layouts (don't repeat the same on every slide)
    - Logo top-left + slide-counter top-right on every slide
    - Final slide: logo + CTA, main color background
@@ -215,7 +215,7 @@ NODE_PATH="<folder-with-node_modules>/node_modules" node render.js
 ### Step 5 â€” Save and organize
 
 ```
-output/marketing/content/<type>-<theme>-<YYYY-MM-DD>/
+areas/marketing/content/<type>-<theme>-<YYYY-MM-DD>/
   copy.md               â† approved copy + caption
   photo-<name>.png      â† AI-generated photos (if any)
   carousel.html
@@ -240,7 +240,7 @@ If yes, call `/seo-article` with the same theme.
 
 ## Rules
 
-- Always read `brain/3-resources/identity/design-guide.md` before creating any visual
+- Always read `resources/identity/design-guide.md` before creating any visual
 - Carousel: 1080x1350 (4:5 portrait) â€” always. TikTok/Reels: 1080x1920 (9:16) â€” only when explicitly requested
 - Language strictly follows `memory/preferences.md`
 - Always consider the cover sequence in the feed before defining a new cover

@@ -154,14 +154,16 @@ your-business/
 │   ├── company.md         ← who you are, what you do, your clients
 │   ├── preferences.md     ← your tone of voice, what to avoid
 │   └── strategy.md        ← your current focus and priorities
-├── brain/                 ← your second brain (PARA method)
-│   └── 3-resources/
-│       └── identity/
-│           └── design-guide.md   ← your brand colors, fonts, style
-├── output/
-│   ├── marketing/         ← content, SEO files, campaigns land here
-│   └── documents/         ← analyses, emails, one-off documents
+├── inbox/                 ← drop zone for raw files (PARA method)
+├── projects/               ← active work with a deadline
+├── areas/                  ← ongoing responsibilities
+│   └── marketing/          ← content, SEO files, campaigns land here
+├── resources/              ← reusable reference + one-off outputs
+│   ├── identity/
+│   │   └── design-guide.md   ← your brand colors, fonts, style
+│   └── documents/          ← analyses, emails, one-off documents
+├── archive/                ← finished projects and inactive areas
 └── .claude/skills/        ← 70+ skills, all loaded and ready
 ```
 
-Everything Claude generates goes into `output/`. Nothing is published without your confirmation. You are always in control.
+Everything Claude generates goes into `projects/`, `areas/`, or `resources/`. Nothing is published without your confirmation. You are always in control.

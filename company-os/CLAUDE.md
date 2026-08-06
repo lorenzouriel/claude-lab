@@ -23,7 +23,7 @@ suggesting priorities, formats, or approaches, consider the current focus
 described in `strategy.md`.
 
 For any visual task (carousel, post, landing page), consult
-`brain/3-resources/identity/design-guide.md` as the style reference.
+`resources/identity/design-guide.md` as the style reference.
 
 There is no need to list what was read or confirm the reading. Just use
 the context naturally.
@@ -87,7 +87,7 @@ If yes, identify what to update:
 - **Priority or focus change** -> `memory/strategy.md`
 - **Tone or style** -> `memory/preferences.md`
 - **Folder, organization rule, created skill** -> `CLAUDE.md`
-- **Visuals (colors, fonts, logo)** -> `brain/3-resources/identity/design-guide.md`
+- **Visuals (colors, fonts, logo)** -> `resources/identity/design-guide.md`
 
 Show the proposed change as a diff (the exact line being added or edited) before saving. Only then write it. Do not reformat the whole file, only add or edit the relevant line.
 
@@ -104,7 +104,7 @@ Show the proposed change as a diff (the exact line being added or edited) before
 
 When the user asks for a new skill:
 
-1. Check whether a relevant template exists in `brain/3-resources/templates/skills/`. If
+1. Check whether a relevant template exists in `resources/templates/skills/`. If
    it does, use it as a base and adapt it to the context
 2. Ask whether it is specific to this project or useful anywhere:
    - Specific -> `.claude/skills/skill-name/SKILL.md` (local)

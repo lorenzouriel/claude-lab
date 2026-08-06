@@ -17,7 +17,7 @@ Three layers make it professional, not just pretty:
 
 ## Step 0 — Load the brand (do this first)
 
-Read `brain/3-resources/identity/design-guide.md` and map it to design tokens. This is what makes every page
+Read `resources/identity/design-guide.md` and map it to design tokens. This is what makes every page
 look like *the client*, not a template.
 
 | Token | From design-guide | Fallback (premium dark) |
@@ -207,13 +207,13 @@ template still apply — reuse them, just driven by the brand tokens.)
 
 1. Write the complete HTML in a single pass — all CSS in `<style>`, all JS in `<script>`.
    Only external calls: Google Fonts + cdnjs GSAP.
-2. Save to: `output/documents/landing-pages/<product-name-kebab>-landing.html`
+2. Save to: `resources/documents/landing-pages/<product-name-kebab>-landing.html`
    (create the folder if needed). **File naming:** kebab-case from the product name —
    "Quill AI" → `quill-ai-landing.html`.
 3. Open it / give the user the path to preview.
 
 ### Pre-delivery quality gate (verify before handing off)
-- [ ] Brand: colors + fonts come from `brain/3-resources/identity/design-guide.md`; no forbidden color used.
+- [ ] Brand: colors + fonts come from `resources/identity/design-guide.md`; no forbidden color used.
 - [ ] One primary CTA, identical label, repeated (hero + nav + closing).
 - [ ] Hero communicates what / for whom / why in the first screen.
 - [ ] At least one proof element directly after the hero.

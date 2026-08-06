@@ -57,7 +57,7 @@ List each reply below its review, ready to paste into GMB:
 -> [reply]
 ```
 
-If the user asks to keep a record, save in `output/marketing/google-reviews/YYYY-MM-DD-replies.md` with review + published reply.
+If the user asks to keep a record, save in `areas/marketing/google-reviews/YYYY-MM-DD-replies.md` with review + published reply.
 
 ## Rules
 

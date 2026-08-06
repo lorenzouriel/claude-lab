@@ -1,7 +1,7 @@
 ---
 name: synthesize
 description: >
-  Compounds the second brain. Reads recent notes across `brain/` and surfaces unnamed
+  Compounds the second brain. Reads recent notes across `projects/`, `areas/`, and `resources/` and surfaces unnamed
   patterns, recurring themes, and connections the user has not made explicit yet, then
   writes them up as new resource/area notes. Use when the user says "synthesize",
   "/synthesize", "what patterns are in my brain", "connect my notes", or "what's emerging".
@@ -15,9 +15,9 @@ named idea.
 
 ## Context to read
 
-- **Recent notes:** everything in `brain/1-projects/`, `brain/2-areas/`, `brain/3-resources/`
+- **Recent notes:** everything in `projects/`, `areas/`, `resources/`
   touched recently (default: last 30 days by `updated:` frontmatter; ask for a different window).
-- **Catalog:** `brain/index.md`
+- **Catalog:** `index.md`
 - **Focus:** `memory/strategy.md` (to weight what matters now)
 
 ## Flow
@@ -32,13 +32,13 @@ not every word. Aim for breadth across the brain, not depth on one note.
 Look for:
 - **Recurring themes** — the same idea showing up in 3+ unrelated notes.
 - **Bridges** — two notes from different domains that imply a connection nobody wrote down.
-- **Graduation candidates** — a `3-resources/` topic that has enough notes to become a real
-  `1-projects/` effort or `2-areas/` responsibility.
+- **Graduation candidates** — a `resources/` topic that has enough notes to become a real
+  `projects/` effort or `areas/` responsibility.
 - **Contradictions** — claims across notes that disagree (hand off to `/reconcile` if deep).
 
 ### Step 3 - Write it up
 
-For each strong pattern, create a new note (usually in `brain/3-resources/` or `brain/2-areas/`)
+For each strong pattern, create a new note (usually in `resources/` or `areas/`)
 in the AI-first format from `/ingest`, linking back to every note it synthesizes:
 
 ```markdown
@@ -58,14 +58,14 @@ source: synthesis of brain notes
 Synthesized from: [[note-a]], [[note-b]], [[note-c]]
 ```
 
-Add it to `brain/index.md`.
+Add it to `index.md`.
 
 ## Output
 
 ```
 Synthesized <N> notes from the last <window>:
 
-◆ <Named pattern> → brain/3-resources/<note>.md   (from 4 notes)
+◆ <Named pattern> → resources/<note>.md   (from 4 notes)
 ◆ <Graduation> — "<topic>" is ready to become a project
 ⚠ <Contradiction> between [[a]] and [[b]] — run /reconcile
 

@@ -65,11 +65,11 @@ It will interview you about your business — one question at a time, 5 minutes.
 
 **`memory/`** is the working memory — who the company is, how it speaks, what is in focus this week. Claude reads this silently before every answer. The better the memory, the better the system.
 
-**`brain/`** is the second brain, organized with the PARA method. Inbox for raw drops, projects for active work with deadlines, areas for ongoing responsibilities, resources for reusable reference (your brand identity lives here), archive for what is done.
+**The second brain** is organized with the PARA method, as flat top-level folders: `inbox/` for raw drops, `projects/` for active work with deadlines, `areas/` for ongoing responsibilities (this is also where recurring deliverables like marketing content land), `resources/` for reusable reference (your brand identity lives here) and one-off documents, `archive/` for what is done.
 
 **`.claude/skills/`** are the skills — 70+ capabilities organized into categories. System utilities, content creation, platform publishing (Instagram, LinkedIn, TikTok, X, YouTube, newsletters), document formats, research, and business operations. Each skill knows your business context before it runs.
 
-**`output/`** is where everything lands — content, SEO files, campaigns, documents. Versioned on GitHub. Everything stays yours.
+Everything Claude generates lands in `projects/`, `areas/`, or `resources/`. Versioned on GitHub. Everything stays yours.
 
 ---
 

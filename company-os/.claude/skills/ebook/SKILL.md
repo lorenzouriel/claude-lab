@@ -39,7 +39,7 @@ the current one's output.
 Every ebook project lives under:
 
 ```
-brain/2-areas/products/ebook-<slug>/
+areas/products/ebook-<slug>/
   00-scope.md          ← source folders, date range, language (from Phase 1 kickoff)
   01-inventory.md       ← Phase 1 output: content inventory table + proposed pillars
   02-outline.md         ← Phase 2 output: title, chapter architecture, gaps
@@ -52,7 +52,7 @@ brain/2-areas/products/ebook-<slug>/
 
 `<slug>` is a short kebab-case version of the working title (e.g.
 `sql-server-internals`). If the user doesn't name the project and only one
-`ebook-*` folder exists under `brain/2-areas/products/`, assume that one.
+`ebook-*` folder exists under `areas/products/`, assume that one.
 If several exist, ask which project to resume.
 
 Each sub-skill's first move is to check whether its phase file already
@@ -83,7 +83,7 @@ says otherwise; confirm once during `ebook-inventory` and record it in
 
 ### `ebook-inventory` — Phase 1: Inventory
 Recursively reads every file in the given source folders (defaults to
-`output/marketing/content/` if the user has run `/content archive` before,
+`areas/marketing/content/` if the user has run `/content archive` before,
 otherwise asks for a path). Builds a content inventory table, flags
 duplicates/near-duplicates (a LinkedIn post condensing an article loses to
 the article), clusters everything into 4-8 thematic pillars, and proposes
@@ -114,4 +114,4 @@ title, `##` parts, `###` chapters), ready for Pandoc/typst conversion.
 
 1. Does the output match the author's voice (direct, concrete, no filler)? Re-read the "About the author and voice" section if unsure.
 2. Did this phase stop for approval instead of cascading into the next one?
-3. Was the phase artifact actually written to `brain/2-areas/products/ebook-<slug>/`, not just shown in chat?
+3. Was the phase artifact actually written to `areas/products/ebook-<slug>/`, not just shown in chat?

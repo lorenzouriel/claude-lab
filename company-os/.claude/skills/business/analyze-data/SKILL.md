@@ -74,7 +74,7 @@ Write in clear executive language:
 [missing data, assumptions, caveats]
 ```
 
-Save in `output/documents/analyses/analysis-[name]-[date].md` or the most appropriate folder for the user's profile.
+Save in `resources/documents/analyses/analysis-[name]-[date].md` or the most appropriate folder for the user's profile.
 
 ## Rules
 

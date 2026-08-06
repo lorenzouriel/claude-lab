@@ -1,11 +1,11 @@
 ---
 name: ingest
 description: >
-  Feeds the PARA second brain. Takes raw input (a file in `brain/0-inbox/`, a URL, a
+  Feeds the PARA second brain. Takes raw input (a file in `inbox/`, a URL, a
   pasted note, a meeting transcript) and files it as atomic, linked notes into the right
-  brain folder, updating existing notes instead of duplicating. Use when the user says
+  PARA folder, updating existing notes instead of duplicating. Use when the user says
   "ingest", "/ingest", "save this to my brain", "add to second brain", "capture this",
-  "file this note", or drops a file in `brain/0-inbox/` and asks to process it.
+  "file this note", or drops a file in `inbox/` and asks to process it.
 ---
 
 # /ingest - Feed the Second Brain
@@ -17,7 +17,7 @@ append blindly, you update what already exists and reconcile what changed.
 
 - **Business context:** `memory/company.md` (to know what the input is about)
 - **Current focus:** `memory/strategy.md` (to decide what is an active *project* vs an ongoing *area*)
-- **Existing knowledge:** `brain/index.md` and the relevant `brain/` folders (to update instead of duplicate)
+- **Existing knowledge:** `index.md` and the relevant `projects/`, `areas/`, `resources/` folders (to update instead of duplicate)
 - **Tone:** `memory/preferences.md` (for any prose you write)
 
 ## Flow
@@ -26,10 +26,10 @@ append blindly, you update what already exists and reconcile what changed.
 
 In priority order:
 1. An explicit URL or file path the user passed → read it (fetch the URL, or read the file).
-2. Anything sitting in `brain/0-inbox/` (skip the README) → process each item.
+2. Anything sitting in `inbox/` (skip the README) → process each item.
 3. Text the user pasted in chat.
 
-If nothing is found, ask: "What should I ingest? Paste it, give me a URL, or drop a file in `brain/0-inbox/`."
+If nothing is found, ask: "What should I ingest? Paste it, give me a URL, or drop a file in `inbox/`."
 
 ### Step 2 - Extract atomic notes
 
@@ -45,13 +45,13 @@ Decide where each note belongs:
 
 | Folder | Use when the note is... |
 |---|---|
-| `brain/1-projects/<name>/` | Tied to an active project or client in `strategy.md` (has a goal + deadline) |
-| `brain/2-areas/<domain>/` | About an ongoing responsibility (marketing, seo, sales, finance, ops) |
-| `brain/3-resources/<topic>/` | Reusable reference not tied to current work — **default when unsure** |
+| `projects/<name>/` | Tied to an active project or client in `strategy.md` (has a goal + deadline) |
+| `areas/<domain>/` | About an ongoing responsibility (marketing, seo, sales, finance, ops) |
+| `resources/<topic>/` | Reusable reference not tied to current work — **default when unsure** |
 
 ### Step 4 - Update, don't duplicate
 
-Before writing, search `brain/` for an existing note on the same entity/concept.
+Before writing, search `projects/`, `areas/`, and `resources/` for an existing note on the same entity/concept.
 
 - **Exists →** open it and merge. Add new claims, refresh changed ones, and if the new input
   **contradicts** an existing claim, keep both with dates and flag it (see recency markers).
@@ -89,12 +89,12 @@ Rules for the format:
 
 ### Step 6 - Update the catalog
 
-Add or update the note's line in `brain/index.md` under its PARA section
-(`- [[note-name]] — one-line hook`). Create `brain/index.md` if it does not exist.
+Add or update the note's line in `index.md` under its PARA section
+(`- [[note-name]] — one-line hook`). Create `index.md` if it does not exist.
 
 ### Step 7 - Clear the inbox
 
-After a source file is filed, move it to `brain/4-archive/ingested/<YYYY-MM-DD>-<name>`
+After a source file is filed, move it to `archive/ingested/<YYYY-MM-DD>-<name>`
 (raw source stays recoverable) and confirm. Never silently delete an inbox file.
 
 ## Output
@@ -104,8 +104,8 @@ Reply with a short manifest, nothing more:
 ```
 Ingested: <source>
 
-→ brain/3-resources/<topic>/<note>.md        (new)
-→ brain/2-areas/<domain>/<note>.md           (updated, +2 claims)
+→ resources/<topic>/<note>.md        (new)
+→ areas/<domain>/<note>.md           (updated, +2 claims)
 ⚠ contradiction flagged in <note>.md
 
 Index updated. Inbox cleared.
@@ -118,4 +118,4 @@ Index updated. Inbox cleared.
 - Prefer updating an existing note over creating a near-duplicate.
 - One concept per note — split rather than bloat.
 - Follow `memory/preferences.md` for any prose tone.
-- This skill only writes inside `brain/`. Generated deliverables still go to `output/`.
+- This skill only writes inside `projects/`, `areas/`, and `resources/`. Generated deliverables still go to their respective area/project folder or `resources/documents/`.

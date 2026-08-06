@@ -1,6 +1,6 @@
 ---
 name: brand-book
-description: Assembles everything the user has created inside brain/3-resources/identity/ (design guide, logos, photos, assets) into a professional, shareable brand guidelines PDF — the kind designers hand off to clients, freelancers, and agencies. Trigger on "brand book", "brand guidelines PDF", "brand PDF", "share my brand", "export brand identity", "brand kit for designers".
+description: Assembles everything the user has created inside resources/identity/ (design guide, logos, photos, assets) into a professional, shareable brand guidelines PDF — the kind designers hand off to clients, freelancers, and agencies. Trigger on "brand book", "brand guidelines PDF", "brand PDF", "share my brand", "export brand identity", "brand kit for designers".
 version: 1.0.0
 category: marketing-growth
 ---
@@ -15,7 +15,7 @@ This skill does NOT invent a brand. If the identity doesn't exist yet, route to 
 
 ## STEP 1: Inventory the identity folder
 
-Scan `brain/3-resources/identity/` recursively and classify everything:
+Scan `resources/identity/` recursively and classify everything:
 
 | Type | Detect by | Used for |
 |------|-----------|----------|
@@ -28,8 +28,8 @@ Scan `brain/3-resources/identity/` recursively and classify everything:
 Also gather context (silently, per CompanyOS rules):
 - `memory/company.md` → mission, what the business does (brand story page)
 - `memory/preferences.md` → tone of voice, writing style (voice & tone page)
-- `output/strategy/marketing-growth/` → prior `brand-identity` report, if any
-- `output/marketing/` → 2–4 recent visuals (carousels, thumbnails) as real application examples
+- `resources/marketing-growth/` → prior `brand-identity` report, if any
+- `areas/marketing/` → 2–4 recent visuals (carousels, thumbnails) as real application examples
 
 Print a short inventory to the user before building: what was found, what's missing.
 
@@ -44,7 +44,7 @@ Never block on a gap. Build with what exists; every gap becomes one line on the 
 
 ## STEP 3: Build the book as paged HTML
 
-Create `output/documents/brand/brand-book.html`. One file, one `<section class="page">` per PDF page:
+Create `resources/documents/brand/brand-book.html`. One file, one `<section class="page">` per PDF page:
 
 ```css
 @page { size: A4 landscape; margin: 0; }
@@ -69,7 +69,7 @@ Page order (include only pages with real material):
 7. **Typography** — specimen per font: full alphabet, weights, and a type scale (H1/H2/body/caption) with sizes
 8. **Imagery** — grid of the user's actual photos (3–6, `object-fit: cover`), one line describing the common style (lighting, subject, mood)
 9. **Voice & tone** — tone spectrum, 3 do/don't copy pairs written in the brand's actual voice
-10. **Applications** — real examples pulled from `output/marketing/` (screenshots/exports of posts, carousels)
+10. **Applications** — real examples pulled from `areas/marketing/` (screenshots/exports of posts, carousels)
 11. **What's still missing** — the gap list from Step 2 (omit if none)
 12. **Back cover** — logo small, contact line, "vX.Y — {date}"
 
@@ -82,7 +82,7 @@ Render with headless Chrome/Edge (Edge always present on Windows):
 ```
 "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless --disable-gpu ^
   --print-to-pdf="{workspace}\output\documents\brand\brand-book.pdf" ^
-  --no-pdf-header-footer "file:///{workspace}/output/documents/brand/brand-book.html"
+  --no-pdf-header-footer "file:///{workspace}/resources/documents/brand/brand-book.html"
 ```
 
 (macOS/Linux: use `google-chrome`/`chromium` with the same flags.) If no Chromium browser is available, fall back to Python `weasyprint`; only if that also fails, build directly with `reportlab` per `formats/pdf`.
@@ -92,12 +92,12 @@ Render with headless Chrome/Edge (Edge always present on Windows):
 ## STEP 5: Deliver
 
 Report to the user:
-- Path: `output/documents/brand/brand-book.pdf`
+- Path: `resources/documents/brand/brand-book.pdf`
 - Page count and section list
 - Gaps included on the "missing" page
 - Offer: "Want a compact one-pager version too?" (single A4 page: logo + palette + fonts + one rule per section — for quick briefs)
 
-If colors/fonts were extracted or confirmed during this run and `design-guide.md` was blank, offer to write them into `brain/3-resources/identity/design-guide.md` so all other skills pick them up.
+If colors/fonts were extracted or confirmed during this run and `design-guide.md` was blank, offer to write them into `resources/identity/design-guide.md` so all other skills pick them up.
 
 ---
 
@@ -110,7 +110,7 @@ If colors/fonts were extracted or confirmed during this run and `design-guide.md
 
 ## Checklist
 
-- [ ] Everything in `brain/3-resources/identity/` inventoried and classified
+- [ ] Everything in `resources/identity/` inventoried and classified
 - [ ] Book styled with the brand's own colors and fonts, not defaults
 - [ ] All images embedded via absolute paths and verified rendered
 - [ ] Gaps listed inside the PDF, not silently dropped
