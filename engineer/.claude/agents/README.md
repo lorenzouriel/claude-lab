@@ -1,8 +1,8 @@
 # AgentSpec Agents
 
-AgentSpec deploys **58 specialized agents** across **8 categories**, each built on a **three-tier template system** with mandatory **KB-First knowledge resolution**. Every agent carries a cognitive framework that enforces structured confidence scoring, provenance tracking, and explicit stop conditions -- turning raw LLM capability into disciplined, auditable domain expertise.
+AgentSpec deploys **59 specialized agents** across **8 categories**, each built on a **three-tier template system** with mandatory **KB-First knowledge resolution**. Every agent carries a cognitive framework that enforces structured confidence scoring, provenance tracking, and explicit stop conditions -- turning raw LLM capability into disciplined, auditable domain expertise.
 
-`58 agents | 8 categories | 3 tiers (T1/T2/T3) | 24 KB domains | 100% template compliance`
+`59 agents | 8 categories | 3 tiers (T1/T2/T3) | 25 KB domains | 100% template compliance`
 
 ---
 
@@ -87,7 +87,7 @@ Every agent declares a tier in frontmatter (`tier: T1|T2|T3`). The tier governs 
 ### Current Distribution
 
 - **T1 (10 agents):** genai-architect, medallion-architect, aws-data-architect, gcp-data-architect, ai-prompt-specialist, python-developer, lakeflow-specialist, spark-performance-analyzer, spark-troubleshooter, prompt-crafter
-- **T2 (28 agents):** data-platform-engineer, kb-architect, lakehouse-architect, pipeline-architect, schema-designer, the-planner, ai-data-engineer-gcp, code-cleaner, code-documenter, code-reviewer, data-contracts-engineer, data-quality-analyst, test-generator, ai-data-engineer, dbt-specialist, spark-engineer, spark-specialist, sql-optimizer, streaming-engineer, codebase-explorer, meeting-analyst, shell-script-specialist, brainstorm-agent, build-agent, define-agent, design-agent, iterate-agent, ship-agent
+- **T2 (29 agents):** data-platform-engineer, kb-architect, lakehouse-architect, pipeline-architect, schema-designer, the-planner, ai-data-engineer-gcp, code-cleaner, code-documenter, code-reviewer, data-contracts-engineer, data-quality-analyst, test-generator, ai-data-engineer, dbt-specialist, spark-engineer, spark-specialist, sql-optimizer, streaming-engineer, codebase-explorer, meeting-analyst, shell-script-specialist, project-docs-manager, brainstorm-agent, build-agent, define-agent, design-agent, iterate-agent, ship-agent
 - **T3 (20 agents):** ai-data-engineer-cloud, ai-prompt-specialist-gcp, aws-deployer, aws-lambda-architect, ci-cd-specialist, lambda-builder, supabase-specialist, fabric-ai-specialist, fabric-architect, fabric-cicd-specialist, fabric-logging-specialist, fabric-pipeline-developer, fabric-security-specialist, llm-specialist, airflow-specialist, lakeflow-architect, lakeflow-expert, lakeflow-pipeline-builder, qdrant-specialist, spark-streaming-architect
 
 ---
@@ -220,7 +220,7 @@ Implementation specialists for data pipelines and processing.
 | `ai-data-engineer` | T2 | sonnet | RAG pipelines, vector DBs, feature stores |
 | `qdrant-specialist` | T3 | opus | Qdrant vector database, collection management |
 
-### 7. Dev (4 agents)
+### 7. Dev (5 agents)
 
 Developer tools and productivity.
 
@@ -230,6 +230,7 @@ Developer tools and productivity.
 | `codebase-explorer` | T2 | sonnet | Analyze codebase structure with health scoring |
 | `meeting-analyst` | T2 | sonnet | Extract decisions and action items from meetings |
 | `shell-script-specialist` | T2 | sonnet | Production-grade Bash scripts, automation, deployment scripts |
+| `project-docs-manager` | T2 | sonnet | Scaffold and maintain PMBOK-lite project documentation (charter, stakeholders, plan, comms, closure) |
 
 ### 8. Workflow (6 agents)
 
@@ -287,6 +288,8 @@ Dev <-> All:
   prompt-crafter -> any agent (agent matching engine)
   shell-script-specialist -> ci-cd-specialist (CI/CD pipelines)
   codebase-explorer -> python-developer (code modifications), pipeline-architect (DE)
+  project-docs-manager -> define-agent (documented scope turns out to be a software build)
+  project-docs-manager -> meeting-analyst (transcript extraction, before filing into project docs)
 ```
 
 ---

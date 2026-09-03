@@ -1091,3 +1091,34 @@ domains:
       - name: webhook-edge-function
         path: patterns/webhook-edge-function.md
         confidence: 0.95
+
+  # ─── Project & Delivery Management ─────────────────────────────────
+
+  project-management:
+    name: project-management
+    description: "PMBOK-lite project documentation — process groups, the six-folder doc structure, stakeholder mapping, SDD handoff"
+    path: project-management/
+    mcp_validated: null
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: phases
+        path: concepts/phases.md
+        confidence: 0.85
+      - name: document-purposes
+        path: concepts/document-purposes.md
+        confidence: 0.85
+      - name: stakeholder-mapping
+        path: concepts/stakeholder-mapping.md
+        confidence: 0.80
+    patterns:
+      - name: scaffold-structure
+        path: patterns/scaffold-structure.md
+        confidence: 0.85
+      - name: document-lifecycle
+        path: patterns/document-lifecycle.md
+        confidence: 0.80
+      - name: sdd-integration
+        path: patterns/sdd-integration.md
+        confidence: 0.80

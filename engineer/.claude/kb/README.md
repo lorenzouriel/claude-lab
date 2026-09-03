@@ -3,7 +3,7 @@
 > The structured knowledge layer that grounds every agent response in verified, domain-specific content.
 
 ```
-24 domains | 289 files | 42,500+ lines | MCP-validated 2026-03-26
+25 domains | 297 files | 42,900+ lines | MCP-validated 2026-03-26 (project-management is not MCP-validated — house convention)
 ```
 
 ---
@@ -106,6 +106,12 @@ Some domains extend this with additional directories:
 | testing | 10 | pytest, fixtures, mocking, parametrize, Spark testing | python-developer, test-generator |
 | shared | 2 | Cross-domain resources: anti-patterns (referenced by every agent via `anti_pattern_refs`) + the component model (agents/skills/commands/KB layering) | (all agents; authoring skills) |
 
+### Project & Delivery Management
+
+| Domain | Files | Description | Used By |
+|--------|------:|-------------|---------|
+| project-management | 8 | PMBOK-lite process groups, six-folder doc structure, stakeholder mapping, SDD handoff | project-docs-manager |
+
 ---
 
 ## How KB Integrates with Agents
@@ -192,7 +198,13 @@ Each agent declares a `kb_domains` field in its frontmatter that determines whic
 | data-quality-analyst | data-quality, dbt, data-modeling |
 | test-generator | data-quality, dbt, testing |
 
-**Dev and Workflow agents** (10 agents) do not use KB domains directly.
+**Dev agents** mostly do not use KB domains directly, with one exception:
+
+| Agent | KB Domains |
+|-------|------------|
+| project-docs-manager | project-management |
+
+The remaining dev agents (`prompt-crafter`, `codebase-explorer`, `meeting-analyst`, `shell-script-specialist`) and all **workflow agents** (10 agents combined) do not use KB domains directly.
 
 ---
 
@@ -285,7 +297,7 @@ The machine-readable registry lives at `.claude/kb/_index.yaml`. It defines:
 - **limits** -- File size limits (single source of truth)
 - **templates** -- Paths to scaffolding templates
 - **shared** -- Cross-domain resources (anti-patterns library; component model)
-- **domains** -- Complete registry of all 24 domains with:
+- **domains** -- Complete registry of all 25 domains with:
   - `name` -- Domain identifier
   - `description` -- One-line summary
   - `path` -- Directory path relative to `.claude/kb/`
