@@ -1,78 +1,51 @@
 # engineer/
 
-AgentSpec-style Claude Code config (agents, commands, KB, SDD workflow) — mirrors the `tech-os/` layout at the repo root. See `.claude/agents/`, `.claude/commands/`, `.claude/kb/`, `.claude/sdd/`.
+master-claude / AgentSpec — the software-engineering config for Claude Code. Self-contained: open Claude Code inside this folder (or copy `engineer/.claude/` into another repo) to get its agents, commands, KB, and skills.
 
-## Converge / Task-Spec / Seamwise integration
+## What's here
 
-Optional external orchestration stack from `luanmorenommaciel`'s repos. Not Anthropic-published — review before installing. Each tool has a distinct authority boundary:
+| Path | Contents |
+|------|----------|
+| `.claude/agents/` | 65 domain sub-agents across architect, cloud (AWS/GCP), data-engineering, dev, platform (Microsoft Fabric), python, javascript, dotnet, test, workflow |
+| `.claude/commands/` | 35 slash commands: 5-phase SDD workflow, data-engineering, code review, visual-explainer, core utilities |
+| `.claude/kb/` | 27 registered knowledge-base domains (dbt, spark, airflow, lakehouse, medallion, microsoft-fabric, terraform, streaming, sql-patterns, prompt-engineering, javascript, dotnet, ...) |
+| `.claude/sdd/` | SDD workflow artifacts — `features/` (active), `reports/` (build outputs), `archive/` (shipped), `templates/`, `architecture/` |
+| `.claude/skills/` | 26 skills: SDD phase methodology, agent-router, create-agent/create-skill, kb-build, diagramming, github issue/ADR flow, project-docs, meeting-analysis, standup-report, sycophancy, ... |
 
-- **[Seamwise](https://github.com/luanmorenommaciel/seamwise)** — decomposes an approved initiative into swim lanes and a `TaskPlan/v1`. Decomposes only; never materializes tasks or calls Task-Spec directly.
-- **[Task-Spec](https://github.com/luanmorenommaciel/task-spec)** — contracts and materializes individual tasks into sealed, auditable `TaskSpec` revisions with independent acceptance gates.
-- **[Converge](https://github.com/luanmorenommaciel/converge)** — thin coordinator that composes Seamwise + Task-Spec through an eight-pass descent (design phase → consensus barrier → execution phase). Requires Task-Spec always; Seamwise only for decompose/compose operations.
+## Quick start — SDD workflow
 
-### 1. Prerequisites
-
-```bash
-git --version && bash --version && python3 --version
-# optional: node --version   (npm install / Cockpit UI only)
+```
+/workflow:brainstorm "idea"     # Phase 0 — explore, optional
+/workflow:define <brainstorm>   # Phase 1 — capture requirements, Clarity Score >= 12/15
+/workflow:design <define>       # Phase 2 — architecture + agent matching
+/workflow:build <design>        # Phase 3 — delegated implementation
+/workflow:ship <define>         # Phase 4 — archive + lessons learned
+/workflow:iterate <doc> "change"   # mid-stream update to any phase doc
 ```
 
-### 2. Task-Spec (mandatory)
+Design matches files to agents automatically via `Glob(.claude/agents/**)` — new agents dropped into `.claude/agents/` are picked up with zero config.
 
-```bash
-git clone --branch v3.8.0 https://github.com/luanmorenommaciel/task-spec.git
-bash task-spec/install.sh --global --copy
-taskspec demo
-```
+## Other command groups
 
-### 3. Seamwise (optional — only if using decompose/compose)
+| Group | Examples |
+|-------|----------|
+| `/data-engineering:*` | `/pipeline`, `/schema`, `/data-quality`, `/lakehouse`, `/sql-review`, `/ai-pipeline`, `/data-contract`, `/migrate` |
+| `/knowledge:*` | `/create-kb` — scaffold a new KB domain |
+| `/review` | dual-AI code review; `/judge` for cross-model second opinion |
+| `/visual-explainer:*` | HTML diagrams, slide decks, diff/plan review, project recaps |
+| `/core:*` | `/status`, `/meeting`, `/memory`, `/sync-context`, `/readme-maker` |
+| `/project:docs` | scaffold PMBOK-lite project documentation |
 
-```bash
-# requires uv: https://docs.astral.sh/uv/getting-started/installation/
-uv tool install "git+https://github.com/luanmorenommaciel/seamwise.git@v0.2.0"
-seamwise --version
-seamwise --json doctor --host core
-```
+Full command reference: [.claude/commands/README.md](.claude/commands/README.md).
 
-### 4. Converge, targeted at this folder
+## Deeper docs
 
-```bash
-git clone --branch v0.2.0 https://github.com/luanmorenommaciel/converge.git
-bash converge/install.sh --target "/c/Users/Uriel/workspace/labs/claude-lab/engineer" --copy
-```
+- [.claude/sdd/README.md](.claude/sdd/README.md) — AgentSpec architecture, phase details, agent-matching internals, extension guide
+- [.claude/sdd/architecture/](.claude/sdd/architecture/) — workflow contracts, ADRs
+- Repo-wide layout and plugin install: [../README.md](../README.md)
 
-### 5. Point converge at the engines
+## Adding to this config
 
-```bash
-export CVG_TASKSPEC_BIN=/absolute/path/to/task-spec/bin/taskspec
-export CVG_SEAMWISE_BIN="$(command -v seamwise)"   # only if seamwise installed
-```
-
-### 6. Initialize
-
-```bash
-cd "/c/Users/Uriel/workspace/labs/claude-lab/engineer"
-cvg init
-cvg setup signing
-cvg setup harness      # scaffolds non-destructive AGENTS.md routing
-```
-
-Deploys the 11 orchestration skills into `.agents/skills/`, `.claude/skills/`, `.grok/skills/`. This merges into the `.claude/skills/` already present in this folder — review the diff before committing.
-
-Smoke test:
-
-```bash
-cvg lane "add a health endpoint"
-```
-
-### Seamwise standalone (decomposition without converge)
-
-```bash
-seamwise --workspace "/c/Users/Uriel/workspace/labs/claude-lab/engineer" init
-seamwise --workspace "/c/Users/Uriel/workspace/labs/claude-lab/engineer" map --source seamwise-recipe.yaml
-seamwise --workspace "/c/Users/Uriel/workspace/labs/claude-lab/engineer" plan
-seamwise --workspace "/c/Users/Uriel/workspace/labs/claude-lab/engineer" review --accept --reviewer "Lorenzo Uriel" --reason "..."
-seamwise --workspace "/c/Users/Uriel/workspace/labs/claude-lab/engineer" compile
-```
-
-Outputs `task-plan.json` + `task-plan-lineage.json`, consumed by Converge/Task-Spec — Seamwise never calls Task-Spec directly.
+- New agent → `.claude/agents/{category}/{name}.md`, standard frontmatter (role, model, capabilities); auto-discovered by Design.
+- New KB domain → `/create-kb "name"` or manually under `.claude/kb/{domain}/`, then register in `.claude/kb/_index.yaml`.
+- New skill or command → see `create-skill` skill and [.claude/commands/README.md](.claude/commands/README.md) for conventions.

@@ -1,8 +1,8 @@
 # AgentSpec Agents
 
-AgentSpec deploys **59 specialized agents** across **8 categories**, each built on a **three-tier template system** with mandatory **KB-First knowledge resolution**. Every agent carries a cognitive framework that enforces structured confidence scoring, provenance tracking, and explicit stop conditions -- turning raw LLM capability into disciplined, auditable domain expertise.
+AgentSpec deploys **65 specialized agents** across **10 categories**, each built on a **three-tier template system** with mandatory **KB-First knowledge resolution**. Every agent carries a cognitive framework that enforces structured confidence scoring, provenance tracking, and explicit stop conditions -- turning raw LLM capability into disciplined, auditable domain expertise.
 
-`59 agents | 8 categories | 3 tiers (T1/T2/T3) | 25 KB domains | 100% template compliance`
+`65 agents | 10 categories | 3 tiers (T1/T2/T3) | 26 KB domains | 100% template compliance`
 
 ---
 
@@ -12,7 +12,7 @@ AgentSpec agents are not raw LLM prompts. They operate through a three-layer cog
 
 ### Layer 1: Claude Code Orchestrator (Router)
 
-The orchestrator is Claude Code itself. It reads all 58 agent description fields from frontmatter, pattern-matches user messages to agent capabilities, and launches the best-fit agent. The orchestrator:
+The orchestrator is Claude Code itself. It reads all 65 agent description fields from frontmatter, pattern-matches user messages to agent capabilities, and launches the best-fit agent. The orchestrator:
 
 - Maintains memory, tasks, and plans across messages
 - Selects agents based on trigger phrases, file types, and context
@@ -40,7 +40,7 @@ User
   |
   v
 Orchestrator (Claude Code)
-  |-- reads 58 agent descriptions from frontmatter
+  |-- reads 65 agent descriptions from frontmatter
   |-- pattern-matches message to capabilities
   |-- selects best-fit agent
   v
@@ -86,9 +86,9 @@ Every agent declares a tier in frontmatter (`tier: T1|T2|T3`). The tier governs 
 
 ### Current Distribution
 
-- **T1 (10 agents):** genai-architect, medallion-architect, aws-data-architect, gcp-data-architect, ai-prompt-specialist, python-developer, lakeflow-specialist, spark-performance-analyzer, spark-troubleshooter, prompt-crafter
-- **T2 (29 agents):** data-platform-engineer, kb-architect, lakehouse-architect, pipeline-architect, schema-designer, the-planner, ai-data-engineer-gcp, code-cleaner, code-documenter, code-reviewer, data-contracts-engineer, data-quality-analyst, test-generator, ai-data-engineer, dbt-specialist, spark-engineer, spark-specialist, sql-optimizer, streaming-engineer, codebase-explorer, meeting-analyst, shell-script-specialist, project-docs-manager, brainstorm-agent, build-agent, define-agent, design-agent, iterate-agent, ship-agent
-- **T3 (20 agents):** ai-data-engineer-cloud, ai-prompt-specialist-gcp, aws-deployer, aws-lambda-architect, ci-cd-specialist, lambda-builder, supabase-specialist, fabric-ai-specialist, fabric-architect, fabric-cicd-specialist, fabric-logging-specialist, fabric-pipeline-developer, fabric-security-specialist, llm-specialist, airflow-specialist, lakeflow-architect, lakeflow-expert, lakeflow-pipeline-builder, qdrant-specialist, spark-streaming-architect
+- **T1 (11 agents):** genai-architect, medallion-architect, aws-data-architect, gcp-data-architect, ai-prompt-specialist, python-developer, lakeflow-specialist, spark-performance-analyzer, spark-troubleshooter, prompt-crafter, dotnet-developer
+- **T2 (33 agents):** data-platform-engineer, kb-architect, lakehouse-architect, pipeline-architect, schema-designer, the-planner, ai-data-engineer-gcp, code-cleaner, code-documenter, code-reviewer, javascript-developer, data-contracts-engineer, data-quality-analyst, test-generator, ai-data-engineer, dbt-specialist, spark-engineer, spark-specialist, sql-optimizer, streaming-engineer, codebase-explorer, meeting-analyst, shell-script-specialist, project-docs-manager, brainstorm-agent, build-agent, define-agent, design-agent, iterate-agent, ship-agent, dotnet-code-reviewer, dotnet-code-cleaner, dotnet-code-documenter
+- **T3 (21 agents):** ai-data-engineer-cloud, ai-prompt-specialist-gcp, aws-deployer, aws-lambda-architect, ci-cd-specialist, lambda-builder, supabase-specialist, fabric-ai-specialist, fabric-architect, fabric-cicd-specialist, fabric-logging-specialist, fabric-pipeline-developer, fabric-security-specialist, llm-specialist, airflow-specialist, lakeflow-architect, lakeflow-expert, lakeflow-pipeline-builder, qdrant-specialist, spark-streaming-architect, dotnet-specialist
 
 ---
 
@@ -188,7 +188,27 @@ Python development, code quality, and prompt engineering.
 | `ai-prompt-specialist` | T1 | sonnet | Prompt optimization, structured extraction, few-shot |
 | `llm-specialist` | T3 | opus | Advanced prompt engineering, chain-of-thought, structured output |
 
-### 5. Test (3 agents)
+### 5. JavaScript (1 agent)
+
+TypeScript/JavaScript development for Node.js, frontend, and full-stack projects.
+
+| Agent | Tier | Model | Purpose |
+|-------|------|-------|---------|
+| `javascript-developer` | T2 | sonnet | JS/TypeScript code architecture, types, generators, async, Context7-backed library docs |
+
+### 6. Dotnet (5 agents)
+
+C#/.NET development, code quality, and ASP.NET Core/EF Core platform depth.
+
+| Agent | Tier | Model | Purpose |
+|-------|------|-------|---------|
+| `dotnet-developer` | T1 | sonnet | C# code architecture, records, nullable reference types, pattern matching, async/await |
+| `dotnet-code-reviewer` | T2 | sonnet | Review C#/.NET code for quality and security issues |
+| `dotnet-code-cleaner` | T2 | sonnet | Clean code, remove redundant comments, apply DRY, modern C# idioms |
+| `dotnet-code-documenter` | T2 | sonnet | Generate documentation, READMEs, XML doc comments |
+| `dotnet-specialist` | T3 | sonnet | ASP.NET Core/EF Core platform depth, migrations, DI, Context7-backed framework docs |
+
+### 7. Test (3 agents)
 
 Testing, data quality, and contract validation.
 
@@ -198,7 +218,7 @@ Testing, data quality, and contract validation.
 | `data-quality-analyst` | T2 | sonnet | Great Expectations, dbt tests, data contracts |
 | `data-contracts-engineer` | T2 | sonnet | ODCS, SLAs, schema governance |
 
-### 6. Data Engineering (15 agents)
+### 8. Data Engineering (15 agents)
 
 Implementation specialists for data pipelines and processing.
 
@@ -220,7 +240,7 @@ Implementation specialists for data pipelines and processing.
 | `ai-data-engineer` | T2 | sonnet | RAG pipelines, vector DBs, feature stores |
 | `qdrant-specialist` | T3 | opus | Qdrant vector database, collection management |
 
-### 7. Dev (5 agents)
+### 9. Dev (5 agents)
 
 Developer tools and productivity.
 
@@ -232,7 +252,7 @@ Developer tools and productivity.
 | `shell-script-specialist` | T2 | sonnet | Production-grade Bash scripts, automation, deployment scripts |
 | `project-docs-manager` | T2 | sonnet | Scaffold and maintain PMBOK-lite project documentation (charter, stakeholders, plan, comms, closure) |
 
-### 8. Workflow (6 agents)
+### 10. Workflow (6 agents)
 
 Drive the SDD workflow phases.
 
@@ -262,6 +282,19 @@ Python <-> Data Engineering:
   code-cleaner -> dbt-specialist (CTE refactoring), sql-optimizer (query cleanup)
   test-generator -> data-quality-analyst (GE suites), dbt-specialist (dbt tests)
   python-developer -> spark-engineer (PySpark code), dbt-specialist (Python models)
+
+JavaScript <-> Cloud / Platform:
+  javascript-developer -> aws-lambda-architect (Node Lambda handlers), fabric-pipeline-developer (Fabric Data Factory custom activities)
+  javascript-developer -> code-reviewer (quality/security review), code-documenter (JSDoc/TSDoc)
+
+Dotnet <-> Dotnet:
+  dotnet-developer -> dotnet-specialist (ASP.NET Core/EF Core platform depth)
+  dotnet-code-reviewer -> dotnet-specialist (platform-specific security hardening)
+  dotnet-code-cleaner -> dotnet-code-reviewer (breaking API changes need review)
+  dotnet-specialist -> dotnet-developer (plain C# work), dotnet-code-reviewer (severity-tagged review)
+
+Dotnet <-> Cloud:
+  dotnet-specialist -> ci-cd-specialist (Azure DevOps pipelines for .NET deployment)
 
 Data Engineering <-> Data Engineering:
   dbt-specialist <-> spark-engineer (SQL vs PySpark)
@@ -316,7 +349,7 @@ If any condition fails, extend an existing agent rather than creating a new one.
 3. **Copy `_template.md`** to the appropriate category folder
 4. **Fill in frontmatter** -- all required fields for your tier (see schema below)
 5. **Write sections** required for your tier (see Section-by-Tier Matrix)
-6. **Place in the correct category folder** -- architect, cloud, platform, python, test, data-engineering, dev, or workflow
+6. **Place in the correct category folder** -- architect, cloud, platform, python, javascript, dotnet, test, data-engineering, dev, or workflow
 7. **Verify compliance** -- all required sections present, line count within budget
 
 ### Frontmatter Schema

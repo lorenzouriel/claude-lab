@@ -1,6 +1,6 @@
 ---
 name: agent-router
-description: Intelligent agent routing -- automatically matches tasks to the best specialist agent based on file patterns, intent keywords, and domain context. Loaded every session to give Claude explicit routing rules for all 58 AgentSpec agents.
+description: Intelligent agent routing -- automatically matches tasks to the best specialist agent based on file patterns, intent keywords, and domain context. Loaded every session to give Claude explicit routing rules for all 65 AgentSpec agents.
 ---
 
 <!-- =========================================================================
@@ -14,7 +14,7 @@ description: Intelligent agent routing -- automatically matches tasks to the bes
 
 Explicit routing rules for matching tasks to the correct specialist agent. Generated from each agent's frontmatter, so any change to an agent's `description`, `kb_domains`, or `escalation_rules` flows here automatically.
 
-**Agent count:** 58  |  **Categories:** 8  |  **Content hash:** `d2970b1b988f`
+**Agent count:** 65  |  **Categories:** 10  |  **Content hash:** `manual-edit` (generator script not present in this lab; hand-synced)
 
 ## A. Agents by Category
 
@@ -76,6 +76,7 @@ Explicit routing rules for matching tasks to the correct specialist agent. Gener
 |-------|------|-------|-----------|--------------|
 | `codebase-explorer` | T2 | sonnet | — | `python-developer`, `the-planner` |
 | `meeting-analyst` | T2 | sonnet | — | `the-planner`, `pipeline-architect` |
+| `project-docs-manager` | T2 | sonnet | `project-management` | `define-agent`, `meeting-analyst` |
 | `prompt-crafter` | T1 | sonnet | `python` | — |
 | `shell-script-specialist` | T2 | sonnet | — | `python-developer`, `ci-cd-specialist` |
 
@@ -102,6 +103,24 @@ Explicit routing rules for matching tasks to the correct specialist agent. Gener
 | `code-reviewer` | T2 | sonnet | `data-quality`, `sql-patterns`, `dbt` | — |
 | `llm-specialist` | T3 | opus | `prompt-engineering`, `pydantic`, `genai` | — |
 | `python-developer` | T1 | sonnet | `python`, `pydantic`, `testing` | — |
+
+### JavaScript & TypeScript
+*JS/TS dev, types, generators, async, npm ecosystem*
+
+| Agent | Tier | Model | KB Domains | Escalates To |
+|-------|------|-------|-----------|--------------|
+| `javascript-developer` | T2 | sonnet | `javascript` | `user` |
+
+### C# & .NET
+*C#/.NET dev, review, cleanup, documentation, ASP.NET Core/EF Core platform depth*
+
+| Agent | Tier | Model | KB Domains | Escalates To |
+|-------|------|-------|-----------|--------------|
+| `dotnet-code-cleaner` | T2 | sonnet | `dotnet` | `user`, `dotnet-code-reviewer` |
+| `dotnet-code-documenter` | T2 | sonnet | `dotnet` | `user` |
+| `dotnet-code-reviewer` | T2 | sonnet | `dotnet` | `user`, `dotnet-specialist` |
+| `dotnet-developer` | T1 | sonnet | `dotnet`, `testing` | — |
+| `dotnet-specialist` | T3 | sonnet | `dotnet` | `dotnet-developer`, `dotnet-code-reviewer`, `user` |
 
 ### Testing & Contracts
 *pytest, data quality, ODCS contracts*
@@ -137,12 +156,15 @@ Which agents know which domain. Use this when the user names a technology.
 | `data-modeling` | `data-contracts-engineer`, `data-platform-engineer`, `data-quality-analyst`, `lakehouse-architect`, `medallion-architect`, `schema-designer`, `sql-optimizer`, `supabase-specialist` |
 | `data-quality` | `ai-data-engineer`, `ai-data-engineer-cloud`, `ai-data-engineer-gcp`, `airflow-specialist`, `aws-data-architect`, `code-reviewer`, `data-contracts-engineer`, `data-quality-analyst`, `dbt-specialist`, `gcp-data-architect`, `lakeflow-expert`, `lakeflow-pipeline-builder`, `lakeflow-specialist`, `medallion-architect`, `pipeline-architect`, `schema-designer`, `test-generator` |
 | `dbt` | `code-reviewer`, `data-quality-analyst`, `dbt-specialist`, `pipeline-architect`, `sql-optimizer`, `test-generator` |
+| `dotnet` | `dotnet-code-cleaner`, `dotnet-code-documenter`, `dotnet-code-reviewer`, `dotnet-developer`, `dotnet-specialist` |
 | `gcp` | `ai-data-engineer-cloud`, `ai-data-engineer-gcp`, `ai-prompt-specialist-gcp`, `gcp-data-architect` |
 | `genai` | `ai-prompt-specialist`, `ai-prompt-specialist-gcp`, `genai-architect`, `llm-specialist`, `qdrant-specialist` |
+| `javascript` | `javascript-developer` |
 | `lakeflow` | `ci-cd-specialist`, `lakeflow-architect`, `lakeflow-expert`, `lakeflow-pipeline-builder`, `lakeflow-specialist` |
 | `lakehouse` | `data-platform-engineer`, `lakeflow-architect`, `lakeflow-expert`, `lakeflow-pipeline-builder`, `lakeflow-specialist`, `lakehouse-architect`, `medallion-architect`, `spark-performance-analyzer`, `spark-streaming-architect` |
 | `medallion` | `lakeflow-architect`, `lakeflow-expert`, `lakeflow-pipeline-builder`, `medallion-architect` |
 | `microsoft-fabric` | `fabric-ai-specialist`, `fabric-architect`, `fabric-cicd-specialist`, `fabric-logging-specialist`, `fabric-pipeline-developer`, `fabric-security-specialist` |
+| `project-management` | `project-docs-manager` |
 | `prompt-engineering` | `ai-prompt-specialist`, `ai-prompt-specialist-gcp`, `genai-architect`, `llm-specialist` |
 | `pydantic` | `ai-prompt-specialist`, `ai-prompt-specialist-gcp`, `llm-specialist`, `python-developer` |
 | `python` | `code-cleaner`, `code-documenter`, `lambda-builder`, `prompt-crafter`, `python-developer` |
@@ -178,6 +200,11 @@ Single-sentence purpose per agent, derived from frontmatter `description`.
 - **`dbt-specialist`** — dbt Core and dbt Cloud specialist for model development, testing, macros, and project management.
 - **`define-agent`** — Requirements extraction and validation specialist (Phase 1).
 - **`design-agent`** — Architecture and technical specification specialist (Phase 2).
+- **`dotnet-code-cleaner`** — C#/.NET code cleaning specialist for removing noise and applying modern language idioms.
+- **`dotnet-code-documenter`** — Documentation specialist for C#/.NET projects — READMEs, API docs, and XML doc comments.
+- **`dotnet-code-reviewer`** — Expert C#/.NET code review specialist ensuring quality, security, and maintainability.
+- **`dotnet-developer`** — C# code architect for .NET services and libraries — records, nullable reference types, pattern matching, async/await, Clean Architecture.
+- **`dotnet-specialist`** — ASP.NET Core and EF Core platform specialist for minimal APIs, dependency injection, migrations, and framework-version-specific guidance. Uses KB + Context7 MCP validation for current, version-accurate answers.
 - **`fabric-ai-specialist`** — Expert in Microsoft Fabric AI capabilities - Copilot, ML models, AI Skills, and Azure OpenAI integration.
 - **`fabric-architect`** — Strategic Fabric solution architect for end-to-end architectures using KB + MCP validation.
 - **`fabric-cicd-specialist`** — Expert in Microsoft Fabric CI/CD, Git integration, and deployment pipelines.
@@ -187,6 +214,7 @@ Single-sentence purpose per agent, derived from frontmatter `description`.
 - **`gcp-data-architect`** — Google Cloud data architecture specialist for BigQuery, Cloud Run, Pub/Sub, GCS, Dataflow, and Vertex AI.
 - **`genai-architect`** — GenAI Systems Architect for multi-agent orchestration, agentic workflows, and production AI systems.
 - **`iterate-agent`** — Cross-phase document updater with cascade awareness (All Phases).
+- **`javascript-developer`** — JavaScript/TypeScript code architect — modern ES2023+ patterns, TypeScript types, async/await, functional composition, npm ecosystem.
 - **`kb-architect`** — Knowledge base architect for creating validated, structured KB domains.
 - **`lakeflow-architect`** — Databricks Lakeflow expert for building Medallion architecture pipelines. Creates Bronze/Silver/Gold layers with DLT. Uses KB + MCP validation.
 - **`lakeflow-expert`** — Databricks Lakeflow (DLT) SME for pipeline development, CDC, data quality, and production deployment. Uses KB + MCP validation.
@@ -198,6 +226,7 @@ Single-sentence purpose per agent, derived from frontmatter `description`.
 - **`medallion-architect`** — Medallion Architecture specialist for Bronze/Silver/Gold layer design and data quality progression.
 - **`meeting-analyst`** — Master communication analyst that transforms meetings into structured, actionable documentation.
 - **`pipeline-architect`** — Orchestration specialist for Airflow, Dagster, and pipeline design patterns.
+- **`project-docs-manager`** — Scaffolds and maintains a project's PMBOK-lite documentation set — the six-folder structure (terms-and-charter, stakeholders, planning, execution pointer, communication, closing) — and drafts or updates the document each phase calls for.
 - **`prompt-crafter`** — PROMPT.md builder with SDD-lite phases and Agent Matching Engine.
 - **`python-developer`** — Python code architect for data engineering systems — clean patterns, dataclasses, type hints, generators.
 - **`qdrant-specialist`** — Elite Qdrant vector database specialist for collection management, point operations, payload filtering, search optimization, and RAG pipeline integration.

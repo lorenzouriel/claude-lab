@@ -1,8 +1,8 @@
 # Knowledge Base Index
 # Machine-readable registry for KB domains
 
-version: "2.2"
-last_updated: "2026-04-14"
+version: "2.4"
+last_updated: "2026-09-16"
 
 # File Size Limits (SINGLE SOURCE OF TRUTH)
 limits:
@@ -38,7 +38,7 @@ shared:
     path: shared/component-model.md
     description: "Canonical component layering — agents execute, skills teach how, commands are entrypoints, KBs are source-of-truth; referenced by the authoring skills and the SDD components"
 
-# Domain Registry — 24 Domains (23 named + shared anti-patterns)
+# Domain Registry — 26 named domains (shared/ holds anti-patterns.md and component-model.md, referenced across domains)
 domains:
 
   # ─── Core Data Engineering ─────────────────────────────────────────
@@ -222,6 +222,12 @@ domains:
         confidence: 0.90
       - name: cdc-patterns
         path: patterns/cdc-patterns.md
+        confidence: 0.90
+      - name: high-availability-throughput
+        path: patterns/high-availability-throughput.md
+        confidence: 0.90
+      - name: production-best-practices
+        path: patterns/production-best-practices.md
         confidence: 0.90
 
   # ─── Data Design & Quality ─────────────────────────────────────────
@@ -975,6 +981,85 @@ domains:
       - name: functional-patterns
         path: patterns/functional-patterns.md
         confidence: 0.90
+      - name: real-time-pipelines
+        path: patterns/real-time-pipelines.md
+        confidence: 0.85
+
+  javascript:
+    name: javascript
+    description: "JavaScript/TypeScript patterns — types, generators, async, module structure, npm tooling"
+    path: javascript/
+    mcp_validated: "2026-03-26"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: classes-and-types
+        path: concepts/classes-and-types.md
+        confidence: 0.95
+      - name: type-hints
+        path: concepts/type-hints.md
+        confidence: 0.95
+      - name: generators
+        path: concepts/generators.md
+        confidence: 0.95
+      - name: resource-management
+        path: concepts/resource-management.md
+        confidence: 0.90
+    patterns:
+      - name: clean-architecture
+        path: patterns/clean-architecture.md
+        confidence: 0.90
+      - name: error-handling
+        path: patterns/error-handling.md
+        confidence: 0.90
+      - name: file-parser
+        path: patterns/file-parser.md
+        confidence: 0.90
+      - name: functional-patterns
+        path: patterns/functional-patterns.md
+        confidence: 0.90
+      - name: streaming-pipelines
+        path: patterns/streaming-pipelines.md
+        confidence: 0.85
+
+  dotnet:
+    name: dotnet
+    description: "C#/.NET patterns — records, nullable reference types, pattern matching, async/await, Clean Architecture"
+    path: dotnet/
+    mcp_validated: "2026-04-14"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: records
+        path: concepts/records.md
+        confidence: 0.95
+      - name: nullable-reference-types
+        path: concepts/nullable-reference-types.md
+        confidence: 0.95
+      - name: pattern-matching
+        path: concepts/pattern-matching.md
+        confidence: 0.90
+      - name: async-await
+        path: concepts/async-await.md
+        confidence: 0.95
+    patterns:
+      - name: clean-architecture
+        path: patterns/clean-architecture.md
+        confidence: 0.90
+      - name: error-handling
+        path: patterns/error-handling.md
+        confidence: 0.90
+      - name: file-parser
+        path: patterns/file-parser.md
+        confidence: 0.90
+      - name: functional-patterns
+        path: patterns/functional-patterns.md
+        confidence: 0.90
+      - name: real-time-pipelines
+        path: patterns/real-time-pipelines.md
+        confidence: 0.85
 
   testing:
     name: testing
