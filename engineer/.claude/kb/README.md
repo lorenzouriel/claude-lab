@@ -3,7 +3,7 @@
 > The structured knowledge layer that grounds every agent response in verified, domain-specific content.
 
 ```
-25 domains | 297 files | 42,900+ lines | MCP-validated 2026-03-26 (project-management is not MCP-validated — house convention)
+27 domains | 326 files | 45,254+ lines | MCP-validated 2026-03-26 (project-management is not MCP-validated — house convention)
 ```
 
 ---
@@ -70,6 +70,7 @@ Some domains extend this with additional directories:
 | spark | 11 | PySpark, Spark SQL, DataFrames, Real-Time Mode, Spark Connect | spark-engineer, spark-specialist, spark-streaming-architect, spark-troubleshooter, spark-performance-analyzer, lakehouse-architect, lakeflow-architect |
 | airflow | 10 | Airflow 3.x TaskFlow, Dagster, Prefect comparison, DAG design | airflow-specialist, pipeline-architect |
 | sql-patterns | 9 | Cross-dialect SQL: window functions, CTEs, deduplication | code-reviewer, sql-optimizer, spark-engineer, spark-specialist, spark-troubleshooter, streaming-engineer, airflow-specialist, schema-designer |
+| sql-server | 29 | SQL Server/T-SQL engine internals and DBA ops: architecture, indexing, HA/DR, security | sql-server-specialist, sql-server-dba, sql-optimizer |
 | streaming | 10 | Flink, Kafka, Spark Streaming, RisingWave, Materialize, CDC | streaming-engineer, spark-streaming-architect, ai-data-engineer |
 | data-modeling | 10 | Dimensional modeling, Data Vault, SCD types, schema evolution | schema-designer, data-platform-engineer, medallion-architect, supabase-specialist, data-contracts-engineer, data-quality-analyst, sql-optimizer |
 | data-quality | 10 | Soda, Great Expectations, dbt tests, ODCS, Monte Carlo | code-reviewer, data-quality-analyst, data-contracts-engineer, test-generator, ai-data-engineer, ai-data-engineer-cloud, ai-data-engineer-gcp, gcp-data-architect, aws-data-architect, medallion-architect, lakeflow-expert, lakeflow-pipeline-builder, lakeflow-specialist, pipeline-architect |
@@ -159,7 +160,7 @@ Each agent declares a `kb_domains` field in its frontmatter that determines whic
 | fabric-pipeline-developer | microsoft-fabric |
 | fabric-security-specialist | microsoft-fabric |
 
-**Data engineering agents** (15 agents in `.claude/agents/data-engineering/`):
+**Data engineering agents** (17 agents in `.claude/agents/data-engineering/`):
 
 | Agent | KB Domains |
 |-------|------------|
@@ -177,6 +178,8 @@ Each agent declares a `kb_domains` field in its frontmatter that determines whic
 | spark-streaming-architect | spark, streaming, lakehouse |
 | spark-troubleshooter | spark, sql-patterns |
 | sql-optimizer | sql-patterns, data-modeling, dbt |
+| sql-server-specialist | sql-server, sql-patterns |
+| sql-server-dba | sql-server |
 | streaming-engineer | streaming, spark, sql-patterns |
 
 **Python agents** (6 agents in `.claude/agents/python/`):
@@ -297,7 +300,7 @@ The machine-readable registry lives at `.claude/kb/_index.yaml`. It defines:
 - **limits** -- File size limits (single source of truth)
 - **templates** -- Paths to scaffolding templates
 - **shared** -- Cross-domain resources (anti-patterns library; component model)
-- **domains** -- Complete registry of all 25 domains with:
+- **domains** -- Complete registry of all 27 domains with:
   - `name` -- Domain identifier
   - `description` -- One-line summary
   - `path` -- Directory path relative to `.claude/kb/`

@@ -1,6 +1,6 @@
 ---
 name: agent-router
-description: Intelligent agent routing -- automatically matches tasks to the best specialist agent based on file patterns, intent keywords, and domain context. Loaded every session to give Claude explicit routing rules for all 65 AgentSpec agents.
+description: Intelligent agent routing -- automatically matches tasks to the best specialist agent based on file patterns, intent keywords, and domain context. Loaded every session to give Claude explicit routing rules for all 67 AgentSpec agents.
 ---
 
 <!-- =========================================================================
@@ -14,7 +14,7 @@ description: Intelligent agent routing -- automatically matches tasks to the bes
 
 Explicit routing rules for matching tasks to the correct specialist agent. Generated from each agent's frontmatter, so any change to an agent's `description`, `kb_domains`, or `escalation_rules` flows here automatically.
 
-**Agent count:** 65  |  **Categories:** 10  |  **Content hash:** `manual-edit` (generator script not present in this lab; hand-synced)
+**Agent count:** 67  |  **Categories:** 10  |  **Content hash:** `manual-edit` (generator script not present in this lab; hand-synced)
 
 ## A. Agents by Category
 
@@ -66,7 +66,9 @@ Explicit routing rules for matching tasks to the correct specialist agent. Gener
 | `spark-specialist` | T2 | opus | `spark`, `sql-patterns`, `cloud-platforms` | `pipeline-architect`, `dbt-specialist`, `lakehouse-architect` |
 | `spark-streaming-architect` | T3 | sonnet | `spark`, `streaming`, `lakehouse` | `spark-engineer`, `streaming-engineer`, `airflow-specialist` |
 | `spark-troubleshooter` | T1 | sonnet | `spark`, `sql-patterns` | — |
-| `sql-optimizer` | T2 | sonnet | `sql-patterns`, `data-modeling`, `dbt` | `spark-engineer`, `schema-designer`, `dbt-specialist` |
+| `sql-optimizer` | T2 | sonnet | `sql-patterns`, `data-modeling`, `dbt` | `sql-server-specialist`, `sql-server-dba`, `spark-engineer`, `schema-designer`, `dbt-specialist` |
+| `sql-server-dba` | T2 | sonnet | `sql-server` | `sql-server-specialist`, `sql-optimizer`, `data-platform-engineer`, `ci-cd-specialist` |
+| `sql-server-specialist` | T2 | sonnet | `sql-server`, `sql-patterns` | `sql-optimizer`, `sql-server-dba`, `schema-designer`, `dbt-specialist` |
 | `streaming-engineer` | T2 | sonnet | `streaming`, `spark`, `sql-patterns` | `pipeline-architect`, `dbt-specialist`, `lakehouse-architect`, `ai-data-engineer` |
 
 ### Developer Tools
@@ -169,7 +171,8 @@ Which agents know which domain. Use this when the user names a technology.
 | `pydantic` | `ai-prompt-specialist`, `ai-prompt-specialist-gcp`, `llm-specialist`, `python-developer` |
 | `python` | `code-cleaner`, `code-documenter`, `lambda-builder`, `prompt-crafter`, `python-developer` |
 | `spark` | `lakeflow-architect`, `lakeflow-specialist`, `lakehouse-architect`, `spark-engineer`, `spark-performance-analyzer`, `spark-specialist`, `spark-streaming-architect`, `spark-troubleshooter`, `streaming-engineer` |
-| `sql-patterns` | `airflow-specialist`, `code-reviewer`, `dbt-specialist`, `schema-designer`, `spark-engineer`, `spark-specialist`, `spark-troubleshooter`, `sql-optimizer`, `streaming-engineer` |
+| `sql-patterns` | `airflow-specialist`, `code-reviewer`, `dbt-specialist`, `schema-designer`, `spark-engineer`, `spark-specialist`, `spark-troubleshooter`, `sql-optimizer`, `sql-server-specialist`, `streaming-engineer` |
+| `sql-server` | `sql-server-dba`, `sql-server-specialist` |
 | `streaming` | `ai-data-engineer`, `spark-engineer`, `spark-streaming-architect`, `streaming-engineer` |
 | `supabase` | `supabase-specialist` |
 | `terraform` | `ai-data-engineer-cloud`, `ai-data-engineer-gcp`, `aws-data-architect`, `aws-deployer`, `aws-lambda-architect`, `ci-cd-specialist`, `gcp-data-architect` |
@@ -239,6 +242,8 @@ Single-sentence purpose per agent, derived from frontmatter `description`.
 - **`spark-streaming-architect`** — Spark Structured Streaming expert for real-time pipelines, Kafka integration, and stream processing. Uses KB + MCP validation.
 - **`spark-troubleshooter`** — Spark debugging specialist for diagnosing OOM errors, data skew, shuffle failures, and job hangs.
 - **`sql-optimizer`** — Cross-dialect SQL optimization specialist for query plans, window functions, and performance tuning.
+- **`sql-server-dba`** — SQL Server DBA operations specialist for backup/restore, high availability and disaster recovery, security/compliance, and maintenance.
+- **`sql-server-specialist`** — SQL Server / T-SQL specialist for query optimization, execution plans, indexing strategy, and engine-internals-aware development.
 - **`streaming-engineer`** — Stream processing specialist for Flink, Kafka, Spark Streaming, RisingWave, and CDC pipelines.
 - **`supabase-specialist`** — Elite Supabase specialist for pgvector, RLS, Edge Functions, Auth, Realtime, and database design.
 - **`test-generator`** — Test automation expert for Python. Generates pytest unit tests, integration tests, and fixtures.

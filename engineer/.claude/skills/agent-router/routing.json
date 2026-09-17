@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "agent_count": 65,
+  "agent_count": 67,
   "agents": [
     {
       "name": "ai-data-engineer",
@@ -942,7 +942,44 @@
         "dbt"
       ],
       "escalates_to": [
+        "sql-server-specialist",
+        "sql-server-dba",
         "spark-engineer",
+        "schema-designer",
+        "dbt-specialist"
+      ]
+    },
+    {
+      "name": "sql-server-dba",
+      "category": "data-engineering",
+      "path": ".claude/agents/data-engineering/sql-server-dba.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "SQL Server DBA operations specialist for backup/restore, high availability and disaster recovery, security/compliance, and maintenance.",
+      "kb_domains": [
+        "sql-server"
+      ],
+      "escalates_to": [
+        "sql-server-specialist",
+        "sql-optimizer",
+        "data-platform-engineer",
+        "ci-cd-specialist"
+      ]
+    },
+    {
+      "name": "sql-server-specialist",
+      "category": "data-engineering",
+      "path": ".claude/agents/data-engineering/sql-server-specialist.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "SQL Server / T-SQL specialist for query optimization, execution plans, indexing strategy, and engine-internals-aware development.",
+      "kb_domains": [
+        "sql-server",
+        "sql-patterns"
+      ],
+      "escalates_to": [
+        "sql-optimizer",
+        "sql-server-dba",
         "schema-designer",
         "dbt-specialist"
       ]

@@ -1,8 +1,8 @@
 # AgentSpec Agents
 
-AgentSpec deploys **65 specialized agents** across **10 categories**, each built on a **three-tier template system** with mandatory **KB-First knowledge resolution**. Every agent carries a cognitive framework that enforces structured confidence scoring, provenance tracking, and explicit stop conditions -- turning raw LLM capability into disciplined, auditable domain expertise.
+AgentSpec deploys **67 specialized agents** across **10 categories**, each built on a **three-tier template system** with mandatory **KB-First knowledge resolution**. Every agent carries a cognitive framework that enforces structured confidence scoring, provenance tracking, and explicit stop conditions -- turning raw LLM capability into disciplined, auditable domain expertise.
 
-`65 agents | 10 categories | 3 tiers (T1/T2/T3) | 26 KB domains | 100% template compliance`
+`67 agents | 10 categories | 3 tiers (T1/T2/T3) | 27 KB domains | 100% template compliance`
 
 ---
 
@@ -87,7 +87,7 @@ Every agent declares a tier in frontmatter (`tier: T1|T2|T3`). The tier governs 
 ### Current Distribution
 
 - **T1 (11 agents):** genai-architect, medallion-architect, aws-data-architect, gcp-data-architect, ai-prompt-specialist, python-developer, lakeflow-specialist, spark-performance-analyzer, spark-troubleshooter, prompt-crafter, dotnet-developer
-- **T2 (33 agents):** data-platform-engineer, kb-architect, lakehouse-architect, pipeline-architect, schema-designer, the-planner, ai-data-engineer-gcp, code-cleaner, code-documenter, code-reviewer, javascript-developer, data-contracts-engineer, data-quality-analyst, test-generator, ai-data-engineer, dbt-specialist, spark-engineer, spark-specialist, sql-optimizer, streaming-engineer, codebase-explorer, meeting-analyst, shell-script-specialist, project-docs-manager, brainstorm-agent, build-agent, define-agent, design-agent, iterate-agent, ship-agent, dotnet-code-reviewer, dotnet-code-cleaner, dotnet-code-documenter
+- **T2 (35 agents):** data-platform-engineer, kb-architect, lakehouse-architect, pipeline-architect, schema-designer, the-planner, ai-data-engineer-gcp, code-cleaner, code-documenter, code-reviewer, javascript-developer, data-contracts-engineer, data-quality-analyst, test-generator, ai-data-engineer, dbt-specialist, spark-engineer, spark-specialist, sql-optimizer, sql-server-specialist, sql-server-dba, streaming-engineer, codebase-explorer, meeting-analyst, shell-script-specialist, project-docs-manager, brainstorm-agent, build-agent, define-agent, design-agent, iterate-agent, ship-agent, dotnet-code-reviewer, dotnet-code-cleaner, dotnet-code-documenter
 - **T3 (21 agents):** ai-data-engineer-cloud, ai-prompt-specialist-gcp, aws-deployer, aws-lambda-architect, ci-cd-specialist, lambda-builder, supabase-specialist, fabric-ai-specialist, fabric-architect, fabric-cicd-specialist, fabric-logging-specialist, fabric-pipeline-developer, fabric-security-specialist, llm-specialist, airflow-specialist, lakeflow-architect, lakeflow-expert, lakeflow-pipeline-builder, qdrant-specialist, spark-streaming-architect, dotnet-specialist
 
 ---
@@ -218,7 +218,7 @@ Testing, data quality, and contract validation.
 | `data-quality-analyst` | T2 | sonnet | Great Expectations, dbt tests, data contracts |
 | `data-contracts-engineer` | T2 | sonnet | ODCS, SLAs, schema governance |
 
-### 8. Data Engineering (15 agents)
+### 8. Data Engineering (17 agents)
 
 Implementation specialists for data pipelines and processing.
 
@@ -232,6 +232,8 @@ Implementation specialists for data pipelines and processing.
 | `spark-streaming-architect` | T3 | sonnet | Structured Streaming, Kafka, real-time pipelines |
 | `streaming-engineer` | T2 | sonnet | Flink, Kafka, Spark Streaming, CDC |
 | `sql-optimizer` | T2 | sonnet | Query plans, cross-dialect SQL, window functions |
+| `sql-server-specialist` | T2 | sonnet | SQL Server/T-SQL query tuning, execution plans, indexing, Query Store |
+| `sql-server-dba` | T2 | sonnet | SQL Server backup/restore, Always On HA/DR, security, maintenance |
 | `airflow-specialist` | T3 | sonnet | Apache Airflow 3.0, DAGs, TaskFlow API |
 | `lakeflow-architect` | T3 | sonnet | Databricks Lakeflow, Medallion architecture |
 | `lakeflow-expert` | T3 | sonnet | DLT troubleshooting, CDC, SCD Type 2 |
@@ -297,6 +299,12 @@ Dotnet <-> Cloud:
   dotnet-specialist -> ci-cd-specialist (Azure DevOps pipelines for .NET deployment)
 
 Data Engineering <-> Data Engineering:
+  sql-optimizer <-> sql-server-specialist (cross-dialect vs SQL-Server-engine-specific tuning)
+  sql-optimizer <-> sql-server-dba (query optimization vs DBA operations)
+  sql-server-specialist <-> sql-server-dba (query/routine tuning vs backup/HA-DR/security/maintenance)
+  sql-server-specialist -> schema-designer (dimensional/Data Vault modeling theory)
+  sql-server-dba -> data-platform-engineer (cloud infra beyond the SQL Server/Azure SQL instance)
+  sql-server-dba -> ci-cd-specialist (generic CI/CD pipeline design beyond database deployment)
   dbt-specialist <-> spark-engineer (SQL vs PySpark)
   dbt-specialist <-> schema-designer (modeling layer)
   pipeline-architect <-> streaming-engineer (batch vs stream)
